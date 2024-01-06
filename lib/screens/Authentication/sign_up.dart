@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:ggraduating_project/constants.dart';
 import 'package:ggraduating_project/screens/Authentication/phone_verification.dart';
+import 'package:ggraduating_project/utils/validator_utl.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class SignUp extends StatefulWidget {
@@ -13,10 +14,47 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
+  bool _validateUserName = true;
+  bool _validatePassword = true;
+  bool _validateFullName = true;
+  bool _validateEmail = true;
+
+  void _onSignupPressed() {
+    String? usernameError =
+        ValidatorUtil.validateUsername(_usernameController.text);
+    String? passwordError =
+        ValidatorUtil.validatePassword(_passwordController.text);
+    String? fullNameError =
+        ValidatorUtil.validatePassword(_passwordController.text);
+    String? emailError =
+        ValidatorUtil.validatePassword(_passwordController.text);
+
+    if (usernameError == null &&
+        passwordError == null &&
+        fullNameError == null &&
+        emailError == null) {
+      // Perform the login or registration logic here.
+      print('Username and password are valid. Perform the login logic.');
+    } else {
+      // Handle validation errors.
+      print('Validation Error: $usernameError, $passwordError');
+      _validateUserName = false;
+      _validatePassword = false;
+      _validateFullName = false;
+      _validateEmail = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Container(
@@ -76,7 +114,7 @@ class _SignUpState extends State<SignUp> {
                       )),
                 ),
                 const SizedBox(
-                  height: 40.0,
+                  height: 20.0,
                 ),
                 Expanded(
                   child: Container(
@@ -90,51 +128,73 @@ class _SignUpState extends State<SignUp> {
                     child: Column(
                       children: [
                         const SizedBox(
-                          height: 20.0,
+                          height: 10.0,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: SizedBox(
-                            height: 60.0,
+                            height: 90.0,
                             child: AppTextField(
-                              textFieldType: TextFieldType.PHONE,
-                              controller: TextEditingController(),
+                              textFieldType: TextFieldType.USERNAME,
+                              controller: _usernameController,
                               enabled: true,
                               onChanged: (value) {
-                                setState(() {});
+                                setState(() {
+                                  _onSignupPressed();
+                                });
                               },
                               decoration: InputDecoration(
+                                errorText: _validateUserName
+                                    ? "Value Can't Be Empty"
+                                    : null,
                                 labelText: 'User Name',
-                                hintText: '1767 432556',
+                                hintText: 'User Name',
                                 border: const OutlineInputBorder(),
                               ),
                             ),
                           ),
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: AppTextField(
-                            textFieldType: TextFieldType.NAME,
-                            decoration: const InputDecoration(
-                              labelText: 'Full Name',
-                              hintText: 'Prince mahmud',
-                              border: OutlineInputBorder(),
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          child: SizedBox(
+                            height: 90,
+                            child: AppTextField(
+                              textFieldType: TextFieldType.NAME,
+                              controller: _fullNameController,
+                              enabled: true,
+                              onChanged: (value) {
+                                setState(() {
+                                  _onSignupPressed();
+                                });
+                              },
+                              decoration: InputDecoration(
+                                errorText: _validateFullName
+                                    ? "Value Can't Be Empty"
+                                    : null,
+                                labelText: 'Full Name',
+                                hintText: 'mohamad shesha',
+                                border: OutlineInputBorder(),
+                              ),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                           child: SizedBox(
-                            height: 60.0,
+                            height: 90.0,
                             child: AppTextField(
-                              textFieldType: TextFieldType.PHONE,
-                              controller: TextEditingController(),
+                              textFieldType: TextFieldType.EMAIL,
+                              controller: _emailController,
                               enabled: true,
                               onChanged: (value) {
-                                setState(() {});
+                                setState(() {
+                                  _onSignupPressed();
+                                });
                               },
                               decoration: InputDecoration(
+                                errorText: _validateUserName
+                                    ? "Value Can't Be Empty"
+                                    : null,
                                 labelText: 'Email',
                                 hintText: 'example@gmail.com',
                                 border: const OutlineInputBorder(),
@@ -143,12 +203,25 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: AppTextField(
-                            textFieldType: TextFieldType.PASSWORD,
-                            decoration: const InputDecoration(
-                              labelText: 'Password',
-                              border: OutlineInputBorder(),
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          child: SizedBox(
+                            height: 90,
+                            child: AppTextField(
+                              textFieldType: TextFieldType.PASSWORD,
+                              controller: _passwordController,
+                              enabled: true,
+                              decoration: InputDecoration(
+                                errorText: _validatePassword
+                                    ? "Value Can't Be Empty"
+                                    : null,
+                                labelText: 'Password',
+                                border: OutlineInputBorder(),
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  _onSignupPressed();
+                                });
+                              },
                             ),
                           ),
                         ),
