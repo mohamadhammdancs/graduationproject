@@ -12,6 +12,7 @@ class ValidatorUtil {
     if (password == null || password.isEmpty) {
       return 'Password is required';
     }
+    return null;
     // You can add more specific validation rules for the password if needed.
 
   }
@@ -21,6 +22,7 @@ class ValidatorUtil {
     if (email == null || email.isEmpty) {
       return 'Email is required';
     }
+    return null;
     // You can add more specific validation rules for the password if needed.
 
   }
@@ -28,6 +30,7 @@ class ValidatorUtil {
     if (fullname == null || fullname.isEmpty) {
       return 'Full Name is required';
     }
+    return null;
     // You can add more specific validation rules for the password if needed.
 
   }

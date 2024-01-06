@@ -190,7 +190,7 @@ class _SignUpState extends State<SignUp> {
                                 });
                               },
                               decoration: InputDecoration(
-                                errorText: _validateUserName
+                                errorText: _validateEmail
                                     ? "Value Can't Be Empty"
                                     : null,
                                 labelText: 'Email',
