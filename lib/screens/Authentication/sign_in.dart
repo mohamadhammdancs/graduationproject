@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/constants.dart';
 import 'package:ggraduating_project/screens/Authentication/log_in.dart';
-import 'package:ggraduating_project/screens/Authentication/phone_auth.dart';
 import 'package:ggraduating_project/screens/Authentication/sign_up.dart';
 import 'package:nb_utils/nb_utils.dart';
 
