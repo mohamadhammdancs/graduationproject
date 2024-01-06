@@ -161,28 +161,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
                                     ),
                                   ),
-                                  Expanded(
-                                    child: RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          const WidgetSpan(
-                                            child: Icon(
-                                              Icons.star,
-                                              color: KDarkBlue,
-                                              size: 18.0,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: widget.product.productRating,
-                                            style: kTextStyle.copyWith(
-                                              fontWeight: FontWeight.bold,
-                                              color: kTitleColor,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  Spacer(),
                                   Expanded(
                                     child: RichText(
                                       text: TextSpan(
@@ -196,7 +175,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           ),
                                           TextSpan(
                                             text:
-                                                ' ${widget.product.productTime} Min',
+                                                ' ${widget.product.productTime}',
                                             style: kTextStyle.copyWith(
                                               fontWeight: FontWeight.bold,
                                               color: KSecondryContrast,

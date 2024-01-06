@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -42,20 +43,24 @@ class FoodCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      RatingBarIndicator(
-                        rating: productData.productRating.toDouble(),
-                        itemBuilder: (context, index) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        itemCount: 5,
-                        itemSize: 10.0,
+                      // RatingBarIndicator(
+                      //   rating: productData.productRating.toDouble(),
+                      //   itemBuilder: (context, index) => const Icon(
+                      //     Icons.star,
+                      //     color: Colors.amber,
+                      //   ),
+                      //   itemCount: 5,
+                      //   itemSize: 10.0,
+                      // ),
+                      Icon(
+                        FontAwesomeIcons.clock,
+                        size: 20,
                       ),
                       const SizedBox(
                         width: 5.0,
                       ),
                       Text(
-                        productData.productRating,
+                        productData.productTime,
                         style: kTextStyle.copyWith(color: kGreyTextColor),
                       ),
                     ],
