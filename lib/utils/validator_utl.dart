@@ -15,4 +15,20 @@ class ValidatorUtil {
     // You can add more specific validation rules for the password if needed.
 
   }
+
+
+  static String? validateEmail(String? email) {
+    if (email == null || email.isEmpty) {
+      return 'Email is required';
+    }
+    // You can add more specific validation rules for the password if needed.
+
+  }
+  static String? validateFullName(String? fullname) {
+    if (fullname == null || fullname.isEmpty) {
+      return 'Full Name is required';
+    }
+    // You can add more specific validation rules for the password if needed.
+
+  }
 }

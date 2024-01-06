@@ -29,9 +29,8 @@ class _SignUpState extends State<SignUp> {
     String? passwordError =
         ValidatorUtil.validatePassword(_passwordController.text);
     String? fullNameError =
-        ValidatorUtil.validatePassword(_passwordController.text);
-    String? emailError =
-        ValidatorUtil.validatePassword(_passwordController.text);
+        ValidatorUtil.validateFullName(_fullNameController.text);
+    String? emailError = ValidatorUtil.validateEmail(_emailController.text);
 
     if (usernameError == null &&
         passwordError == null &&
