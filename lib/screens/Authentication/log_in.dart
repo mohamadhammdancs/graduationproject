@@ -5,14 +5,14 @@ import 'package:ggraduating_project/constants.dart';
 import 'package:ggraduating_project/screens/Authentication/phone_verification.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class LogIn extends StatefulWidget {
+  const LogIn({super.key});
 
   @override
-  _SignUpState createState() => _SignUpState();
+  State<LogIn> createState() => _LogInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -60,7 +60,7 @@ class _SignUpState extends State<SignUp> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Let’s get you started',
+                            'Log In',
                             style: kTextStyle.copyWith(
                                 color: KSecondryHighContrast,
                                 fontSize: 18.0,
@@ -104,39 +104,8 @@ class _SignUpState extends State<SignUp> {
                                 setState(() {});
                               },
                               decoration: InputDecoration(
-                                labelText: 'User Name',
-                                hintText: '1767 432556',
-                                border: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: AppTextField(
-                            textFieldType: TextFieldType.NAME,
-                            decoration: const InputDecoration(
-                              labelText: 'Full Name',
-                              hintText: 'Prince mahmud',
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: SizedBox(
-                            height: 60.0,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.PHONE,
-                              controller: TextEditingController(),
-                              enabled: true,
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                              decoration: InputDecoration(
                                 labelText: 'Email',
-                                hintText: 'example@gmail.com',
+                                hintText: 'example@example.com',
                                 border: const OutlineInputBorder(),
                               ),
                             ),
@@ -153,11 +122,11 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         ButtonGlobal(
-                          buttontext: 'Continue',
+                          buttontext: 'Log in',
                           buttonDecoration: kButtonDecoration.copyWith(
                               color: KSecondryHighContrast),
                           onPressed: () {
-                            const PhoneVerification().launch(context);
+                            // TODO: log in logic
                           },
                         ),
                       ],
@@ -170,5 +139,6 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+    ;
   }
 }
