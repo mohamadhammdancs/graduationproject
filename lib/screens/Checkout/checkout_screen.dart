@@ -159,7 +159,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                 "Go Back",
                                                 style: kTextStyle.copyWith(
                                                     color: kGreyTextColor),
-                                              ),
+                                              ).onTap(() {
+                                                Navigator.pop(context);
+                                              }),
                                             ],
                                           ),
                                         ],

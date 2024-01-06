@@ -74,93 +74,91 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                               topRight: Radius.circular(30.0)),
                           color: Colors.white,
                         ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 100.0,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 100.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 20.0, top: 20.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    widget.kitchen.kitchenName,
+                                    style: kTextStyle.copyWith(
+                                        color: kTitleColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0, top: 20.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      widget.kitchen.kitchenName,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0,
+                                  right: 20.0,
+                                  bottom: 20.0,
+                                  top: 10.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${widget.kitchen.kitchenFoodTypes}',
                                       style: kTextStyle.copyWith(
-                                          color: kTitleColor,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20.0),
+                                        color: KSecondryContrast,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0,
-                                    right: 20.0,
-                                    bottom: 20.0,
-                                    top: 10.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '${widget.kitchen.kitchenFoodTypes}',
-                                        style: kTextStyle.copyWith(
-                                          color: KSecondryContrast,
-                                          fontWeight: FontWeight.bold,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: widget.kitchen.kitchenRating
+                                              .toString(),
+                                          style: kTextStyle.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: kTitleColor,
+                                              fontSize: 16),
                                         ),
-                                      ),
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: widget.kitchen.kitchenRating
-                                                .toString(),
-                                            style: kTextStyle.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: kTitleColor,
-                                                fontSize: 16),
+                                        const WidgetSpan(
+                                          child: Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                            size: 25,
                                           ),
-                                          const WidgetSpan(
-                                            child: Icon(
-                                              Icons.star,
-                                              color: Colors.amber,
-                                              size: 25,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                height: 10.0,
+                            ),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            const Divider(
+                              endIndent: 20,
+                              indent: 20,
+                              color: KSecondryHighContrast,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: context.height(),
+                                child: ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: widget.kitchen.dishes.length,
+                                    itemBuilder: (_, n) {
+                                      return KitchenDishesCards(
+                                          kitchenDishesData:
+                                              widget.kitchen.dishes[n]);
+                                    }),
                               ),
-                              Divider(
-                                endIndent: 20,
-                                indent: 20,
-                                color: KSecondryHighContrast,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  height: 1000,
-                                  child: ListView.builder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount: widget.kitchen.dishes.length,
-                                      itemBuilder: (_, n) {
-                                        return KitchenDishesCards(
-                                            kitchenDishesData:
-                                                widget.kitchen.dishes[n]);
-                                      }),
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
                       ),
                     ],

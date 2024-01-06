@@ -17,7 +17,7 @@ class ProductData {
 
 List<ProductData> productList = [
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Pizza',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -25,7 +25,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Burger',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -33,7 +33,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Roasted chicken',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -41,7 +41,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Spaghiti',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -49,7 +49,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Fried Chicken',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -57,7 +57,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Shawerma',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -65,7 +65,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Pizza',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -73,7 +73,7 @@ List<ProductData> productList = [
     productDescription: description,
   ),
   ProductData(
-    productTitle: 'Delicious Pizza',
+    productTitle: 'Pizza',
     productPrice: '8.59',
     productTime: '20-30',
     productRating: '4.7',
@@ -81,4 +81,5 @@ List<ProductData> productList = [
     productDescription: description,
   ),
 ];
-String description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum aliquam, arcu, hendrerit nulla amet, tellus id. Volutpat, aliquam, ultricies sem tincidunt velit egestas massa mi maecenas. Est cursus eget malesuada id aenean.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum aliquam, arcu, hendrerit nulla amet, tellus id. Volutpat, aliquam, ultricies sem tincidunt velit egestas massa mi maecenas. Est cursus eget malesuada id aenean.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum aliquam, arcu, hendrerit nulla amet, tellus id. Volutpat, aliquam, ultricies sem tincidunt velit egestas massa mi maecenas. Est cursus eget malesuada id aenean.';
+String description =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum aliquam, arcu, hendrerit nulla amet, tellus id. Volutpat, aliquam, ultricies sem tincidunt velit egestas massa mi maecenas. Est cursus eget malesuada id aenean.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum aliquam, arcu, hendrerit nulla amet, tellus id. Volutpat, aliquam, ultricies sem tincidunt velit egestas massa mi maecenas. Est cursus eget malesuada id aenean.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum aliquam, arcu, hendrerit nulla amet, tellus id. Volutpat, aliquam, ultricies sem tincidunt velit egestas massa mi maecenas. Est cursus eget malesuada id aenean.';

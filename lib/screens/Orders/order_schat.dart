@@ -120,12 +120,12 @@ class _ChatScreenState extends State<ChatScreen> {
                       leading: const CircleAvatar(
                         backgroundColor: KSecondryHighContrast,
                         child: Image(
-                          image: AssetImage('images/round_logo.png'),
+                          image: AssetImage('images/logo1.png'),
                           fit: BoxFit.cover,
                         ),
                       ),
                       title: Text(
-                        'Maan Team',
+                        'Neighbour\'s Kitchen',
                         style: kTextStyle.copyWith(
                             color: kTitleColor, fontSize: 18.0),
                       ),
@@ -192,10 +192,11 @@ class _ChatScreenState extends State<ChatScreen> {
                                           ),
                                           8.width,
                                           const CircleAvatar(
+                                              backgroundColor: KMainColorr,
                                               radius: 20,
                                               child: Image(
                                                 image: AssetImage(
-                                                    'images/round_logo.png'),
+                                                    'images/logo1.png'),
                                                 fit: BoxFit.cover,
                                               )),
                                         ],
@@ -213,10 +214,11 @@ class _ChatScreenState extends State<ChatScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           const CircleAvatar(
+                                              backgroundColor: KMainColorr,
                                               radius: 20,
                                               child: Image(
                                                 image: AssetImage(
-                                                    'images/round_logo.png'),
+                                                    'images/logo1.png'),
                                                 fit: BoxFit.cover,
                                               )),
                                           8.width,
@@ -224,14 +226,14 @@ class _ChatScreenState extends State<ChatScreen> {
                                             decoration:
                                                 boxDecorationWithRoundedCorners(
                                               borderRadius: radius(12.0),
-                                              backgroundColor:
-                                                  Colors.grey.shade100,
+                                              backgroundColor: KDarkBlue,
                                             ),
                                             padding: const EdgeInsets.all(16.0),
                                             child: Text(
                                                 (data[index].message)
                                                     .validate(),
-                                                style: primaryTextStyle()),
+                                                style: primaryTextStyle(
+                                                    color: kDarkWhite)),
                                           ).paddingOnly(right: 42.0).expand(),
                                         ],
                                       ),

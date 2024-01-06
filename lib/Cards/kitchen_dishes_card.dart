@@ -51,10 +51,10 @@ class KitchenDishesCards extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               children: [
-                Spacer(),
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Positioned(
@@ -62,7 +62,8 @@ class KitchenDishesCards extends StatelessWidget {
                     children: [
                       Text(
                         '${kitchenDishesData.noOfOrders}',
-                        style: TextStyle(color: kGreyTextColor, fontSize: 16),
+                        style: const TextStyle(
+                            color: kGreyTextColor, fontSize: 16),
                       ),
                       const Icon(
                         Icons.numbers_rounded,
@@ -78,6 +79,5 @@ class KitchenDishesCards extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

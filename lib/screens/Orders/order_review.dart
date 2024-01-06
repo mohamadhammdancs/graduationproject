@@ -72,7 +72,7 @@ class _OrderReviewState extends State<OrderReview> {
                         const CircleAvatar(
                           radius: 40.0,
                           child: Image(
-                            image: AssetImage('images/round_logo.png'),
+                            image: AssetImage('images/logo1.png'),
                             fit: BoxFit.cover,
                           ),
                         ),

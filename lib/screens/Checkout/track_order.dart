@@ -29,12 +29,14 @@ class _TrackOrderState extends State<TrackOrder> {
             ),
             Row(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Icon(
                     Icons.arrow_back,
                     color: KDarkBlue,
-                  ),
+                  ).onTap(() {
+                    Navigator.pop(context);
+                  }),
                 ),
                 Text(
                   'Track Your Order',
@@ -90,8 +92,9 @@ class _TrackOrderState extends State<TrackOrder> {
                           padding: EdgeInsets.only(left: 8.0),
                           child: CircleAvatar(
                             radius: 30.0,
+                            backgroundColor: KMainColorr,
                             child: Image(
-                              image: AssetImage('images/round_logo.png'),
+                              image: AssetImage('images/logo1.png'),
                               fit: BoxFit.cover,
                             ),
                           ),
