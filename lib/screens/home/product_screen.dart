@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
@@ -21,12 +20,12 @@ class _ProductScreenState extends State<ProductScreen> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("images/authbg.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
+              decoration: const BoxDecoration(color: KMainColorr
+                  // image: DecorationImage(
+                  //   image: AssetImage("images/authbg.png"),
+                  //   fit: BoxFit.cover,
+                  // ),
+                  ),
             ),
             SingleChildScrollView(
               child: Column(
@@ -37,13 +36,13 @@ class _ProductScreenState extends State<ProductScreen> {
                         padding: const EdgeInsets.all(20.0),
                         child: const Icon(
                           Icons.arrow_back,
-                          color: kTitleColor,
+                          color: KDarkBlue,
                         ).onTap(() {
                           Navigator.pop(context);
                         }),
                       ),
                       Text(
-                        'Popular Deals',
+                        'Daily Dishes',
                         style: kTextStyle.copyWith(
                             color: kTitleColor, fontSize: 18.0),
                       ),

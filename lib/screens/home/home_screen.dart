@@ -192,32 +192,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-              //   child: Text(
-              //     'Book Your Restaurant',
-              //     style:
-              //         kTextStyle.copyWith(color: kTitleColor, fontSize: 18.0),
-              //   ),
-              // ),
-              // HorizontalList(
-              //   spacing: 10,
-              //   itemCount: restaurantList.length,
-              //   itemBuilder: (_, i) {
-              //     return BookTableCard(restaurantData: restaurantList[i]).onTap(
-              //       () {
-              //         // const CourseDetails().launch(context);
-              //       },
-              //       highlightColor: context.cardColor,
-              //     );
-              //   },
-              // ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: Row(
                   children: [
                     Text(
-                      'Popular Deals',
+                      'Daily Dishes',
                       style: kTextStyle.copyWith(
                           color: kTitleColor, fontSize: 18.0),
                     ),
@@ -246,7 +226,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
@@ -270,3 +249,23 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+// Padding(
+              //   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              //   child: Text(
+              //     'Book Your Restaurant',
+              //     style:
+              //         kTextStyle.copyWith(color: kTitleColor, fontSize: 18.0),
+              //   ),
+              // ),
+              // HorizontalList(
+              //   spacing: 10,
+              //   itemCount: restaurantList.length,
+              //   itemBuilder: (_, i) {
+              //     return BookTableCard(restaurantData: restaurantList[i]).onTap(
+              //       () {
+              //         // const CourseDetails().launch(context);
+              //       },
+              //       highlightColor: context.cardColor,
+              //     );
+              //   },
+              // ),

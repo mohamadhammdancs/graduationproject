@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ggraduating_project/utils/constants.dart';
-import 'package:ggraduating_project/screens/Authentication/phone_auth.dart';
+import 'package:ggraduating_project/screens/Authentication/log_in.dart';
+import 'package:ggraduating_project/screens/Authentication/sign_up.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+import '../../utils/constants.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -74,21 +75,21 @@ class _SignInState extends State<SignIn> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset(
-                                  'images/google.png',
-                                  height: 30.0,
-                                  width: 30.0,
-                                ),
                                 const SizedBox(
                                   width: 5.0,
                                 ),
                                 Text(
-                                  'Continue With Google',
+                                  'Log In',
                                   style:
                                       kTextStyle.copyWith(color: kTitleColor),
                                 ),
                               ],
-                            ),
+                            ).onTap(() {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LogIn()));
+                            }),
                           ),
                         ),
                         Padding(
@@ -104,21 +105,21 @@ class _SignInState extends State<SignIn> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Icon(
-                                  FontAwesomeIcons.facebookF,
-                                  size: 30.0,
-                                  color: Colors.white,
-                                ),
                                 const SizedBox(
                                   width: 5.0,
                                 ),
                                 Text(
-                                  'Continue With Facebook',
+                                  'Sign Up',
                                   style:
                                       kTextStyle.copyWith(color: Colors.white),
                                 ),
                               ],
-                            ),
+                            ).onTap(() {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                            }),
                           ),
                         ),
                         Row(
@@ -132,50 +133,7 @@ class _SignInState extends State<SignIn> {
                                 color: kGreyTextColor.withOpacity(0.3),
                               ),
                             )),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'or',
-                                style:
-                                    kTextStyle.copyWith(color: kGreyTextColor),
-                              ),
-                            ),
-                            Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Divider(
-                                thickness: 1.0,
-                                color: kGreyTextColor.withOpacity(0.3),
-                              ),
-                            )),
                           ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              const PhoneAuth().launch(context);
-                            },
-                            child: Container(
-                              width: context.width(),
-                              height: 60.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border:
-                                    Border.all(color: KSecondryHighContrast),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Continue With Phone',
-                                    style: kTextStyle.copyWith(
-                                        color: KSecondryHighContrast),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
                         ),
                         Padding(
                           padding:
