@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/Cards/kitchen_dishes_card.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+import '../../widgets/kitchen_dishes_card.dart';
 
 class KitchenDetails extends StatefulWidget {
   const KitchenDetails({required this.kitchen});

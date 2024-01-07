@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Orders/order_schat.dart';
 import 'package:nb_utils/nb_utils.dart';
 

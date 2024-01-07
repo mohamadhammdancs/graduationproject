@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/restaurant_data.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class BookTableCard extends StatelessWidget {

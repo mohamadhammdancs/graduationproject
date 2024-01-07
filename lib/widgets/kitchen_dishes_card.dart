@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 
 class KitchenDishesCards extends StatelessWidget {
   const KitchenDishesCards({Key? key, required this.kitchenDishesData});

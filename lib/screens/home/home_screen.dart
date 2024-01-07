@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/Cards/cat_card.dart';
-import 'package:ggraduating_project/Cards/food_card.dart';
-import 'package:ggraduating_project/Cards/kitchen_card.dart';
+import 'package:ggraduating_project/screens/home/product_detalis.dart';
+import 'package:ggraduating_project/screens/home/product_screen.dart';
+import 'package:ggraduating_project/widgets/cat_card.dart';
+import 'package:ggraduating_project/widgets/kitchen_card.dart';
 import 'package:ggraduating_project/GlobalComponents/category_data.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
-import 'package:ggraduating_project/constants.dart';
-import 'package:ggraduating_project/home/category_screen.dart';
-import 'package:ggraduating_project/home/kitchen_details.dart';
-import 'package:ggraduating_project/home/product_detalis.dart';
-import 'package:ggraduating_project/home/product_screen.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import '../../widgets/food_card.dart';
+import 'category_screen.dart';
+import 'kitchen_details.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

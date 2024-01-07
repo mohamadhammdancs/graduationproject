@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Orders/order_review.dart';
 
 import 'package:nb_utils/nb_utils.dart';

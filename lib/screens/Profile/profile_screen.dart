@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Profile/edit_profile.dart';
 import 'package:ggraduating_project/screens/Profile/notification_screen.dart';
 import 'package:ggraduating_project/screens/Profile/wish_list.dart';

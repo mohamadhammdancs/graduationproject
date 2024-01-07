@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/SplashScreen/on_board_screen.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/screens/OnBoarding/on_board_screen.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 

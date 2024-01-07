@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/category_data.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 
 class CatCard extends StatelessWidget {
   const CatCard({Key? key, required this.catList}) : super(key: key);

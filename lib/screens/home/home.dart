@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ggraduating_project/constants.dart';
-import 'package:ggraduating_project/home/home_screen.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Checkout/cart_screen.dart';
 import 'package:ggraduating_project/screens/Orders/order_screen.dart';
 import 'package:ggraduating_project/screens/Profile/profile_screen.dart';
+
+import 'home_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

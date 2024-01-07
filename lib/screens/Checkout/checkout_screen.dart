@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
-import 'package:ggraduating_project/constants.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Checkout/track_order.dart';
 
 import 'package:nb_utils/nb_utils.dart';

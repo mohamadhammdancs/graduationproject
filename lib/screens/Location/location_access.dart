@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
-import 'package:ggraduating_project/constants.dart';
-import 'package:ggraduating_project/home/home.dart';
+import 'package:ggraduating_project/utils/constants.dart';
 
 import 'package:nb_utils/nb_utils.dart';
+
+import '../home/home.dart';
 
 class LocationAccess extends StatefulWidget {
   const LocationAccess({Key? key}) : super(key: key);
