@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:ggraduating_project/providers/InputValidator.dart';
 import 'package:ggraduating_project/utils/constants.dart';
-import 'package:ggraduating_project/screens/Authentication/phone_verification.dart';
-import 'package:ggraduating_project/utils/validator_utl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +18,6 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
-
-  void _onSignupPressed() {}
 
   @override
   Widget build(BuildContext context) {
