@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
-import 'package:ggraduating_project/constants.dart';
+
+import '../utils/constants.dart';
 
 class FoodCard extends StatelessWidget {
   const FoodCard({Key? key, required this.productData}) : super(key: key);
