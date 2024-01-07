@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/providers/InputValidator.dart';
 import 'package:ggraduating_project/providers/user_provider.dart';
 import 'package:ggraduating_project/screens/Splash/splash_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => InputValidator()),
       ],
       child: MaterialApp(
         theme: ThemeData(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
+import 'package:ggraduating_project/providers/InputValidator.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Authentication/phone_verification.dart';
 import 'package:ggraduating_project/utils/validator_utl.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -18,35 +20,8 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
-  bool _validateUserName = true;
-  bool _validatePassword = true;
-  bool _validateFullName = true;
-  bool _validateEmail = true;
 
-  void _onSignupPressed() {
-    String? usernameError =
-        ValidatorUtil.validateUsername(_usernameController.text);
-    String? passwordError =
-        ValidatorUtil.validatePassword(_passwordController.text);
-    String? fullNameError =
-        ValidatorUtil.validateFullName(_fullNameController.text);
-    String? emailError = ValidatorUtil.validateEmail(_emailController.text);
-
-    if (usernameError == null &&
-        passwordError == null &&
-        fullNameError == null &&
-        emailError == null) {
-      // Perform the login or registration logic here.
-      print('Username and password are valid. Perform the login logic.');
-    } else {
-      // Handle validation errors.
-      print('Validation Error: $usernameError, $passwordError');
-      _validateUserName = false;
-      _validatePassword = false;
-      _validateFullName = false;
-      _validateEmail = false;
-    }
-  }
+  void _onSignupPressed() {}
 
   @override
   Widget build(BuildContext context) {
@@ -114,127 +89,128 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 20.0,
                 ),
-                Expanded(
-                  child: Container(
-                    width: context.width(),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0)),
-                      color: Colors.white,
+                Consumer<InputValidator>(
+                builder: (context, validator, child){
+                  return Expanded(
+                    child: Container(
+                      width: context.width(),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0)),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            child: SizedBox(
+                              height: 90.0,
+                              child: AppTextField(
+                                textFieldType: TextFieldType.USERNAME,
+                                controller: _usernameController,
+                                enabled: true,
+                                onChanged: (value) {
+                                  validator.updateUserName(value);
+                                },
+                                decoration: InputDecoration(
+                                  errorText:validator.userNameError,
+                                  labelText: 'User Name',
+                                  hintText: 'User Name',
+                                  border: const OutlineInputBorder(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                            child: SizedBox(
+                              height: 90,
+                              child: AppTextField(
+                                textFieldType: TextFieldType.NAME,
+                                controller: _fullNameController,
+                                enabled: true,
+                                onChanged: (value) {
+                                  validator.updateFullName(value);
+                                },
+                                decoration: InputDecoration(
+                                  errorText:validator.fullNameError,
+                                  labelText: 'Full Name',
+                                  hintText: 'mohamad shesha',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                            child: SizedBox(
+                              height: 90.0,
+                              child: AppTextField(
+                                textFieldType: TextFieldType.EMAIL,
+                                controller: _emailController,
+                                enabled: true,
+                                onChanged: (value) {
+                                  setState(() {
+                                    validator.updateEmail(value);
+                                  });
+                                },
+                                decoration: InputDecoration(
+                                  errorText:validator.emailError,
+                                  labelText: 'Email',
+                                  hintText: 'example@gmail.com',
+                                  border: const OutlineInputBorder(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                            child: SizedBox(
+                              height: 90,
+                              child: AppTextField(
+                                textFieldType: TextFieldType.PASSWORD,
+                                controller: _passwordController,
+                                enabled: true,
+                                decoration: InputDecoration(
+                                  errorText:validator.passwordError,
+                                  labelText: 'Password',
+                                  border: OutlineInputBorder(),
+                                ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    validator.updatePassword(value);
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          ButtonGlobal(
+                            buttontext: 'Continue',
+                            buttonDecoration: kButtonDecoration.copyWith(
+                                color: KSecondryHighContrast),
+                            onPressed: () {
+                              if (validator.fullNameError.isEmptyOrNull &&
+                                  validator.userNameError.isEmptyOrNull &&
+                                  validator.emailError.isEmptyOrNull &&
+                                  validator.passwordError.isEmptyOrNull) {
+                                // all fileds are valid my man
+
+                                print('the valid fileds are username =  ${validator.userName} \n fullName =  ${validator.fullName} \n email =  ${validator.email} \n  password =  ${validator.password}');
+                              }
+
+
+                              // const PhoneVerification().launch(context);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                          child: SizedBox(
-                            height: 90.0,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.USERNAME,
-                              controller: _usernameController,
-                              enabled: true,
-                              onChanged: (value) {
-                                setState(() {
-                                  _onSignupPressed();
-                                });
-                              },
-                              decoration: InputDecoration(
-                                errorText: _validateUserName
-                                    ? "Value Can't Be Empty"
-                                    : null,
-                                labelText: 'User Name',
-                                hintText: 'User Name',
-                                border: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                          child: SizedBox(
-                            height: 90,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.NAME,
-                              controller: _fullNameController,
-                              enabled: true,
-                              onChanged: (value) {
-                                setState(() {
-                                  _onSignupPressed();
-                                });
-                              },
-                              decoration: InputDecoration(
-                                errorText: _validateFullName
-                                    ? "Value Can't Be Empty"
-                                    : null,
-                                labelText: 'Full Name',
-                                hintText: 'mohamad shesha',
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                          child: SizedBox(
-                            height: 90.0,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.EMAIL,
-                              controller: _emailController,
-                              enabled: true,
-                              onChanged: (value) {
-                                setState(() {
-                                  _onSignupPressed();
-                                });
-                              },
-                              decoration: InputDecoration(
-                                errorText: _validateEmail
-                                    ? "Value Can't Be Empty"
-                                    : null,
-                                labelText: 'Email',
-                                hintText: 'example@gmail.com',
-                                border: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                          child: SizedBox(
-                            height: 90,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.PASSWORD,
-                              controller: _passwordController,
-                              enabled: true,
-                              decoration: InputDecoration(
-                                errorText: _validatePassword
-                                    ? "Value Can't Be Empty"
-                                    : null,
-                                labelText: 'Password',
-                                border: OutlineInputBorder(),
-                              ),
-                              onChanged: (value) {
-                                setState(() {
-                                  _onSignupPressed();
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                        ButtonGlobal(
-                          buttontext: 'Continue',
-                          buttonDecoration: kButtonDecoration.copyWith(
-                              color: KSecondryHighContrast),
-                          onPressed: () {
-                            const PhoneVerification().launch(context);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                  );
+                }),
               ],
             ),
           ],

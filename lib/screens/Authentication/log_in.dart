@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/InputValidator.dart';
 import '../../utils/constants.dart';
-import '../../utils/validator_utl.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -13,27 +14,9 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  bool _validateUserName = true;
-  bool _validatePassword = true;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  void _onLoginPressed() {
-    String? usernameError =
-        ValidatorUtil.validateUsername(_usernameController.text);
-    String? passwordError =
-        ValidatorUtil.validatePassword(_passwordController.text);
-
-    if (usernameError == null && passwordError == null) {
-      // Perform the login or registration logic here.
-      print('Username and password are valid. Perform the login logic.');
-    } else {
-      // Handle validation errors.
-      print('Validation Error: $usernameError, $passwordError');
-      _validateUserName = false;
-      _validatePassword = false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +42,13 @@ class _LogInState extends State<LogIn> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back,
                       color: KDarkBlue,
                     ),
                   ),
                 ),
-                Padding(
+                const Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Icon(
                       Icons.message,
@@ -101,89 +84,91 @@ class _LogInState extends State<LogIn> {
                 const SizedBox(
                     // height: 40.0,
                     ),
-                Expanded(
-                  child: Container(
-                    width: context.width(),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0)),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 40.0,
+                Consumer<InputValidator>(
+                  builder: (context, validator, child) {
+
+                    return Expanded(
+                      child: Container(
+                        width: context.width(),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0),
+                          ),
+                          color: Colors.white,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          child: SizedBox(
-                            height: 90.0,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.USERNAME,
-                              controller: _usernameController,
-                              enabled: true,
-                              validator: (value) =>
-                                  ValidatorUtil.validateUsername(value),
-                              onChanged: (value) {
-                                setState(() {
-                                  _onLoginPressed();
-                                });
-                              },
-                              decoration: InputDecoration(
-                                errorText: _validateUserName
-                                    ? "Value Can't Be Empty"
-                                    : null,
-                                labelText: 'Email',
-                                hintText: 'example@example.com',
-                                border: const OutlineInputBorder(),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 40.0,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              child: SizedBox(
+                                height: 90.0,
+                                child: AppTextField(
+                                  textFieldType: TextFieldType.EMAIL,
+                                  controller: emailController,
+                                  // Provide the controller with the current email value
+                                  enabled: true,
+                                  onChanged: (value) {
+                                    validator.updateEmail(value);
+
+                                  },
+                                  decoration: InputDecoration(
+                                    errorText: validator.emailError,
+                                    labelText: 'Email',
+                                    hintText: 'example@example.com',
+                                    border: const OutlineInputBorder(),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: SizedBox(
-                            height: 90,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.PASSWORD,
-                              controller: _passwordController,
-                              enabled: true,
-                              validator: (value) =>
-                                  ValidatorUtil.validatePassword(value),
-                              onChanged: (value) {
-                                setState(() {
-                                  _onLoginPressed();
-                                });
-                              },
-                              decoration: InputDecoration(
-                                errorText: _validatePassword
-                                    ? "Value Can't Be Empty"
-                                    : null,
-                                labelText: 'Password',
-                                border: OutlineInputBorder(),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                              child: SizedBox(
+                                height: 90,
+                                child: AppTextField(
+                                  textFieldType: TextFieldType.PASSWORD,
+                                  controller: passwordController,
+                                  // Provide the controller with the current password value
+                                  enabled: true,
+                                  onChanged: (value) {
+                                    validator.updatePassword(value);
+                                  },
+                                  decoration: InputDecoration(
+                                    errorText: validator.passwordError,
+                                    labelText: 'Password',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            ButtonGlobal(
+                              buttontext: 'Log in',
+                              buttonDecoration: kButtonDecoration.copyWith(
+                                color: KSecondryHighContrast,
+                              ),
+                              onPressed: () {
+                                if (validator.emailError.isEmptyOrNull && validator.passwordError.isEmptyOrNull) {
+                                  // Both email and password are valid, perform login
+                                  print("user Email ${validator.email} ");
+                                  print("user password ${validator.password} ");
+                                }
+                              },
+                            ),
+                          ],
                         ),
-                        ButtonGlobal(
-                          buttontext: 'Log in',
-                          buttonDecoration: kButtonDecoration.copyWith(
-                              color: KSecondryHighContrast),
-                          onPressed: () {
-                            _onLoginPressed();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           ],
         ),
       ),
     );
-    
   }
 }
