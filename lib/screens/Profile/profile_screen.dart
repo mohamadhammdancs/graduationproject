@@ -68,10 +68,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        const CircleAvatar(
-                          radius: 40.0,
+                        ClipOval(
                           child: Image(
-                            image: AssetImage('images/round_logo.png'),
+                            width: 100,
+                            height: 100,
+                            image: AssetImage('images/kitchen1-01.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -79,12 +80,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 10.0,
                         ),
                         Text(
-                          'Maan Team',
+                          'Hammdan',
                           style: kTextStyle.copyWith(
                               color: kTitleColor, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          '+8801712022529',
+                          '0787696308',
                           style: kTextStyle.copyWith(color: kGreyTextColor),
                         ),
                         const SizedBox(
@@ -229,34 +230,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: ListTile(
-                                          leading: const CircleAvatar(
-                                            backgroundColor: Color(0xFFF5F5F5),
-                                            child: Icon(
-                                              Icons.shopping_cart_outlined,
-                                              color: KSecondryContrast,
-                                            ),
-                                          ),
-                                          title: Text(
-                                            'Order Tracking',
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                          trailing: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: kGreyTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(10.0),
+                                    //   child: Container(
+                                    //     decoration: BoxDecoration(
+                                    //       borderRadius:
+                                    //           BorderRadius.circular(10.0),
+                                    //       color: Colors.white,
+                                    //     ),
+                                    //     child: ListTile(
+                                    //       leading: const CircleAvatar(
+                                    //         backgroundColor: Color(0xFFF5F5F5),
+                                    //         child: Icon(
+                                    //           Icons.shopping_cart_outlined,
+                                    //           color: KSecondryContrast,
+                                    //         ),
+                                    //       ),
+                                    //       title: Text(
+                                    //         'Order Tracking',
+                                    //         style: kTextStyle.copyWith(
+                                    //             color: kGreyTextColor),
+                                    //       ),
+                                    //       trailing: const Icon(
+                                    //         Icons.arrow_forward_ios,
+                                    //         color: kGreyTextColor,
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(

@@ -20,11 +20,13 @@ class KitchenDishesCards extends StatelessWidget {
                 height: 75,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
+                    color: KSecondryHighContrast,
                     borderRadius:
                         BorderRadius.circular(15) // Adjust the radius as needed
                     ),
                 child: Image(
-                  image: AssetImage(kitchenDishesData.imagePath),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(kitchenDishesData.imagePath),
                 ),
               ),
             ),
@@ -44,9 +46,21 @@ class KitchenDishesCards extends StatelessWidget {
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '${kitchenDishesData.dishId}',
-                    style: TextStyle(fontSize: 16, color: kGreyTextColor),
+                  child: Row(
+                    children: [
+                      Text(
+                        '${kitchenDishesData.price}',
+                        style: TextStyle(fontSize: 20, color: kGreyTextColor),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'JOD',
+                        style: TextStyle(
+                            fontSize: 20, color: KSecondryHighContrast),
+                      )
+                    ],
                   ),
                 ),
               ],

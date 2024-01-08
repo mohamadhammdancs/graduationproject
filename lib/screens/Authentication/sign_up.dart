@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/extension.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
+import 'package:ggraduating_project/models/dto/UserRegistrationDto.dart';
 import 'package:ggraduating_project/providers/InputValidator.dart';
+import 'package:ggraduating_project/providers/user_provider.dart';
+import 'package:ggraduating_project/screens/home/home_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +21,11 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-
+  final TextEditingController _phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -85,8 +90,7 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 20.0,
                 ),
-                Consumer<InputValidator>(
-                builder: (context, validator, child){
+                Consumer<InputValidator>(builder: (context, validator, child) {
                   return Expanded(
                     child: Container(
                       width: context.width(),
@@ -113,7 +117,7 @@ class _SignUpState extends State<SignUp> {
                                   validator.updateUserName(value);
                                 },
                                 decoration: InputDecoration(
-                                  errorText:validator.userNameError,
+                                  errorText: validator.userNameError,
                                   labelText: 'User Name',
                                   hintText: 'User Name',
                                   border: const OutlineInputBorder(),
@@ -133,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                                   validator.updateFullName(value);
                                 },
                                 decoration: InputDecoration(
-                                  errorText:validator.fullNameError,
+                                  errorText: validator.fullNameError,
                                   labelText: 'Full Name',
                                   hintText: 'mohamad shesha',
                                   border: OutlineInputBorder(),
@@ -155,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                                   });
                                 },
                                 decoration: InputDecoration(
-                                  errorText:validator.emailError,
+                                  errorText: validator.emailError,
                                   labelText: 'Email',
                                   hintText: 'example@gmail.com',
                                   border: const OutlineInputBorder(),
@@ -168,11 +172,32 @@ class _SignUpState extends State<SignUp> {
                             child: SizedBox(
                               height: 90,
                               child: AppTextField(
+                                textFieldType: TextFieldType.PHONE,
+                                controller: _phoneController,
+                                enabled: true,
+                                decoration: InputDecoration(
+                                  errorText: validator.phoneError,
+                                  labelText: 'Phone Number',
+                                  border: OutlineInputBorder(),
+                                ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    validator.updatePhoneNumber(value);
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                            child: SizedBox(
+                              height: 90,
+                              child: AppTextField(
                                 textFieldType: TextFieldType.PASSWORD,
                                 controller: _passwordController,
                                 enabled: true,
                                 decoration: InputDecoration(
-                                  errorText:validator.passwordError,
+                                  errorText: validator.passwordError,
                                   labelText: 'Password',
                                   border: OutlineInputBorder(),
                                 ),
@@ -184,24 +209,71 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                           ),
-                          ButtonGlobal(
-                            buttontext: 'Continue',
-                            buttonDecoration: kButtonDecoration.copyWith(
-                                color: KSecondryHighContrast),
-                            onPressed: () {
-                              if (validator.fullNameError.isEmptyOrNull &&
-                                  validator.userNameError.isEmptyOrNull &&
-                                  validator.emailError.isEmptyOrNull &&
-                                  validator.passwordError.isEmptyOrNull) {
-                                // all fileds are valid my man
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(50, 5, 40, 0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                textStyle: TextStyle(fontSize: 24),
+                                minimumSize: Size.fromHeight(60),
+                                shape: StadiumBorder(),
+                                backgroundColor: KSecondryHighContrast,
+                              ),
+                              onPressed: () async {
+                                if (validator.fullNameError.isEmptyOrNull &&
+                                    validator.userNameError.isEmptyOrNull &&
+                                    validator.emailError.isEmptyOrNull &&
+                                    validator.passwordError.isEmptyOrNull &&
+                                    validator.phoneError.isNullOrEmpty) {
+                                  // all fileds are valid my man
+                                  UserRegistrationDto userRegistrationDto =
+                                      UserRegistrationDto(
+                                          name: validator.fullName,
+                                          email: validator.email,
+                                          username: validator.userName,
+                                          phoneNumber: validator.phoneNumber,
+                                          password: validator.password);
+                                  bool results = await userProvider
+                                      .registerUser(userRegistrationDto);
 
-                                print('the valid fileds are username =  ${validator.userName} \n fullName =  ${validator.fullName} \n email =  ${validator.email} \n  password =  ${validator.password}');
-                              }
+                                  if (results) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                    );
+                                  } else {
+                                    print(
+                                        'an error acured while registering user');
+                                  }
+                                }
+                              },
+                              child: userProvider.isLoading
+                                  ? CircularProgressIndicator()
+                                  : Text(
+                                      'Submit',
+                                      style: TextStyle(color: kDarkWhite),
+                                    ),
+                            ),
+                          )
+                          // ButtonGlobal(
+                          //   buttontext: 'Continue',
+                          //   buttonDecoration: kButtonDecoration.copyWith(
+                          //       color: KSecondryHighContrast),
+                          //   onPressed: () {
+                          //     if (validator.fullNameError.isEmptyOrNull &&
+                          //         validator.userNameError.isEmptyOrNull &&
+                          //         validator.emailError.isEmptyOrNull &&
+                          //         validator.passwordError.isEmptyOrNull
+                          //         &&validator.phoneError.isNullOrEmpty) {
+                          //       // all fileds are valid my man
 
+                          //       print(
+                          //           'the valid fileds are username =  ${validator.userName} \n fullName =  ${validator.fullName} \n email =  ${validator.email} \n  password =  ${validator.password}');
+                          //     }
 
-                              // const PhoneVerification().launch(context);
-                            },
-                          ),
+                          //     // const PhoneVerification().launch(context);
+                          //   },
+                          // ),
                         ],
                       ),
                     ),

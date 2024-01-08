@@ -95,7 +95,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(
@@ -113,7 +113,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(
@@ -131,7 +131,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(
@@ -149,7 +149,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(
@@ -167,7 +167,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(
@@ -185,7 +185,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(
@@ -203,7 +203,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   horizontal: 16, vertical: 8),
                               title: 'Theresa Webb',
                               subTitle: '5 min ago',
-                              leading: Image.asset('images/round_logo.png',
+                              leading: Image.asset('images/kitchen1-01.png',
                                       height: 50, width: 50, fit: BoxFit.cover)
                                   .cornerRadiusWithClipRRect(25),
                               trailing: Container(

@@ -109,18 +109,26 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                         Stack(
                           children: [
-                            const CircleAvatar(
-                              radius: 60.0,
+                            const ClipOval(
                               child: Image(
-                                image: AssetImage('images/round_logo.png'),
+                                image: AssetImage('images/kitchen1-01.png'),
                                 fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
                               ),
-                              backgroundColor: kTitleColor,
                             ),
                             Positioned(
                               bottom: 0.0,
                               right: 0.0,
-                              child: Image.asset('images/editpicicon.png'),
+                              child: CircleAvatar(
+                                backgroundColor: KSecondryContrast,
+                                radius: 15.0,
+                                child: Icon(
+                                  Icons.edit,
+                                  color: KSecondryHighContrast,
+                                  size: 20,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -134,7 +142,7 @@ class _EditProfileState extends State<EditProfile> {
                             textFieldType: TextFieldType.NAME,
                             decoration: const InputDecoration(
                               labelText: 'Full Name',
-                              hintText: 'Prince mahmud',
+                              hintText: 'Mohamad Ahmad',
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -154,14 +162,6 @@ class _EditProfileState extends State<EditProfile> {
                                 labelText: 'Phone Number',
                                 hintText: '1767 432556',
                                 border: const OutlineInputBorder(),
-                                prefix: CountryCodePicker(
-                                  padding: EdgeInsets.zero,
-                                  onChanged: print,
-                                  initialSelection: 'BD',
-                                  showFlag: true,
-                                  showDropDownButton: true,
-                                  alignLeft: false,
-                                ),
                               ),
                             ),
                           ),
@@ -173,7 +173,7 @@ class _EditProfileState extends State<EditProfile> {
                             textFieldType: TextFieldType.NAME,
                             decoration: const InputDecoration(
                               labelText: 'Address',
-                              hintText: '110/2 Green Road',
+                              hintText: 'Wadi al seer, Al bayader',
                               border: OutlineInputBorder(),
                             ),
                           ),

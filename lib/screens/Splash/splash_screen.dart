@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> init() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 4));
 
     defaultBlurRadius = 10.0;
     defaultSpreadRadius = 0.5;
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
         ),
         const Center(
-          child: Image(image: AssetImage("images/logo1.png")),
+          child: Image(image: AssetImage("images/kitchen-01.png")),
         ),
         Center(
           child: Column(
@@ -67,7 +67,6 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(
                 height: 50.0,
               ),
-              
             ],
           ),
         ),

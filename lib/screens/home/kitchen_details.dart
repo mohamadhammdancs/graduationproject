@@ -21,6 +21,7 @@ class _KitchenDetailsState extends State<KitchenDetails> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Container(
@@ -67,7 +68,6 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                         height: 150,
                       ),
                       Container(
-                        height: context.height(),
                         width: context.width(),
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -88,7 +88,7 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                   Text(
                                     widget.kitchen.kitchenName,
                                     style: kTextStyle.copyWith(
-                                        color: kTitleColor,
+                                        color: KDarkBlue,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20.0),
                                   ),
@@ -99,19 +99,18 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                               padding: const EdgeInsets.only(
                                   left: 20.0,
                                   right: 20.0,
-                                  bottom: 20.0,
-                                  top: 10.0),
+                                  bottom: 0.0,
+                                  top: 20.0),
                               child: Row(
                                 children: [
-                                  Expanded(
-                                    child: Text(
-                                      '${widget.kitchen.kitchenFoodTypes}',
-                                      style: kTextStyle.copyWith(
-                                        color: KSecondryContrast,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                  Text(
+                                    '${widget.kitchen.kitchenFoodTypes.toString()}',
+                                    style: kTextStyle.copyWith(
+                                      color: KSecondryContrast,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                  Spacer(),
                                   RichText(
                                     text: TextSpan(
                                       children: [
@@ -119,9 +118,10 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                           text: widget.kitchen.kitchenRating
                                               .toString(),
                                           style: kTextStyle.copyWith(
-                                              fontWeight: FontWeight.bold,
-                                              color: kTitleColor,
-                                              fontSize: 16),
+                                            fontWeight: FontWeight.bold,
+                                            color: kTitleColor,
+                                            fontSize: 16,
+                                          ),
                                         ),
                                         const WidgetSpan(
                                           child: Icon(
@@ -134,6 +134,16 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                widget.kitchen.kitchenDescription,
+                                style: TextStyle(
+                                    color: KSecondryHighContrast,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             const SizedBox(
@@ -166,11 +176,25 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 100.0),
-                    child: CircleAvatar(
-                      backgroundColor: KSecondryContrast,
-                      radius: MediaQuery.of(context).size.width / 4,
-                      child: Image.asset(widget.kitchen.kitchenImagePath),
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: KSecondryHighContrast),
+                      child: ClipOval(
+                        child: Image.network(
+                          fit: BoxFit.fill,
+                          widget.kitchen.kitchenImagePath,
+                          width: 200,
+                          height: 200,
+                        ),
+                      ),
                     ),
+                    // child: CircleAvatar(
+                    //   backgroundColor: KSecondryContrast,
+                    //   radius: MediaQuery.of(context).size.width / 4,
+                    //   child: Image.network(widget.kitchen.kitchenImagePath),
+                    // ),
                   ),
                 ],
               ),

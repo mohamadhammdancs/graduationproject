@@ -5,10 +5,12 @@ class InputValidator extends ChangeNotifier {
   String _password = '';
   String _userName = '';
   String _fullName = '';
+  String _phoneNumber = '';
   String? _emailError;
   String? _passwordError;
   String? _userNameError;
   String? _fullNameError;
+  String? _phoneNumberError;
 
   String get email => _email;
 
@@ -25,6 +27,10 @@ class InputValidator extends ChangeNotifier {
   String get password => _password;
 
   String? get passwordError => _passwordError;
+
+  String get phoneNumber => _phoneNumber;
+
+  String? get phoneError => _phoneNumberError;
 
   void updateEmail(String newEmail) {
     _email = newEmail;
@@ -44,6 +50,11 @@ class InputValidator extends ChangeNotifier {
   void updateFullName(String fullName) {
     _fullName = fullName;
     _validateFullName();
+  }
+
+  void updatePhoneNumber(String phoneNumber) {
+    _phoneNumber = phoneNumber;
+    _validatePhoneNumber();
   }
 
   void _validateEmail() {
@@ -84,6 +95,22 @@ class InputValidator extends ChangeNotifier {
     } else {
       _userNameError = null;
     }
+    notifyListeners();
+  }
+
+  void _validatePhoneNumber() {
+    RegExp regExp = RegExp(
+      r'^\d{10}$', // Example: Allows exactly 10 digits
+    );
+
+    bool isValidPhoneNumber = regExp.hasMatch(_phoneNumber);
+
+    if (_phoneNumber.isEmpty || !isValidPhoneNumber) {
+      _phoneNumberError = ' Phone Number must be at least 10 Numbers';
+    } else {
+      _phoneNumberError = null;
+    }
+
     notifyListeners();
   }
 }

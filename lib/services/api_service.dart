@@ -1,22 +1,31 @@
 import 'dart:convert';
 import 'package:ggraduating_project/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/User.dart';
 import '../models/dto/UserRegistrationDto.dart';
 import '../models/dto/loginDto.dart';
 
 /// The service responsible for networking requests
-class Api {
-  static const endpoint = 'https://localhost:8080/api';
+class ApiService {
+  static const endpoint = 'http://10.0.2.2:8080';
 
   var client = http.Client();
-
+  Map<String, String> headers = {'Content-Type': 'application/json'};
+  
   Future<User?> registerUser(UserRegistrationDto userRegistrationDto) async {
     try {
-      var url = Uri.https(endpoint, '/signup');
-      var jsonBody = userRegistrationDto.toJson();
-      var response = await client.post(url, body: jsonBody);
+      print('api rtegister user');
+      var url = Uri.parse('http://10.0.2.2:8080/api/signup');
+      print(url);
+      var jsonBody = jsonEncode(userRegistrationDto);
+      print(jsonBody);
+      var response = await client
+          .post(
+            url,
+            body: jsonBody,
+            headers: headers,
+          )
+          .timeout(Duration(seconds: 30));
       // Convert and return
 
       if (response.statusCode == 200) {
@@ -70,5 +79,4 @@ class Api {
       return null;
     }
   }
-
 }

@@ -25,7 +25,8 @@ class KitchenCard extends StatelessWidget {
                         BorderRadius.circular(15) // Adjust the radius as needed
                     ),
                 child: Image(
-                  image: AssetImage(kitchenData.kitchenImagePath),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(kitchenData.kitchenImagePath),
                 ),
               ),
             ),
@@ -33,7 +34,7 @@ class KitchenCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(8, 8, 0, 8),
                   child: Text(
                     kitchenData.kitchenName,
                     style: TextStyle(
