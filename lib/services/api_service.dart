@@ -8,10 +8,9 @@ import '../models/dto/loginDto.dart';
 /// The service responsible for networking requests
 class ApiService {
   static const endpoint = 'http://10.0.2.2:8080';
-
   var client = http.Client();
   Map<String, String> headers = {'Content-Type': 'application/json'};
-  
+
   Future<User?> registerUser(UserRegistrationDto userRegistrationDto) async {
     try {
       print('api rtegister user');
@@ -52,9 +51,11 @@ class ApiService {
 
   Future<User?> login(LoginDto loginDto) async {
     try {
-      var url = Uri.https(endpoint, '/login');
-      var jsonBody = loginDto.toJson();
-      var response = await client.post(url, body: jsonBody);
+      var url = Uri.parse('http://10.0.2.2:8080/api/login');
+      print(url);
+      var jsonBody = jsonEncode(loginDto);
+      print(jsonBody);
+      var response = await client.post(url, body: jsonBody, headers: headers);
       // Convert and return
 
       if (response.statusCode == 200) {
