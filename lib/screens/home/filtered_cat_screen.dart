@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/utils/constants.dart';
+import 'package:ggraduating_project/widgets/kitchen_card.dart';
+import 'package:nb_utils/nb_utils.dart';
+
+class filteredKitchenScreen extends StatelessWidget {
+  const filteredKitchenScreen({super.key, required this.filterType});
+  final FoodType filterType;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox(
+          child: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(color: KMainColorr
+                    // image: DecorationImage(
+                    //   image: AssetImage("images/authbg.png"),
+                    //   fit: BoxFit.cover,
+                    // ),
+                    ),
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: KDarkBlue,
+                        ).onTap(() {
+                          Navigator.pop(context);
+                        }),
+                      ),
+                      Text(
+                        'Categories',
+                        style: kTextStyle.copyWith(
+                            color: KDarkBlue, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: context.width(),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30.0),
+                              topRight: Radius.circular(30.0)),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 20.0,
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: context.height(),
+                                child: ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: kitchenList.length,
+                                    itemBuilder: (_, n) {
+                                      return KitchenCard(
+                                          kitchenData: kitchenList[n]);
+                                    }),
+                              ),
+                            )
+                            // GridView.count(
+                            //   physics: const NeverScrollableScrollPhysics(),
+                            //   shrinkWrap: true,
+                            //   childAspectRatio: 1,
+                            //   crossAxisCount: 4,
+                            //   children: List.generate(
+                            //     catData.length,
+                            //     (index) => CatCard(
+                            //       catList: catData[index],
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    ;
+  }
+}

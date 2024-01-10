@@ -115,7 +115,7 @@ class _OnBoardState extends State<OnBoard> {
                                     duration:
                                         const Duration(microseconds: 1000),
                                     curve: Curves.bounceInOut)
-                                : const SignIn().launch(context);
+                                : const Home().launch(context);
                           },
                         );
                       },

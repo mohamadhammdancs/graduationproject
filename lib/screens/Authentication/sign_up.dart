@@ -4,6 +4,7 @@ import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:ggraduating_project/models/dto/UserRegistrationDto.dart';
 import 'package:ggraduating_project/providers/InputValidator.dart';
 import 'package:ggraduating_project/providers/user_provider.dart';
+import 'package:ggraduating_project/screens/home/home.dart';
 import 'package:ggraduating_project/screens/home/home_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -252,8 +253,7 @@ class _SignUpState extends State<SignUp> {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  HomeScreen()),
+                                              builder: (context) => Home()),
                                         );
                                       } else {
                                         print(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/screens/home/filtered_cat_screen.dart';
 import 'package:ggraduating_project/screens/home/product_detalis.dart';
 import 'package:ggraduating_project/screens/home/product_screen.dart';
 import 'package:ggraduating_project/widgets/cat_card.dart';
@@ -46,11 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 130.0,
                         decoration: const BoxDecoration(
                           color: KMainColorr,
-                          // image: DecorationImage(
-                          //     image: AssetImage(
-                          //       'images/homeheader.png',
-                          //     ),
-                          //     fit: BoxFit.cover),
                         ),
                         child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,7 +189,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: catData.length,
                     itemBuilder: (_, i) {
                       return CatCard(catList: catData[i]).onTap(
-                        () {},
+                        () {
+                          filteredKitchenScreen(
+                            filterType: catData[i].foodtype,
+                          ).launch(context);
+                        },
                         highlightColor: context.cardColor,
                       );
                     },

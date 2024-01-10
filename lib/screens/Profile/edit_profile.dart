@@ -139,12 +139,14 @@ class _EditProfileState extends State<EditProfile> {
                           padding:
                               const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: AppTextField(
+                            initialValue: '',
                             textFieldType: TextFieldType.NAME,
                             decoration: const InputDecoration(
                               labelText: 'Full Name',
                               hintText: 'Mohamad Ahmad',
                               border: OutlineInputBorder(),
                             ),
+                            onChanged: (value) {},
                           ),
                         ),
                         Padding(
@@ -155,14 +157,14 @@ class _EditProfileState extends State<EditProfile> {
                               textFieldType: TextFieldType.PHONE,
                               controller: TextEditingController(),
                               enabled: true,
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Phone Number',
                                 hintText: '1767 432556',
-                                border: const OutlineInputBorder(),
+                                border: OutlineInputBorder(),
                               ),
+                              onChanged: (value) {
+                                
+                              },
                             ),
                           ),
                         ),
@@ -176,6 +178,7 @@ class _EditProfileState extends State<EditProfile> {
                               hintText: 'Wadi al seer, Al bayader',
                               border: OutlineInputBorder(),
                             ),
+                            onChanged: (value) {},
                           ),
                         ),
                       ],

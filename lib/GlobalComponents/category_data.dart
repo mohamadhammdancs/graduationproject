@@ -1,48 +1,53 @@
+import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+
 class CategoryData {
   String catTitle, catIcon;
-
-  CategoryData({required this.catTitle, required this.catIcon});
+  FoodType foodtype;
+  CategoryData(
+      {required this.catTitle, required this.catIcon, required this.foodtype});
 }
 
 List<CategoryData> catData = [
   CategoryData(
-    catTitle: 'Pizza',
-    catIcon: 'images/cat3.png',
+    catTitle: 'Palistinian',
+    catIcon: 'images/palestine.png',
+    foodtype: FoodType.Palistinian,
   ),
   CategoryData(
-    catTitle: 'Burger',
-    catIcon: 'images/cat2.png',
+      catTitle: 'Italian',
+      catIcon: 'images/pasta.png',
+      foodtype: FoodType.Italian),
+  CategoryData(
+      catTitle: 'Jordinian',
+      catIcon: 'images/jordan.png',
+      foodtype: FoodType.Jordinian),
+  CategoryData(
+      catTitle: 'Chineze',
+      catIcon: 'images/noodles.png',
+      foodtype: FoodType.Chineze),
+  CategoryData(
+    catTitle: 'Gulf',
+    catIcon: 'images/kanafeh.png',
+    foodtype: FoodType.Gulf,
   ),
   CategoryData(
-    catTitle: 'Chicken',
-    catIcon: 'images/cat1.png',
-  ),
+      catTitle: 'Yamani',
+      catIcon: 'images/yemen.png',
+      foodtype: FoodType.Yamani),
   CategoryData(
-    catTitle: 'Drinks',
-    catIcon: 'images/cat13.png',
-  ),
+      catTitle: 'African',
+      catIcon: 'images/woman.png',
+      foodtype: FoodType.African),
   CategoryData(
-    catTitle: 'Meat',
-    catIcon: 'images/cat15.png',
-  ),
+      catTitle: 'Syrian',
+      catIcon: 'images/syria.png',
+      foodtype: FoodType.Syrian),
   CategoryData(
-    catTitle: 'Seafood',
-    catIcon: 'images/cat16.png',
-  ),
+      catTitle: 'Indian',
+      catIcon: 'images/curry.png',
+      foodtype: FoodType.Indian),
   CategoryData(
-    catTitle: 'Biriyani',
-    catIcon: 'images/cat4.png',
-  ),
-  CategoryData(
-    catTitle: 'Donut',
-    catIcon: 'images/cat8.png',
-  ),
-  CategoryData(
-    catTitle: 'Ice Cream',
-    catIcon: 'images/cat14.png',
-  ),
-  CategoryData(
-    catTitle: 'Salad',
-    catIcon: 'images/cat6.png',
-  ),
+      catTitle: 'Turkish',
+      catIcon: 'images/shish-kebab.png',
+      foodtype: FoodType.Turkish),
 ];

@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
-import 'package:ggraduating_project/GlobalComponents/product_data.dart';
+import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/screens/Checkout/cart_screen.dart';
+import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class ProductDetails extends StatefulWidget {
-  const ProductDetails({required this.product});
+class DishDetailsScreen extends StatefulWidget {
+  const DishDetailsScreen({Key? key, required this.dishData});
 
-  final ProductData product;
+  final Dish dishData;
 
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _DishDetailsScreenState createState() => _DishDetailsScreenState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _DishDetailsScreenState extends State<DishDetailsScreen> {
   int quantity = 1;
+  
+  get dishData => null;
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +145,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               child: Row(
                                 children: [
                                   Text(
-                                    widget.product.productTitle,
+                                    widget.dishData.dishName,
                                     style: kTextStyle.copyWith(
                                         color: KDarkBlue,
                                         fontWeight: FontWeight.bold,
@@ -158,7 +164,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      '\$${widget.product.productPrice}',
+                                      '\$${widget.dishData.price}',
                                       style: kTextStyle.copyWith(
                                         color: KSecondryContrast,
                                         fontWeight: FontWeight.bold,
@@ -179,7 +185,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           ),
                                           TextSpan(
                                             text:
-                                                ' ${widget.product.productTime}',
+                                                ' ${widget.dishData.noOfOrders}',
                                             style: kTextStyle.copyWith(
                                               fontWeight: FontWeight.bold,
                                               color: KSecondryContrast,
@@ -256,7 +262,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           kButtonDecoration.copyWith(
                                               color: KSecondryHighContrast),
                                       onPressed: () {
-                                        //const CartScreen().launch(context);..........................
+                                        
                                       },
                                     ),
                                   ),
@@ -270,7 +276,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           kButtonDecoration.copyWith(
                                               color: KSecondryHighContrast),
                                       onPressed: () {
-                                        // const CheckoutScreen().launch(context);.................................
+                                        CheckoutScreen().launch(context);
                                       },
                                     ),
                                   ),
@@ -284,10 +290,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 100.0),
-                    child: CircleAvatar(
-                      backgroundColor: KSecondryContrast,
-                      radius: MediaQuery.of(context).size.width / 4,
-                      child: Image.asset(widget.product.productImage),
+                    child: ClipOval(
+                      child: Image.network(
+                        fit: BoxFit.fill,
+                        widget.dishData.imagePath,
+                        width: 200,
+                        height: 200,
+                      ),
                     ),
                   ),
                 ],

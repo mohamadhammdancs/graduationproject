@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
+import 'package:ggraduating_project/widgets/cart_item_card.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({Key? key}) : super(key: key);
-
+  const CartScreen({super.key, this.CartItems});
+  final List<Dish>? CartItems;
+  
   @override
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-  int quantity = 1;
-
+  // int quantity = 1;
+  late double TotalPrice;
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -98,100 +102,12 @@ class _CartScreenState extends State<CartScreen> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                Expanded(
-                  child: Container(
-                    width: context.width(),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0)),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              border: Border.all(
-                                  color: kGreyTextColor.withOpacity(0.2)),
-                            ),
-                            child: Row(
-                              children: [
-                                const CircleAvatar(
-                                  radius: 40.0,
-                                  backgroundColor: KSecondryContrast,
-                                  child: Image(
-                                    image: AssetImage('images/product1.png'),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10.0,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Delicious Burger',
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor),
-                                    ),
-                                    Text(
-                                      '\$8.99',
-                                      style: kTextStyle.copyWith(
-                                          color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                Column(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          quantity > 1
-                                              ? quantity -= 1
-                                              : quantity = 1;
-                                        });
-                                      },
-                                      child: const Icon(
-                                        Icons.remove,
-                                        color: kTitleColor,
-                                      ),
-                                    ),
-                                    Text(
-                                      quantity.toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          quantity > 0
-                                              ? quantity += 1
-                                              : quantity = 1;
-                                        });
-                                      },
-                                      child: const Icon(
-                                        Icons.add,
-                                        color: kTitleColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: widget.CartItems?.length,
+                    itemBuilder: (_, n) {
+                      return CartItemCard(cartItem: widget.CartItems![n]);
+                    }),
               ],
             ),
           ],
@@ -200,3 +116,12 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
+/*child: ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: widget.kitchen.dishes.length,
+                                    itemBuilder: (_, n) {
+                                      return KitchenDishesCards(
+                                          kitchenDishesData:
+                                              widget.kitchen.dishes[n]);
+                                    }),*/
