@@ -105,7 +105,7 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      '${widget.kitchen.kitchenFoodType.toString()}',
+                                      '${widget.kitchen.kitchenFoodType.name .toString()}',
                                       style: kTextStyle.copyWith(
                                         color: KSecondryContrast,
                                         fontWeight: FontWeight.bold,

@@ -5,6 +5,8 @@ import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:ggraduating_project/models/cart.dart';
+import 'package:provider/provider.dart';
 
 class DishDetailsScreen extends StatefulWidget {
   const DishDetailsScreen({Key? key, required this.dishData});
@@ -17,10 +19,8 @@ class DishDetailsScreen extends StatefulWidget {
 
 class _DishDetailsScreenState extends State<DishDetailsScreen> {
   int quantity = 1;
-  
-  get dishData => null;
 
-  
+  get dishData => null;
 
   @override
   Widget build(BuildContext context) {
@@ -252,20 +252,22 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                             ),
                             Row(
                               children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: ButtonGlobal(
-                                      buttontext: 'Add To Cart',
-                                      buttonDecoration:
-                                          kButtonDecoration.copyWith(
-                                              color: KSecondryHighContrast),
-                                      onPressed: () {
-                                        
-                                      },
+                                Consumer<Cart>(builder: (context, cart, child) {
+                                  return Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: ButtonGlobal(
+                                        buttontext: 'Add To Cart',
+                                        buttonDecoration:
+                                            kButtonDecoration.copyWith(
+                                                color: KSecondryHighContrast),
+                                        onPressed: () {
+                                          cart.add(widget.dishData);
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),

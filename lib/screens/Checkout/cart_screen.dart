@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/models/cart.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
 import 'package:ggraduating_project/widgets/cart_item_card.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
+import 'package:ggraduating_project/models/cart.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key, this.CartItems});
@@ -35,13 +38,15 @@ class _CartScreenState extends State<CartScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: Text(
-                    'Total: \$129.99',
-                    style: kTextStyle.copyWith(
-                        color: kTitleColor, fontWeight: FontWeight.bold),
-                  ),
-                ),
+                Expanded(child: Consumer<Cart>(
+                  builder: (context, cart, child) {
+                    return Text(
+                      '${cart.totalPrice} JOD',
+                      style: kTextStyle.copyWith(
+                          color: kTitleColor, fontWeight: FontWeight.bold),
+                    );
+                  },
+                )),
                 Expanded(
                   child: Container(
                     height: 55.0,
@@ -69,26 +74,12 @@ class _CartScreenState extends State<CartScreen> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+              decoration: const BoxDecoration(color: KMainColorr),
             ),
             Column(
               children: [
                 Row(
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(20.0),
-                    //   child: const Icon(
-                    //     Icons.arrow_back,
-                    //     color: KDarkBlue,
-                    //   ).onTap(() {
-                    //     Navigator.pop(context);
-                    //   }),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
@@ -102,12 +93,13 @@ class _CartScreenState extends State<CartScreen> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.CartItems?.length,
-                    itemBuilder: (_, n) {
-                      return CartItemCard(cartItem: widget.CartItems![n]);
-                    }),
+                Consumer<Cart>(builder: (context, cart, child) {
+                  return ListView.builder(
+                      itemCount: cart.basketitem.length,
+                      itemBuilder: (_, n) {
+                        return CartItemCard(cartItem: cart.basketitem[n]);
+                      });
+                })
               ],
             ),
           ],
@@ -116,12 +108,3 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
-/*child: ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: widget.kitchen.dishes.length,
-                                    itemBuilder: (_, n) {
-                                      return KitchenDishesCards(
-                                          kitchenDishesData:
-                                              widget.kitchen.dishes[n]);
-                                    }),*/

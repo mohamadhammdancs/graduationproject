@@ -12,7 +12,6 @@ class CheckoutScreen extends StatefulWidget {
 
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
-  
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
@@ -24,12 +23,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
-  List<String> data = ["Paypal", "Debit Card", "Bkash", "Cash On Delivery"];
+  List<String> data = ["Paypal", "Debit Card", "Cash On Delivery"];
   List<String> userChecked = [];
   List<String> icons = [
     'images/paypal.png',
     'images/card.png',
-    'images/bkash.png',
     'images/cod.png',
   ];
 

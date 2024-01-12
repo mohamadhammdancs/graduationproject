@@ -82,8 +82,8 @@ class ApiService {
       return null;
     }
   }
-  
-Future<User?> updateUserInfo(UpdateUserDto updateUserDto) async {
+
+  Future<User?> updateUserInfo(UpdateUserDto updateUserDto) async {
     try {
       var url = Uri.parse('http://10.0.2.2:8080/api/updateinfo');
       print(url);
@@ -114,5 +114,4 @@ Future<User?> updateUserInfo(UpdateUserDto updateUserDto) async {
       return null;
     }
   }
-
 }

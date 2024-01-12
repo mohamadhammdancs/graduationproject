@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/screens/home/home.dart';
+import 'package:ggraduating_project/screens/Authentication/sign_in.dart';
+
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -113,7 +114,7 @@ class _OnBoardState extends State<OnBoard> {
                                     duration:
                                         const Duration(microseconds: 1000),
                                     curve: Curves.bounceInOut)
-                                : const Home().launch(context);
+                                : const SignIn().launch(context);
                           },
                         );
                       },
