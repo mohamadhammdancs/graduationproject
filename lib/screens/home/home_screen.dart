@@ -25,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Future refresh() async {
     setState(() {});
   }
-
+void reternCat(){
+  
+}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -270,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    height: 1000,
+                    height: context.height() + 250,
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: kitchenList.length,

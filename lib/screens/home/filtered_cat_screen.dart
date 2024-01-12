@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/screens/home/kitchen_details.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/widgets/kitchen_card.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -9,6 +10,14 @@ class filteredKitchenScreen extends StatelessWidget {
   final FoodType filterType;
   @override
   Widget build(BuildContext context) {
+    List<KitchenData> filteredKitchenList = List.empty(growable: true);
+
+    for (KitchenData kitchendata in kitchenList) {
+      if (kitchendata.kitchenFoodType == filterType) {
+        filteredKitchenList.add(kitchendata);
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         body: SizedBox(
@@ -64,14 +73,20 @@ class filteredKitchenScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                height: context.height(),
+                                height: context.height() + 250,
                                 child: ListView.builder(
                                     physics:
                                         const NeverScrollableScrollPhysics(),
-                                    itemCount: kitchenList.length,
+                                    itemCount: filteredKitchenList.length,
                                     itemBuilder: (_, n) {
                                       return KitchenCard(
-                                          kitchenData: kitchenList[n]);
+                                              kitchenData:
+                                                  filteredKitchenList[n])
+                                          .onTap(() {
+                                        KitchenDetails(
+                                          kitchen: filteredKitchenList[n],
+                                        ).launch(context);
+                                      });
                                     }),
                               ),
                             )
@@ -99,6 +114,6 @@ class filteredKitchenScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
+    
   }
 }

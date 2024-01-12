@@ -47,7 +47,7 @@ class KitchenCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    kitchenData.kitchenFoodTypes.toString(),
+                    kitchenData.kitchenFoodType.toString(),
                     style: TextStyle(fontSize: 16, color: kGreyTextColor),
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../utils/constants.dart';
 
@@ -96,24 +97,11 @@ class FoodCard extends StatelessWidget {
                           color: KSecondryHighContrast,
                           size: 16.0,
                         ),
-                      ),
+                      ).onTap(() {}),
                     ],
                   ),
                 ],
               ),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 10.0,
-          right: 10.0,
-          child: CircleAvatar(
-            backgroundColor: const Color(0xFFE51000).withOpacity(0.1),
-            radius: 16.0,
-            child: const Icon(
-              Icons.favorite,
-              color: Color(0xFFE51000),
-              size: 16.0,
             ),
           ),
         ),

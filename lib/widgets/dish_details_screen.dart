@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
-import 'package:ggraduating_project/screens/Checkout/cart_screen.dart';
 import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';

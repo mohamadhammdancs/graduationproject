@@ -1,6 +1,7 @@
+// ignore_for_file: body_might_complete_normally_nullable
+
 import 'dart:convert';
 import 'package:ggraduating_project/models/dto/UpdateUserDto.dart';
-import 'package:ggraduating_project/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
 import '../models/User.dart';
 import '../models/dto/UserRegistrationDto.dart';

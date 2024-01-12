@@ -8,7 +8,7 @@ class KitchenData {
   double kitchenRating;
   String kitchenImagePath;
   String kitchenDescription;
-  List<FoodType> kitchenFoodTypes;
+  FoodType kitchenFoodType;
   List<Dish> dishes;
 
   KitchenData({
@@ -16,7 +16,7 @@ class KitchenData {
     required this.kitchenRating,
     required this.kitchenImagePath,
     required this.kitchenDescription,
-    required this.kitchenFoodTypes,
+    required this.kitchenFoodType,
     required this.dishes,
   }) : kitchenId = HashMap.fromIterable([
               kitchenName,
@@ -54,7 +54,7 @@ List<KitchenData> kitchenList = [
         'https://mitsis.lk/wp-content/uploads/2021/09/IMG_6566-1-scaled.jpg',
     kitchenDescription:
         'Experience the magic of homemade palistinian cuisine, where every recipe is a celebration of culinary artistry and delightful flavors.',
-    kitchenFoodTypes: [FoodType.Palistinian],
+    kitchenFoodType: FoodType.Palistinian,
     dishes: [
       Dish(
           dishName: 'maqloobeh',
@@ -88,7 +88,7 @@ List<KitchenData> kitchenList = [
         'https://t3.ftcdn.net/jpg/02/57/21/40/360_F_257214005_63auIfr9KN0gTHt28w6G8hoP2k45ScyP.jpg',
     kitchenDescription:
         'Crafting homemade delights with love and care, offering a delicious array of flavors that redefine home-cooked goodness.',
-    kitchenFoodTypes: [FoodType.Indian],
+    kitchenFoodType: FoodType.Indian,
     dishes: [
       Dish(
           dishName: 'Naan',
@@ -123,7 +123,7 @@ List<KitchenData> kitchenList = [
         'https://cdn.pixabay.com/photo/2016/11/23/18/31/pasta-1854245_1280.jpg',
     kitchenDescription:
         'Passionate home cook crafting delectable dishes with a fusion of flavors, delivering homemade goodness straight to your doorstep.',
-    kitchenFoodTypes: [FoodType.Italian],
+    kitchenFoodType: FoodType.Italian,
     dishes: [
       Dish(
           dishName: 'Polenta',
@@ -164,7 +164,7 @@ List<KitchenData> kitchenList = [
         'https://media.istockphoto.com/id/545286388/photo/chinese-food-blank-background.jpg?s=612x612&w=0&k=20&c=pqOIy07YKO5PlU5VxjscwTGRrrZ8PluKMUjSOz-II60=',
     kitchenDescription:
         'Elevating home cooking with a blend of tradition and creativity, serving up savory indulgences that speak to the heart.',
-    kitchenFoodTypes: [FoodType.Chineze],
+    kitchenFoodType: FoodType.Chineze,
     dishes: [
       Dish(
           dishName: 'Xiao long bao',
@@ -211,7 +211,7 @@ List<KitchenData> kitchenList = [
         'https://media.istockphoto.com/id/1175505781/photo/arabic-and-middle-eastern-dinner-table-hummus-tabbouleh-salad-fattoush-salad-pita-meat-kebab.jpg?s=612x612&w=0&k=20&c=N4PkdbA7Bf-WNKf2VRNz9mtZP4sxrdcsMwZ7P981ZIY=',
     kitchenDescription:
         'Bringing the warmth of home-cooked meals to your table, curated with precision and an unwavering commitment to taste.',
-    kitchenFoodTypes: [FoodType.Palistinian],
+    kitchenFoodType: FoodType.Palistinian,
     dishes: [
       Dish(
           dishName: 'Freekeh',
@@ -252,7 +252,7 @@ List<KitchenData> kitchenList = [
         'https://media.istockphoto.com/id/1207392899/photo/mansaf.jpg?s=612x612&w=0&k=20&c=CPxBf1YD95S5Wplbzr8oHuGkVBEMYnXFIztCUoyNDLE=',
     kitchenDescription:
         'From my kitchen to your plate, savor the authenticity of homemade meals made with a dash of love and a sprinkle of expertise.',
-    kitchenFoodTypes: [FoodType.Jordinian],
+    kitchenFoodType: FoodType.Jordinian,
     dishes: [
       Dish(
           dishName: 'Mansaf',
@@ -293,7 +293,7 @@ List<KitchenData> kitchenList = [
         'https://media-cdn.tripadvisor.com/media/photo-s/16/de/d8/5d/yemen-street-restaurant.jpg',
     kitchenDescription:
         'From my kitchen to your plate, savor the authenticity of homemade meals made with a dash of love and a sprinkle of expertise.',
-    kitchenFoodTypes: [FoodType.Yamani],
+    kitchenFoodType: FoodType.Yamani,
     dishes: [
       Dish(
           dishName: 'Fahsa',
@@ -337,9 +337,9 @@ List<KitchenData> kitchenList = [
     kitchenName: 'Turkish Delights',
     kitchenRating: 4.8,
     kitchenImagePath:
-        'https://www.shutterstock.com/image-photo/traditional-turkish-cuisine-pizza-pita-pidesi-1420324274', // Replace with your image path
+        'https://media.istockphoto.com/id/1292937799/photo/two-people-eating-traditional-turkish-food-lahmacun-and-kiymali-pide-and-kusbasili-pide.jpg?s=612x612&w=is&k=20&c=rC8BLEv8LP12f9SSsaZDb1XFmxR6i7w2mOUrq09dVy8=', // Replace with your image path
     kitchenDescription: 'Experience the rich flavors of Turkish cuisine.',
-    kitchenFoodTypes: [FoodType.Turkish],
+    kitchenFoodType: FoodType.Turkish,
     dishes: [
       Dish(
         dishName: 'Iskender Kebab',
@@ -366,49 +366,49 @@ List<KitchenData> kitchenList = [
         dishName: 'Simit',
         price: 5.99,
         imagePath:
-            'https://www.shutterstock.com/image-photo/turkish-simit-bagels-coated-roasted-sesame-2350977173', // Replace with your image path
+            'https://media.istockphoto.com/id/1360667649/photo/turkish-fast-food-bagel-called-simit-turkish-bagel-simit-with-sesame-bagel-is-traditional.jpg?s=612x612&w=0&k=20&c=olYczFJqn8qiajJiCgfsF2o-GZnunxomWeLnRUPxZNM=', // Replace with your image path
         noOfOrders: 30,
       ),
       Dish(
         dishName: 'Manti',
         price: 10.75,
         imagePath:
-            'https://www.shutterstock.com/image-photo/raw-manti-dumpling-meat-tray-herbs-2311265763', // Replace with your image path
+            'https://media.istockphoto.com/id/1316874913/photo/turkish-traditional-food-ravioli-with-yoghurt-and-tomato-sauce-in-plate-manti.jpg?s=612x612&w=0&k=20&c=P219ptSWfHea7B2f0SKrKSHjz65OztZeT7JmgaHLot8=', // Replace with your image path
         noOfOrders: 55,
       ),
       Dish(
         dishName: 'Pide',
         price: 8.0,
         imagePath:
-            'https://www.shutterstock.com/image-photo/turkish-pide-minced-meat-name-kiymali-2018782058', // Replace with your image path
+            'https://media.istockphoto.com/id/1160978022/photo/turkish-pide-with-meat-on-the-board.jpg?s=612x612&w=0&k=20&c=bg8uMOJN7w41mrjvydhp5JticBA9VgNAQwsTZQIoUG0=', // Replace with your image path
         noOfOrders: 48,
       ),
       Dish(
         dishName: 'Kofte',
         price: 7.25,
         imagePath:
-            'https://www.shutterstock.com/image-photo/traditional-turkish-food-meatballs-name-akcaabat-2198389477', // Replace with your image path
+            'https://media.istockphoto.com/id/1332171625/photo/traditional-turkish-food-turkish-meatballs-turkish-name-akcaabat-kofte.jpg?s=612x612&w=0&k=20&c=bYDGjeHuU3-hltBC9yCeqSwt0oTDOxTF19TABRlunlI=', // Replace with your image path
         noOfOrders: 75,
       ),
       Dish(
         dishName: 'Borek',
         price: 6.5,
         imagePath:
-            'https://www.shutterstock.com/image-photo/delicious-turkish-tray-pastry-su-boregi-2327224475', // Replace with your image path
+            'https://media.istockphoto.com/id/1332169050/photo/turkish-tepsi-boregi-round-borek-tray-pastry.jpg?s=612x612&w=0&k=20&c=3Qa6rdeCalGn5a_HgAZypfU_WvZjWxbwNFL8Dr0YIGs=', // Replace with your image path
         noOfOrders: 60,
       ),
       Dish(
         dishName: 'Turkish Delight',
         price: 4.99,
         imagePath:
-            'https://www.shutterstock.com/image-photo/various-luxury-turkish-delights-gift-box-2347081085', // Replace with your image path
+            'https://media.istockphoto.com/id/1366619868/photo/colorful-delicious-tasty-traditional-turkish-delight-against-ottoman-ornamental-ceramic.jpg?s=612x612&w=0&k=20&c=EdA1jW5JqSdYmqLP64B_Z-3MEv8CqwzN6r96IO4jFXs=', // Replace with your image path
         noOfOrders: 42,
       ),
       Dish(
         dishName: 'Kumpir',
         price: 11.0,
         imagePath:
-            'https://www.shutterstock.com/image-photo/kumpir-turkish-baked-potato-cheese-corn-580665805', // Replace with your image path
+            'https://media.istockphoto.com/id/642279230/photo/kumpir-turkish-baked-potato-with-cheese-corn-sausage-ketchup-and-mayonnaise.jpg?s=612x612&w=0&k=20&c=-YCxAPePMYDCtoxWGsoDxO-RCMwO57w0odRwew9iTK0=', // Replace with your image path
         noOfOrders: 35,
       ),
     ],
@@ -419,143 +419,63 @@ List<KitchenData> kitchenList = [
     kitchenImagePath:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfELsG7em2eEkfPG92UwkkuBe1dkG2oG810g&usqp=CAU', // Replace with your image path
     kitchenDescription: 'Savor authentic Yemeni flavors.',
-    kitchenFoodTypes: [FoodType.Yamani],
+    kitchenFoodType: FoodType.Yamani,
     dishes: [
       Dish(
         dishName: 'Mandi',
         price: 11.0,
         imagePath:
-            'https://www.shutterstock.com/image-photo/kabsa-cooked-meats-mandi-kabsah-saudi-2302541865', // Replace with your image path
+            'https://media.istockphoto.com/id/1422594440/photo/ouzi-lamb-or-lamb-pulao-with-nuts-served-in-a-dish-side-view-isolared-on-wooden-table.jpg?s=612x612&w=0&k=20&c=KHB-3mTKdC3hh1WdjUYgYbLYP4VfaASlhMYI5IcgWbE=', // Replace with your image path
         noOfOrders: 40,
       ),
       Dish(
         dishName: 'Saltah',
         price: 9.75,
         imagePath:
-            'https://www.shutterstock.com/image-photo/salta-arabic-yemeni-middle-eastern-traditional-1816553057', // Replace with your image path
+            'https://media.istockphoto.com/id/1129205205/photo/yemeni-lunch-of-saltah-dish-meze-plates-and-flat-bread.jpg?s=612x612&w=0&k=20&c=Fc5W-yaLDAKhv3SrAvMiT7Fllxw3xvmFPaBCZUZnHQM=', // Replace with your image path
         noOfOrders: 35,
       ),
       Dish(
         dishName: 'Zurbian',
         price: 12.25,
         imagePath:
-            'https://www.shutterstock.com/image-photo/chicken-zurbian-madbi-mandi-arabic-food-1508629805', // Replace with your image path
+            'https://media.istockphoto.com/id/1271533769/photo/delicious-chicken-biryani-top-view-biryani-rice-dish-beautiful-indian-rice-dish-delicious.jpg?s=612x612&w=0&k=20&c=lfWZeBgJ3ppDVXqtq2GER3r2sQ23-gUfQsGAG1jleg8=', // Replace with your image path
         noOfOrders: 60,
       ),
       Dish(
         dishName: 'Kabsa',
         price: 10.5,
         imagePath:
-            'https://www.shutterstock.com/image-photo/national-saudi-arabian-dish-chicken-kabsa-2217062817', // Replace with your image path
+            'https://media.istockphoto.com/id/1394010517/photo/kabsa-saudi-national-dish-to-be-shared.jpg?s=612x612&w=0&k=20&c=809odIkI6lP0l8qQLrASd8jOMMQhjsSQO90KFS_eYZU=', // Replace with your image path
         noOfOrders: 50,
       ),
       Dish(
         dishName: 'Bint Al Sahn',
         price: 8.99,
         imagePath:
-            'https://www.shutterstock.com/image-vector/yemeni-cuisine-bint-al-sahn-traditional-413738299', // Replace with your image path
+            'https://media.istockphoto.com/id/1463063544/photo/makarounes-traditional-food-of-karpathos.jpg?s=612x612&w=0&k=20&c=RN41gkLAYQfqQG7ghBbiGeDNzgR6Qgm8jdJznVTvGGU=', // Replace with your image path
         noOfOrders: 45,
       ),
       Dish(
         dishName: 'Aseed',
         price: 7.5,
         imagePath:
-            'https://www.shutterstock.com/image-photo/aseed-aseeda-served-dish-isolated-on-2301149701', // Replace with your image path
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScdYr4aR9I92036nD7e2HdYHs4Dl0pP7X6Hw&usqp=CAU', // Replace with your image path
         noOfOrders: 55,
       ),
       Dish(
         dishName: 'Harees',
         price: 9.0,
         imagePath:
-            'https://www.shutterstock.com/image-photo/hareesa-harees-arab-dish-served-isolated-2301403843', // Replace with your image path
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv-bw4Cqd3VgWeFYtN410JczD8cZ1okMi9bg&usqp=CAU', // Replace with your image path
         noOfOrders: 48,
       ),
       Dish(
         dishName: 'Masoub',
         price: 7.25,
         imagePath:
-            'https://www.shutterstock.com/image-photo/yemen-sweets-mixed-bread-banana-cream-2333621745', // Replace with your image path
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm2UHo5n7JFffv3jkxS0LhXTGQ5FHhqA1ERQ&usqp=CAU', // Replace with your image path
         noOfOrders: 75,
-      ),
-    ],
-  ),
-  KitchenData(
-    kitchenName: 'Gulf Fusion',
-    kitchenRating: 4.9,
-    kitchenImagePath:
-        'https://www.shutterstock.com/image-photo/chicken-majbous-kuwait-international-foods-magbos-1653668524', // Replace with your image path
-    kitchenDescription: 'Explore the diverse Gulf cuisine.',
-    kitchenFoodTypes: [FoodType.Gulf],
-    dishes: [
-      Dish(
-        dishName: 'Machboos',
-        price: 13.0,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/chicken-majbous-kuwait-international-foods-magbos-1653668524', // Replace with your image path
-        noOfOrders: 55,
-      ),
-      Dish(
-        dishName: 'Kuwaiti Kabsa',
-        price: 11.5,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/top-view-kuwaiti-dining-table-ramadan-2245347017', // Replace with your image path
-        noOfOrders: 40,
-      ),
-      Dish(
-        dishName: 'Emirati Harees',
-        price: 12.25,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/hareesa-harees-arab-dish-served-isolated-2301403843', // Replace with your image path
-        noOfOrders: 65,
-      ),
-      Dish(
-        dishName: 'Saudi Kabsa',
-        price: 11.0,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/chicken-mandy-top-view-national-saudi-2282770611', // Replace with your image path
-        noOfOrders: 48,
-      ),
-      Dish(
-        dishName: 'Qatari Majboos',
-        price: 9.99,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/qatari-chicken-majboos-national-dish-bahrain-1295296915', // Replace with your image path
-        noOfOrders: 75,
-      ),
-      Dish(
-        dishName: 'Bahraini Machboos',
-        price: 12.5,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/modern-style-traditional-fried-arabic-chicken-2287768907', // Replace with your image path
-        noOfOrders: 60,
-      ),
-      Dish(
-        dishName: 'Omani Shuwa',
-        price: 13.25,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/slow-cooked-omani-lamb-shuwa-coated-2283325855', // Replace with your image path
-        noOfOrders: 30,
-      ),
-      Dish(
-        dishName: 'Gulf Salad',
-        price: 8.5,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/daqoos-daqqus-kuwaiti-gulf-arabic-tomato-2407370901', // Replace with your image path
-        noOfOrders: 35,
-      ),
-      Dish(
-        dishName: 'Fahsa',
-        price: 9.0,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/clay-pot-fried-meat-sauce-vegetables-1816553105', // Replace with your image path
-        noOfOrders: 45,
-      ),
-      Dish(
-        dishName: 'Hummus and Khubz',
-        price: 6.99,
-        imagePath:
-            'https://www.shutterstock.com/image-photo/eggplant-hummus-spread-baba-ghanoush-187819544', // Replace with your image path
-        noOfOrders: 42,
       ),
     ],
   ),
@@ -563,71 +483,151 @@ List<KitchenData> kitchenList = [
     kitchenName: 'African Spice',
     kitchenRating: 4.7,
     kitchenImagePath:
-        'https://www.shutterstock.com/image-photo/midsection-biracial-woman-apron-preparing-food-2318440357', // Replace with your image path
+        'https://media.istockphoto.com/id/1143191120/photo/traditional-moroccan-tajine-of-chicken-with-dried-fruits-and-spices.jpg?s=612x612&w=0&k=20&c=KTNBlSpeS18SGMNacLGxPbVh0MRRnlPrEKL1jJAZ-es=', // Replace with your image path
     kitchenDescription: 'Indulge in the vibrant flavors of African cuisine.',
-    kitchenFoodTypes: [FoodType.African],
+    kitchenFoodType: FoodType.African,
     dishes: [
       Dish(
         dishName: 'Jollof Rice',
         price: 11.99,
         imagePath:
-            'https://www.shutterstock.com/image-photo/jollof-rice-popular-dish-west-africa-2087420251', // Replace with your image path
+            'https://media.istockphoto.com/id/1265268905/photo/barbecue-chicken-jollof-rice.jpg?s=612x612&w=0&k=20&c=ohtrgIislco_-79g8I6AijYUJ2Yt923weh029-N7MUE=', // Replace with your image path
         noOfOrders: 50,
       ),
       Dish(
         dishName: 'Fufu',
         price: 10.5,
         imagePath:
-            'https://www.shutterstock.com/image-photo/seafood-okra-soup-white-bowl-pounded-2002467200', // Replace with your image path
+            'https://media.istockphoto.com/id/498310978/photo/egusi-soup-and-pounded-yam-nigerian-cuisine.jpg?s=612x612&w=0&k=20&c=7TmkO_7Nx12PpXqWQpPUUWEuxjY6qX4ITdBVBFxfHuA=', // Replace with your image path
         noOfOrders: 35,
       ),
       Dish(
         dishName: 'Piri Piri Chicken',
         price: 12.25,
         imagePath:
-            'YOUR_IMAhttps://www.shutterstock.com/image-photo/half-roasted-chicken-piri-served-lemon-2140306507GE_URL_HERE', // Replace with your image path
+            'https://media.istockphoto.com/id/1308435603/photo/chicken.jpg?s=612x612&w=0&k=20&c=t25GBVbT6H1yDLrAT6KhoA-x7GD96fIk2U0NTqRXXug=', // Replace with your image path
         noOfOrders: 60,
       ),
       Dish(
         dishName: 'Bunny Chow',
         price: 11.0,
         imagePath:
-            'https://www.shutterstock.com/image-photo/bunny-chow-origin-came-durban-south-2283389403', // Replace with your image path
+            'https://media.istockphoto.com/id/453064139/photo/bunny-chow.jpg?s=612x612&w=0&k=20&c=m4JKNbXotkESF8SiUslb49zVSWG3V-uXXwSngp30jvs=', // Replace with your image path
         noOfOrders: 40,
       ),
       Dish(
         dishName: 'Bobotie',
         price: 9.99,
         imagePath:
-            'https://www.shutterstock.com/image-photo/bobotie-south-african-meatloaf-minced-meat-2283388963', // Replace with your image path
+            'https://media.istockphoto.com/id/808794002/photo/bobotie-is-a-curry-flavored-meatloaf-with-baked-egg-on-top.jpg?s=612x612&w=0&k=20&c=lSRMhoTah_jqByBTBsYm9ZLX5isFy7oBAaAVmACjUGw=', // Replace with your image path
         noOfOrders: 65,
       ),
       Dish(
         dishName: 'Suya',
         price: 12.5,
         imagePath:
-            'https://www.shutterstock.com/image-photo/spicy-suya-kebab-vegetables-2149055067', // Replace with your image path
+            'https://media.istockphoto.com/id/1166536140/photo/nigerian-peppered-beef-suya-in-bowl.jpg?s=612x612&w=0&k=20&c=b3udSko5gtWSbMjJNhyNsS8XrKUWrw--mfC_VNd-Nic=', // Replace with your image path
         noOfOrders: 48,
       ),
       Dish(
         dishName: 'Braai',
         price: 13.25,
         imagePath:
-            'https://www.shutterstock.com/image-photo/south-african-braai-day-heritage-celebrating-2352285959', // Replace with your image path
+            'https://media.istockphoto.com/id/1420789767/photo/bobotie-filled-pie-pastry.jpg?s=612x612&w=0&k=20&c=SgoHBxOwM6MgRcAkNHW5b0E02mZJFWqPseuzgWTqJMY=', // Replace with your image path
         noOfOrders: 75,
       ),
       Dish(
         dishName: 'Chakalaka',
         price: 9.0,
         imagePath:
-            'https://www.shutterstock.com/image-photo/south-african-vegetable-relish-side-dish-2127227417', // Replace with your image path
+            'https://media.istockphoto.com/id/1372075981/photo/traditional-chakalaka.jpg?s=612x612&w=0&k=20&c=DyRwb1OpTHL_yjTQ5B4ADhMSmVWFJ_7abBWyksoO8kU=', // Replace with your image path
         noOfOrders: 30,
       ),
       Dish(
         dishName: 'Morogo',
         price: 11.5,
         imagePath:
-            'https://assets.unileversolutions.com/recipes-v2/179100.jpg?im=Resize,height=372;Crop,size=(932,372),gravity=Center', // Replace with your image path
+            'https://media.istockphoto.com/id/1864518398/photo/spicy-vegetable-seasoning-chakalaka-with-carrots-baked-beans-onions-tomatoes-and-peppers.jpg?s=612x612&w=0&k=20&c=C_28Zf5jMBe7LBGKu6nBuoSGsrdwxPL4mB9wuX0biMc=', // Replace with your image path
+        noOfOrders: 42,
+      ),
+    ],
+  ),
+  KitchenData(
+    kitchenName: 'Gulf Fusion',
+    kitchenRating: 4.9,
+    kitchenImagePath:
+        'https://media.istockphoto.com/id/1463063544/photo/makarounes-traditional-food-of-karpathos.jpg?s=612x612&w=0&k=20&c=RN41gkLAYQfqQG7ghBbiGeDNzgR6Qgm8jdJznVTvGGU=', // Replace with your image path
+    kitchenDescription: 'Explore the diverse Gulf cuisine.',
+    kitchenFoodType: FoodType.Gulf,
+    dishes: [
+      Dish(
+        dishName: 'Machboos',
+        price: 13.0,
+        imagePath:
+            'https://media.istockphoto.com/id/1422594440/photo/ouzi-lamb-or-lamb-pulao-with-nuts-served-in-a-dish-side-view-isolared-on-wooden-table.jpg?s=612x612&w=0&k=20&c=KHB-3mTKdC3hh1WdjUYgYbLYP4VfaASlhMYI5IcgWbE=', // Replace with your image path
+        noOfOrders: 55,
+      ),
+      Dish(
+        dishName: 'Kuwaiti Kabsa',
+        price: 11.5,
+        imagePath:
+            'https://media.istockphoto.com/id/1366619868/photo/colorful-delicious-tasty-traditional-turkish-delight-against-ottoman-ornamental-ceramic.jpg?s=612x612&w=0&k=20&c=EdA1jW5JqSdYmqLP64B_Z-3MEv8CqwzN6r96IO4jFXs=', // Replace with your image path
+        noOfOrders: 40,
+      ),
+      Dish(
+        dishName: 'Emirati Harees',
+        price: 12.25,
+        imagePath:
+            'https://media.istockphoto.com/id/1360667649/photo/turkish-fast-food-bagel-called-simit-turkish-bagel-simit-with-sesame-bagel-is-traditional.jpg?s=612x612&w=0&k=20&c=olYczFJqn8qiajJiCgfsF2o-GZnunxomWeLnRUPxZNM=', // Replace with your image path
+        noOfOrders: 65,
+      ),
+      Dish(
+        dishName: 'Saudi Kabsa',
+        price: 11.0,
+        imagePath:
+            'https://media.istockphoto.com/id/1332169050/photo/turkish-tepsi-boregi-round-borek-tray-pastry.jpg?s=612x612&w=0&k=20&c=3Qa6rdeCalGn5a_HgAZypfU_WvZjWxbwNFL8Dr0YIGs=', // Replace with your image path
+        noOfOrders: 48,
+      ),
+      Dish(
+        dishName: 'Qatari Majboos',
+        price: 9.99,
+        imagePath:
+            'https://media.istockphoto.com/id/1160978022/photo/turkish-pide-with-meat-on-the-board.jpg?s=612x612&w=0&k=20&c=bg8uMOJN7w41mrjvydhp5JticBA9VgNAQwsTZQIoUG0=', // Replace with your image path
+        noOfOrders: 75,
+      ),
+      Dish(
+        dishName: 'Bahraini Machboos',
+        price: 12.5,
+        imagePath:
+            'https://media.istockphoto.com/id/1366619868/photo/colorful-delicious-tasty-traditional-turkish-delight-against-ottoman-ornamental-ceramic.jpg?s=612x612&w=0&k=20&c=EdA1jW5JqSdYmqLP64B_Z-3MEv8CqwzN6r96IO4jFXs=', // Replace with your image path
+        noOfOrders: 60,
+      ),
+      Dish(
+        dishName: 'Omani Shuwa',
+        price: 13.25,
+        imagePath:
+            'https://media.istockphoto.com/id/1394010517/photo/kabsa-saudi-national-dish-to-be-shared.jpg?s=612x612&w=0&k=20&c=809odIkI6lP0l8qQLrASd8jOMMQhjsSQO90KFS_eYZU=', // Replace with your image path
+        noOfOrders: 30,
+      ),
+      Dish(
+        dishName: 'Gulf Salad',
+        price: 8.5,
+        imagePath:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm2UHo5n7JFffv3jkxS0LhXTGQ5FHhqA1ERQ&usqp=CAU', // Replace with your image path
+        noOfOrders: 35,
+      ),
+      Dish(
+        dishName: 'Fahsa',
+        price: 9.0,
+        imagePath:
+            'https://media.istockphoto.com/id/1366619868/photo/colorful-delicious-tasty-traditional-turkish-delight-against-ottoman-ornamental-ceramic.jpg?s=612x612&w=0&k=20&c=EdA1jW5JqSdYmqLP64B_Z-3MEv8CqwzN6r96IO4jFXs=', // Replace with your image path
+        noOfOrders: 45,
+      ),
+      Dish(
+        dishName: 'Hummus and Khubz',
+        price: 6.99,
+        imagePath:
+            'https://media.istockphoto.com/id/1160233750/photo/vegan-food-plate-with-hummus-ready-to-serve.jpg?s=612x612&w=0&k=20&c=J7qTOVr_y3G_wzMWgrmym0--vKrhPzOZle0mLxczo5Q=', // Replace with your image path
         noOfOrders: 42,
       ),
     ],

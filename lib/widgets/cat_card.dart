@@ -13,7 +13,7 @@ class CatCard extends StatelessWidget {
       children: [
         CircleAvatar(
             backgroundColor: KSecondryContrast,
-            radius: 40.0,
+            radius: 35.0,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/screens/home/home.dart';
-import 'package:ggraduating_project/screens/home/home_screen.dart';
 import 'package:ggraduating_project/utils/constants.dart';
-import 'package:ggraduating_project/screens/Authentication/sign_in.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class OnBoard extends StatefulWidget {

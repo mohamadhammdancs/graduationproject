@@ -8,7 +8,7 @@ import 'package:nb_utils/nb_utils.dart';
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key, this.CartItems});
   final List<Dish>? CartItems;
-  
+
   @override
   _CartScreenState createState() => _CartScreenState();
 }
@@ -16,7 +16,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   // int quantity = 1;
   late double TotalPrice;
- 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
