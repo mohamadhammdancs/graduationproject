@@ -25,9 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Future refresh() async {
     setState(() {});
   }
-void reternCat(){
-  
-}
+
+  void reternCat() {}
   @override
   Widget build(BuildContext context) {
     return SafeArea(

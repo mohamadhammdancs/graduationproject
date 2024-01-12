@@ -59,8 +59,7 @@ class KitchenCard extends StatelessWidget {
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Positioned(
-                      child: Row(
+                  child: Row(
                     children: [
                       Text(
                         kitchenData.kitchenRating.toString(),
@@ -72,7 +71,7 @@ class KitchenCard extends StatelessWidget {
                         size: 25,
                       ),
                     ],
-                  )),
+                  ),
                 ),
               ],
             )
