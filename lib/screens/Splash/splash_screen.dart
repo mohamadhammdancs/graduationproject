@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/screens/OnBoarding/on_board_screen.dart';
+import 'package:ggraduating_project/screens/home/home.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import '../../utils/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,7 +26,21 @@ class _SplashScreenState extends State<SplashScreen> {
     defaultSpreadRadius = 0.5;
 
     finish(context);
-    const OnBoard().launch(context, isNewTask: true);
+
+    // get If User Already Logged In Or Not
+    SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+    bool? isUserLoggedIn = prefs.getBool(IS_LOGGED_IN);
+
+    try {
+      if (isUserLoggedIn!) {
+        // user logged In
+        const Home().launch(context);
+      } else {
+        const OnBoard().launch(context, isNewTask: true);
+      }
+    } catch (ex) {
+      const OnBoard().launch(context, isNewTask: true);
+    }
   }
 
   @override

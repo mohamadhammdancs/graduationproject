@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Profile/edit_profile.dart';
 import 'package:ggraduating_project/screens/Profile/notification_screen.dart';
 import 'package:ggraduating_project/screens/Profile/wish_list.dart';
+import '../../utils/constants.dart' as constants;
 
 import 'package:nb_utils/nb_utils.dart';
+
+import '../../models/User.dart';
+import '../../utils/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -14,6 +20,29 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  late User _user;
+
+  Future<void> _getUserInfo() async {
+    SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+    String userInfo = prefs.getString(constants.USER_INFO)!;
+
+    print('profile Screen '+userInfo);
+
+
+    Map<String, dynamic> jsonMap = json.decode(userInfo);
+
+     _user = User.fromJson(jsonMap);
+
+      print(_user.fullName);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _getUserInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -238,14 +238,13 @@ class _SignUpState extends State<SignUp> {
                                       // all fileds are valid my man
                                       UserRegistrationDto userRegistrationDto =
                                           UserRegistrationDto(
-                                              name: validator.fullName,
+                                              fullName: validator.fullName,
                                               email: validator.email,
                                               username: validator.userName,
                                               phoneNumber:
                                                   validator.phoneNumber,
                                               password: validator.password);
-                                      bool results = await userProvider
-                                          .registerUser(userRegistrationDto);
+                                      bool results = await userProvider.registerUser(userRegistrationDto);
 
                                       if (results) {
                                         Navigator.pushReplacement(

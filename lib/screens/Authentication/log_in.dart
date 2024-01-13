@@ -171,8 +171,7 @@ class _LogInState extends State<LogIn> {
                                         LoginDto loginToDto = LoginDto(
                                             username: validator.userName,
                                             password: validator.password);
-                                        bool results = await userProvider
-                                            .signInUser(loginToDto);
+                                        bool results = await userProvider.signInUser(loginToDto);
 
                                         if (results) {
                                           Navigator.pushReplacement(

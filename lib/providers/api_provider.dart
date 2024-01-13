@@ -78,7 +78,4 @@ class ApiProvider<T> with ChangeNotifier {
     }
   }
 
-// NOTE : to use this provider in other clases or widgets
-// define it in the folowing way
-// final apiProvider = Provider.of<ApiProvider<Map<String, dynamic>>>(context);
 }
