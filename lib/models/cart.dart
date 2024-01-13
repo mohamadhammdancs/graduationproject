@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 
 class Cart extends ChangeNotifier {
-  List<Dish> items = [];
+  List<Dish> _items = [];
   double _price = 0.0;
 
- 
+  List<Dish> get cartItems => _items;
+
+
+  
+  
   void add(Dish dish) {
-    items.add(dish);
+    _items.add(dish);
     _price += dish.price;
     notifyListeners();
   }
 
   int get count {
-    return items.length;
+    return _items.length;
   }
 
   double get totalPrice {
     return _price;
   }
 
-  List<Dish> get basketitem {
-    return items;
-  }
+ 
 }

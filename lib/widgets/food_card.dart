@@ -63,10 +63,7 @@ class FoodCard extends StatelessWidget {
                         productData.productTime,
                         style: kTextStyle.copyWith(color: kGreyTextColor),
                       ),
-                    ],
-                  ),
-                  Row(
-                    children: [
+                      Spacer(),
                       RichText(
                         text: TextSpan(
                           children: [
@@ -88,16 +85,6 @@ class FoodCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Spacer(),
-                      const CircleAvatar(
-                        backgroundColor: KSecondryContrast,
-                        radius: 16.0,
-                        child: Icon(
-                          Icons.shopping_cart_outlined,
-                          color: KSecondryHighContrast,
-                          size: 16.0,
-                        ),
-                      ).onTap(() {}),
                     ],
                   ),
                 ],

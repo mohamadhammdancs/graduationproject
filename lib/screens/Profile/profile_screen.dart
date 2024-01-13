@@ -80,12 +80,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 10.0,
                         ),
                         Text(
-                          'Hammdan',
+                          '0',
                           style: kTextStyle.copyWith(
                               color: kTitleColor, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          '0787696308',
+                          '0',
                           style: kTextStyle.copyWith(color: kGreyTextColor),
                         ),
                         const SizedBox(
