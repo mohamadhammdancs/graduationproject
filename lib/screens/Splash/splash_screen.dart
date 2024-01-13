@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> init() async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 3));
 
     defaultBlurRadius = 10.0;
     defaultSpreadRadius = 0.5;
@@ -72,13 +72,12 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Text(
                 'Graduating project',
-                style: kTextStyle.copyWith(
-                    fontSize: 20.0, color: KSecondryContrast),
+                style: kTextStyle.copyWith(fontSize: 12.0, color: KDarkBlue),
               ),
               Text(
                 'Version 1.0.0',
                 style: kTextStyle.copyWith(
-                    fontSize: 20.0, color: KSecondryContrast),
+                    fontSize: 12.0, color: KSecondryHighContrast),
               ),
               const SizedBox(
                 height: 50.0,

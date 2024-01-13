@@ -16,7 +16,7 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  TextEditingController _suerNameController = TextEditingController();
+  TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -115,7 +115,7 @@ class _LogInState extends State<LogIn> {
                                     height: 90.0,
                                     child: AppTextField(
                                       textFieldType: TextFieldType.USERNAME,
-                                      controller: _suerNameController,
+                                      controller: _userNameController,
                                       // Provide the controller with the current username value
                                       enabled: true,
                                       onChanged: (value) {

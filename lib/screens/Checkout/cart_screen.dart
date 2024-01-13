@@ -23,6 +23,54 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+        child: Scaffold(
+      backgroundColor: KMainColorr,
+      body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              Text(
+                'Cart',
+                style: TextStyle(fontSize: 25, color: KDarkBlue),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Spacer(),
+        SingleChildScrollView(
+          child: Container(
+              // height: context.height(),
+              width: context.width(),
+              decoration: BoxDecoration(
+                  color: kDarkWhite,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      'Cart Items',
+                      style: TextStyle(color: KDarkBlue, fontSize: 20),
+                    ),
+                  )
+                ],
+              )),
+        )
+      ]),
+    ));
+  }
+}
+/*
+
+    return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Card(
           elevation: 0.0,
@@ -95,9 +143,9 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 Consumer<Cart>(builder: (context, cart, child) {
                   return ListView.builder(
-                      itemCount: cart.basketitem.length,
+                      itemCount: cart.cartItems.length,
                       itemBuilder: (_, n) {
-                        return CartItemCard(cartItem: cart.basketitem[n]);
+                        return CartItemCard(cartItem: cart.cartItems[n]);
                       });
                 })
               ],
@@ -106,5 +154,4 @@ class _CartScreenState extends State<CartScreen> {
         ),
       ),
     );
-  }
-}
+  */

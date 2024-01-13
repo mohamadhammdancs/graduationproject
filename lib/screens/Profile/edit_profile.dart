@@ -1,6 +1,14 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/models/User.dart';
+import 'package:ggraduating_project/models/dto/UpdateUserDto.dart';
+import 'package:ggraduating_project/providers/InputValidator.dart';
+import 'package:ggraduating_project/providers/user_provider.dart';
+import 'package:ggraduating_project/screens/home/home.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -12,103 +20,53 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+
+    TextEditingController _fullNameController = TextEditingController();
+    TextEditingController _phoneController = TextEditingController();
+    TextEditingController _addressController = TextEditingController();
+
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        bottomNavigationBar: Card(
-          elevation: 0.0,
-          color: KSecondryContrast,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30.0),
-              topRight: Radius.circular(30.0),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: Container(
-                        height: 55.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          color: KSecondryHighContrast,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Update Profile',
-                              style: kTextStyle.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0),
-                            ),
-                          ],
-                        ),
+          backgroundColor: KMainColorr,
+          resizeToAvoidBottomInset: false,
+          body: Consumer<InputValidator>(
+            builder: (context, validator, child) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: KDarkBlue,
+                        ).onTap(() {
+                          Navigator.pop(context);
+                        }),
                       ),
-                    ),
+                      Text(
+                        'Edit Profile',
+                        style: kTextStyle.copyWith(
+                            color: KDarkBlue, fontSize: 18.0),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
-            ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: KDarkBlue,
-                      ).onTap(() {
-                        Navigator.pop(context);
-                      }),
-                    ),
-                    Text(
-                      'Edit Profile',
-                      style:
-                          kTextStyle.copyWith(color: KDarkBlue, fontSize: 18.0),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 40.0,
-                ),
-                Expanded(
-                  child: Container(
-                    width: context.width(),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0)),
-                      color: Colors.white,
-                    ),
+                  Spacer(),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: kDarkWhite),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const SizedBox(
-                          height: 20.0,
+                        SizedBox(
+                          height: 50,
                         ),
                         Stack(
                           children: [
-                            const ClipOval(
+                            ClipOval(
                               child: Image(
                                 image: AssetImage('images/kitchen1-01.png'),
                                 fit: BoxFit.cover,
@@ -131,64 +89,115 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 20.0,
+                        SizedBox(
+                          height: 20,
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: AppTextField(
-                            initialValue: '',
+                            enabled: true,
+                            initialValue: userProvider.user?.fullName,
                             textFieldType: TextFieldType.NAME,
-                            decoration: const InputDecoration(
+                            controller: _fullNameController,
+                            decoration: InputDecoration(
+                              errorText: validator.fullNameError,
                               labelText: 'Full Name',
-                              hintText: 'Mohamad Ahmad',
                               border: OutlineInputBorder(),
                             ),
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              validator.updateFullName(value);
+                            },
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: SizedBox(
-                            height: 60.0,
-                            child: AppTextField(
-                              textFieldType: TextFieldType.PHONE,
-                              controller: TextEditingController(),
-                              enabled: true,
-                              decoration: const InputDecoration(
-                                labelText: 'Phone Number',
-                                hintText: '1767 432556',
-                                border: OutlineInputBorder(),
-                              ),
-                              onChanged: (value) {
-                                
-                              },
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: AppTextField(
-                            textFieldType: TextFieldType.NAME,
-                            decoration: const InputDecoration(
-                              labelText: 'Address',
-                              hintText: 'Wadi al seer, Al bayader',
+                            // initialValue:
+                            //     userProvider.user?.phoneNumber,
+                            textFieldType: TextFieldType.PHONE,
+                            controller: _phoneController,
+                            enabled: true,
+                            onChanged: (value) {
+                              validator.updatePhoneNumber(value);
+                            },
+                            decoration: InputDecoration(
+                              errorText: validator.phoneError,
+                              labelText: 'Phone Number',
+                              hintText: '1767 432556',
                               border: OutlineInputBorder(),
                             ),
-                            onChanged: (value) {},
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          child: AppTextField(
+                            enabled: true,
+                            // initialValue: userProvider.user?.phoneNumber,
+                            textFieldType: TextFieldType.ADDRESS,
+                            controller: _addressController,
+                            decoration: InputDecoration(
+                              errorText: validator.addressError,
+                              labelText: 'Address',
+                              hintText: 'example',
+                              border: OutlineInputBorder(),
+                            ),
+                            onChanged: (value) {
+                              validator.updateAddress(value);
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 180,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(50, 5, 40, 10),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              textStyle: TextStyle(fontSize: 24),
+                              minimumSize: Size.fromHeight(60),
+                              shape: StadiumBorder(),
+                              backgroundColor: KSecondryHighContrast,
+                            ),
+                            onPressed: () async {
+                              if (validator.fullName.isEmptyOrNull &&
+                                  validator.phoneNumber.isEmptyOrNull &&
+                                  validator.address.isEmptyOrNull) {
+                                // all fileds are valid my man
+                                UpdateUserDto updateUserDto = UpdateUserDto(
+                                    userName: userProvider.user?.username,
+                                    address: validator.address,
+                                    fullName: validator.fullName,
+                                    phoneNumber: validator.phoneNumber);
+                                bool results = await userProvider
+                                    .updateUser(updateUserDto);
+
+                                if (results) {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Home()),
+                                  );
+                                } else {
+                                  print(
+                                      'an error acured while registering user');
+                                }
+                              }
+                            },
+                            child: userProvider.isLoading
+                                ? CircularProgressIndicator()
+                                : Text(
+                                    'Submit',
+                                    style: TextStyle(color: kDarkWhite),
+                                  ),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+                ],
+              );
+            },
+          )),
     );
   }
 }

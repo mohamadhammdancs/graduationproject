@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
+import 'package:ggraduating_project/models/cart.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({required this.product});
@@ -49,18 +51,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                             }),
                           ),
                           const Spacer(),
-                          // CircleAvatar(
-                          //   backgroundColor: Colors.red.withOpacity(0.1),
-                          //   radius: 16.0,
-                          //   child: const Icon(
-                          //     Icons.favorite_rounded,
-                          //     color: Colors.red,
-                          //     size: 16.0,
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   width: 10.0,
-                          // ),
                         ],
                       ),
                       const SizedBox(
@@ -81,58 +71,58 @@ class _ProductDetailsState extends State<ProductDetails> {
                             const SizedBox(
                               height: 100.0,
                             ),
-                            Center(
-                              child: SizedBox(
-                                width: 100.0,
-                                height: 50.0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: KSecondryHighContrast,
-                                    borderRadius: BorderRadius.circular(50.0),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            quantity > 1
-                                                ? quantity -= 1
-                                                : quantity = 1;
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons.remove,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10.0, right: 10.0),
-                                        child: Text(
-                                          quantity.toString(),
-                                          style: kTextStyle.copyWith(
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            quantity > 0
-                                                ? quantity += 1
-                                                : quantity = 1;
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons.add,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Center(
+                            //   child: SizedBox(
+                            //     width: 100.0,
+                            //     height: 50.0,
+                            //     child: Container(
+                            //       decoration: BoxDecoration(
+                            //         color: KSecondryHighContrast,
+                            //         borderRadius: BorderRadius.circular(50.0),
+                            //       ),
+                            //       child: Row(
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: [
+                            //           GestureDetector(
+                            //             onTap: () {
+                            //               setState(() {
+                            //                 quantity > 1
+                            //                     ? quantity -= 1
+                            //                     : quantity = 1;
+                            //               });
+                            //             },
+                            //             child: const Icon(
+                            //               Icons.remove,
+                            //               color: Colors.white,
+                            //             ),
+                            //           ),
+                            //           Padding(
+                            //             padding: const EdgeInsets.only(
+                            //                 left: 10.0, right: 10.0),
+                            //             child: Text(
+                            //               quantity.toString(),
+                            //               style: kTextStyle.copyWith(
+                            //                   color: Colors.white),
+                            //             ),
+                            //           ),
+                            //           GestureDetector(
+                            //             onTap: () {
+                            //               setState(() {
+                            //                 quantity > 0
+                            //                     ? quantity += 1
+                            //                     : quantity = 1;
+                            //               });
+                            //             },
+                            //             child: const Icon(
+                            //               Icons.add,
+                            //               color: Colors.white,
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20.0, right: 20.0, top: 20.0),
@@ -247,20 +237,20 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ),
                             Row(
                               children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: ButtonGlobal(
-                                      buttontext: 'Add To Cart',
-                                      buttonDecoration:
-                                          kButtonDecoration.copyWith(
-                                              color: KSecondryHighContrast),
-                                      onPressed: () {
-                                        //const CartScreen().launch(context);..........................
-                                      },
+                                Consumer<Cart>(builder: (context, cart, child) {
+                                  return Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: ButtonGlobal(
+                                        buttontext: 'Add To Cart',
+                                        buttonDecoration:
+                                            kButtonDecoration.copyWith(
+                                                color: KSecondryHighContrast),
+                                        onPressed: () {},
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),

@@ -9,18 +9,20 @@ class ApiProvider<T> with ChangeNotifier {
   T? _data;
   String? _error;
 
+  final String url = 'http://10.0.2.2:8080/';
+
   RequestStatus get status => _status;
 
   T? get data => _data;
 
   String? get error => _error;
 
-  Future<void> fetchData(String apiUrl, {Map<String, String>? headers}) async {
+  Future<void> fetchData(String apiPath, {Map<String, String>? headers}) async {
     try {
       _status = RequestStatus.loading;
       notifyListeners();
 
-      final response = await http.get(Uri.parse(apiUrl));
+      final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         // Parse the JSON response and update the data

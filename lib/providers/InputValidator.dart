@@ -6,11 +6,13 @@ class InputValidator extends ChangeNotifier {
   String _userName = '';
   String _fullName = '';
   String _phoneNumber = '';
+  String _address = '';
   String? _emailError;
   String? _passwordError;
   String? _userNameError;
   String? _fullNameError;
   String? _phoneNumberError;
+  String? _addressError;
 
   String get email => _email;
 
@@ -31,6 +33,10 @@ class InputValidator extends ChangeNotifier {
   String get phoneNumber => _phoneNumber;
 
   String? get phoneError => _phoneNumberError;
+
+  String? get address => _address;
+
+  String? get addressError => _addressError;
 
   void updateEmail(String newEmail) {
     _email = newEmail;
@@ -55,6 +61,11 @@ class InputValidator extends ChangeNotifier {
   void updatePhoneNumber(String phoneNumber) {
     _phoneNumber = phoneNumber;
     _validatePhoneNumber();
+  }
+
+  void updateAddress(String address) {
+    _address = address;
+    _validateAddress();
   }
 
   void _validateEmail() {
@@ -111,6 +122,15 @@ class InputValidator extends ChangeNotifier {
       _phoneNumberError = null;
     }
 
+    notifyListeners();
+  }
+
+  void _validateAddress() {
+    if (_address.isEmpty || _address.length < 5) {
+      _addressError = ' please enter your Address';
+    } else {
+      _addressError = null;
+    }
     notifyListeners();
   }
 }

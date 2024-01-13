@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:ggraduating_project/models/dto/UpdateUserDto.dart';
 import 'package:ggraduating_project/models/dto/UserRegistrationDto.dart';
 import 'package:ggraduating_project/models/dto/loginDto.dart';
 import 'package:ggraduating_project/services/api_service.dart';
@@ -58,6 +59,29 @@ class UserProvider extends ChangeNotifier {
         prefs.saveString(constants.USER_INFO, _user!.toJson().toString());
         prefs.saveBool(constants.IS_LOGGED_IN, true);
 
+        notifyListeners();
+
+        _setLoading(false);
+        return true;
+      } else {
+        print(
+            'some error acuured on tyhe backend level while loging in the user');
+        _setLoading(false);
+        return false;
+      }
+    } catch (e) {
+      _setLoading(false); // set loading false
+      print('User provider register error $e');
+      return false;
+    }
+  }
+
+  Future<bool> updateUser(UpdateUserDto user) async {
+    try {
+      print('Login user provider before setloading');
+      _setLoading(true); // set loading true before laoading the api call
+      _user = await apiService.updateUserInfo(user);
+      if (_user != null) {
         notifyListeners();
 
         _setLoading(false);

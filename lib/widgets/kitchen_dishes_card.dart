@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/models/cart.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/widgets/dish_details_screen.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 class KitchenDishesCards extends StatelessWidget {
   const KitchenDishesCards({Key? key, required this.kitchenDishesData});
@@ -74,18 +76,22 @@ class KitchenDishesCards extends StatelessWidget {
             const Spacer(),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                  child: const CircleAvatar(
-                    backgroundColor: KSecondryContrast,
-                    radius: 16.0,
-                    child: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: KSecondryHighContrast,
-                      size: 16.0,
-                    ),
-                  ).onTap(() {}),
-                ),
+                Consumer<Cart>(builder: (context, cart, child) {
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                    child: const CircleAvatar(
+                      backgroundColor: KSecondryContrast,
+                      radius: 16.0,
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        color: KSecondryHighContrast,
+                        size: 16.0,
+                      ),
+                    ).onTap(() {
+                      cart.add(kitchenDishesData);
+                    }),
+                  );
+                }),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
