@@ -44,79 +44,88 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              width: context.width(),
-              height: context.height(),
-              decoration: const BoxDecoration(
-                  color: kDarkWhite,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
-                  )),
-              child: SingleChildScrollView(
-                child: SizedBox(
-                  height: context.height(),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Row(
-                          children: [
-                            Expanded(child: Consumer<Cart>(
-                              builder: (context, cart, child) {
-                                return Text(
-                                  '${cart.totalPrice} JOD',
-                                  style: kTextStyle.copyWith(
-                                      color: kTitleColor,
-                                      fontWeight: FontWeight.bold),
-                                );
-                              },
-                            )),
-                            Expanded(
-                              child: Container(
-                                height: 55.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  color: KSecondryHighContrast,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Checkout',
+            Flexible(
+              child: Container(
+                width: context.width(),
+                height: context.height(),
+                decoration: const BoxDecoration(
+                    color: kDarkWhite,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30.0),
+                      topRight: Radius.circular(30.0),
+                    )),
+                child: SingleChildScrollView(
+                  child: SizedBox(
+                    height: context.height(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Row(
+                            children: [
+                              Expanded(child: Consumer<Cart>(
+                                builder: (context, cart, child) {
+                                  return Text(
+                                    '${cart.totalPrice} JOD',
                                     style: kTextStyle.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.0),
-                                  ),
-                                ),
-                              ).onTap(() {
-                                const CheckoutScreen().launch(context);
-                              }),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Consumer<Cart>(
-                        builder: (context, cart, child) {
-                          return Container(
-                            color: kDarkWhite,
-                            child: SizedBox(
-                              height: context.height(),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: cart.cartItems.length,
-                                itemBuilder: (context, index) {
-                                  return CartItemCard(
-                                      cartItem: cart.basketitem[index]);
+                                        color: kTitleColor,
+                                        fontWeight: FontWeight.bold),
+                                  );
                                 },
+                              )),
+                              Expanded(
+                                child: Container(
+                                  height: 55.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    color: KSecondryHighContrast,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Checkout',
+                                      style: kTextStyle.copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0),
+                                    ),
+                                  ),
+                                ).onTap(() {
+                                  const CheckoutScreen().launch(context);
+                                }),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: context.height() + 50,
+                          child: Consumer<Cart>(
+                            builder: (context, cart, child) {
+                              return Column(
+                                children: [
+                                  SizedBox(
+                                    height: context.height() + 200,
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: cart.cartItems.length,
+                                      itemBuilder: (context, index) {
+                                        return CartItemCard(
+                                            cartItem: cart.basketitem[index]);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 1,
             )
           ]),
         ),
@@ -161,7 +170,7 @@ Expanded(child: Consumer<Cart>(
                       style: kTextStyle.copyWith(
                           color: kTitleColor, fontWeight: FontWeight.bold),
                     );
-                  },
+        },
                 )),
                 Expanded(
                   child: Container(
