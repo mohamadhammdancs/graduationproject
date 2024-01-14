@@ -8,7 +8,6 @@ import 'package:ggraduating_project/screens/Checkout/checkout_screen.dart';
 import 'package:ggraduating_project/widgets/cart_item_card.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
-import 'package:ggraduating_project/models/cart.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key, this.CartItems});

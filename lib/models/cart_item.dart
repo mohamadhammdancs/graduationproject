@@ -1,6 +1,4 @@
-import 'dart:ffi';
 
-import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 
 class CartItem {

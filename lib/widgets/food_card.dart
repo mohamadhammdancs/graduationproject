@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 import '../utils/constants.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 import 'package:ggraduating_project/models/cart.dart';
 import 'package:ggraduating_project/models/cart_item.dart';
 import 'package:ggraduating_project/utils/constants.dart';
