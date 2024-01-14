@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/models/cart.dart';
+import 'package:ggraduating_project/models/cart_item.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 class CartItemCard extends StatefulWidget {
   const CartItemCard({super.key, required this.cartItem});
-  final Dish cartItem;
+  final CartItem cartItem;
 
   @override
   State<CartItemCard> createState() => _CartItemCardState();
 }
 
 class _CartItemCardState extends State<CartItemCard> {
-  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +44,7 @@ class _CartItemCardState extends State<CartItemCard> {
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
                       child: Image(
-                        image: NetworkImage(widget.cartItem.imagePath),
+                        image: NetworkImage(widget.cartItem.dish.imagePath),
                         height: 70.0,
                         width: 70.0,
                         fit: BoxFit.cover,
@@ -57,7 +59,7 @@ class _CartItemCardState extends State<CartItemCard> {
                       Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: Text(
-                          widget.cartItem.dishName,
+                          widget.cartItem.dish.dishName,
                           style: kTextStyle.copyWith(
                             color: KDarkBlue,
                             fontWeight: FontWeight.bold,
@@ -81,48 +83,54 @@ class _CartItemCardState extends State<CartItemCard> {
                     ],
                   ),
                   const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 20, 5),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              quantity > 1 ? quantity -= 1 : quantity = 1;
-                            });
-                          },
-                          child: const CircleAvatar(
-                            backgroundColor: KSecondryContrast,
-                            radius: 13,
-                            child: Icon(
-                              Icons.remove,
-                              color: KDarkBlue,
+                  Consumer<Cart>(
+                    builder: (context, cart, child) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 20, 5),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  cart.addQuantity(widget.cartItem, false);
+                                });
+                              },
+                              child: const CircleAvatar(
+                                backgroundColor: KSecondryContrast,
+                                radius: 13,
+                                child: Icon(
+                                  Icons.remove,
+                                  color: KDarkBlue,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Text(
-                          quantity.toString(),
-                          style: kTextStyle.copyWith(
-                              color: kTitleColor, fontSize: 15),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              quantity > 0 ? quantity += 1 : quantity = 1;
-                            });
-                          },
-                          child: const CircleAvatar(
-                            backgroundColor: KSecondryContrast,
-                            radius: 13,
-                            child: Icon(
-                              Icons.add,
-                              color: KDarkBlue,
+                            Text(
+                              widget.cartItem.quantity.toString(),
+                              style: kTextStyle.copyWith(
+                                  color: kTitleColor, fontSize: 15),
                             ),
-                          ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // here to do change on the cart item
+                                  cart.addQuantity(widget.cartItem, true);
+                                });
+                              },
+                              child: const CircleAvatar(
+                                backgroundColor: KSecondryContrast,
+                                radius: 13,
+                                child: Icon(
+                                  Icons.add,
+                                  color: KDarkBlue,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
+                      );
+                    },
+                  )
+
                   // Icon(Icons.delete).onTap(() {})
                 ],
               ),

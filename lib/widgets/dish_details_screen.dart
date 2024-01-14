@@ -268,20 +268,20 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                                     ),
                                   );
                                 }),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: ButtonGlobal(
-                                      buttontext: 'Checkout',
-                                      buttonDecoration:
-                                          kButtonDecoration.copyWith(
-                                              color: KSecondryHighContrast),
-                                      onPressed: () {
-                                        CheckoutScreen().launch(context);
-                                      },
-                                    ),
-                                  ),
-                                ),
+                                // Expanded(
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(10.0),
+                                //     child: ButtonGlobal(
+                                //       buttontext: 'Checkout',
+                                //       buttonDecoration:
+                                //           kButtonDecoration.copyWith(
+                                //               color: KSecondryHighContrast),
+                                //       onPressed: () {
+                                //         CheckoutScreen().launch(context);
+                                //       },
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ],

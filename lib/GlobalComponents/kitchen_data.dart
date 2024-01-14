@@ -2,6 +2,19 @@
 
 import 'dart:collection';
 
+enum FoodType {
+  Palistinian,
+  Syrian,
+  Jordinian,
+  Gulf,
+  Yamani,
+  African,
+  Italian,
+  Chineze,
+  Indian,
+  Turkish,
+}
+
 class KitchenData {
   String kitchenName;
   int kitchenId;
@@ -633,16 +646,3 @@ List<KitchenData> kitchenList = [
     ],
   ),
 ];
-
-enum FoodType {
-  Palistinian,
-  Syrian,
-  Jordinian,
-  Gulf,
-  Yamani,
-  African,
-  Italian,
-  Chineze,
-  Indian,
-  Turkish,
-}
