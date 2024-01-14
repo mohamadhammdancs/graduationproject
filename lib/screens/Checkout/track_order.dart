@@ -105,7 +105,7 @@ class _TrackOrderState extends State<TrackOrder> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'John Doe',
+                                  'Hamdan',
                                   style: kTextStyle.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -174,7 +174,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             style: kTextStyle.copyWith(color: kGreyTextColor),
                           ),
                           subtitle: Text(
-                            '421 Duke street, M54ader',
+                            'Al senaah Street',
                             style: kTextStyle.copyWith(
                                 color: kTitleColor,
                                 fontWeight: FontWeight.bold),

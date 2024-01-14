@@ -23,10 +23,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
-  List<String> data = ["Paypal", "Debit Card", "Cash On Delivery"];
+  List<String> data = ["Debit Card", "Cash On Delivery"];
   List<String> userChecked = [];
   List<String> icons = [
-    'images/paypal.png',
     'images/card.png',
     'images/cod.png',
   ];
@@ -240,143 +239,143 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     fontWeight: FontWeight.bold),
                               ),
                               const Spacer(),
-                              GestureDetector(
-                                  onTap: () => showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        dialogContext = context;
-                                        return SingleChildScrollView(
-                                          child: Dialog(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            // ignore: sized_box_for_whitespace
-                                            child: Container(
-                                              color: KMainColorr,
-                                              padding:
-                                                  const EdgeInsets.all(20.0),
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  1.3,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  80,
-                                              child: Center(
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      'Add New Address',
-                                                      style:
-                                                          kTextStyle.copyWith(
-                                                              color:
-                                                                  kTitleColor,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                    ),
-                                                    Text(
-                                                      'Please Enter Your Current Address Here',
-                                                      style:
-                                                          kTextStyle.copyWith(
-                                                        color: kGreyTextColor,
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 10.0,
-                                                              bottom: 10.0),
-                                                      child: Image.asset(
-                                                          'images/mapsmall.png'),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 10.0,
-                                                              bottom: 10.0),
-                                                      child: AppTextField(
-                                                        cursorColor:
-                                                            KMainColorr,
-                                                        textFieldType:
-                                                            TextFieldType
-                                                                .ADDRESS,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText:
-                                                              'Street Address & City',
-                                                          hintText:
-                                                              '112/3 Kolatola Ave',
-                                                          border:
-                                                              OutlineInputBorder(),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 10.0,
-                                                              bottom: 10.0),
-                                                      child: AppTextField(
-                                                        textFieldType:
-                                                            TextFieldType
-                                                                .ADDRESS,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText: 'Road No',
-                                                          hintText: '112/3',
-                                                          border:
-                                                              OutlineInputBorder(),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 10.0,
-                                                              bottom: 10.0),
-                                                      child: AppTextField(
-                                                        textFieldType:
-                                                            TextFieldType.PHONE,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText:
-                                                              'Post Code',
-                                                          hintText: '1205',
-                                                          border:
-                                                              OutlineInputBorder(),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    ButtonGlobal(
-                                                        buttontext:
-                                                            'Save Address',
-                                                        buttonDecoration:
-                                                            kButtonDecoration
-                                                                .copyWith(
-                                                                    color:
-                                                                        KSecondryHighContrast),
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              dialogContext);
-                                                        }),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }),
-                                  child: Text(
-                                    'Add New',
-                                    style: kTextStyle.copyWith(
-                                      color: kGreyTextColor,
-                                    ),
-                                  )),
+                              // GestureDetector(
+                              //     onTap: () => showDialog(
+                              //         context: context,
+                              //         builder: (BuildContext context) {
+                              //           dialogContext = context;
+                              //           return SingleChildScrollView(
+                              //             child: Dialog(
+                              //               shape: RoundedRectangleBorder(
+                              //                 borderRadius:
+                              //                     BorderRadius.circular(12.0),
+                              //               ),
+                              //               // ignore: sized_box_for_whitespace
+                              //               child: Container(
+                              //                 color: KMainColorr,
+                              //                 padding:
+                              //                     const EdgeInsets.all(20.0),
+                              //                 height: MediaQuery.of(context)
+                              //                         .size
+                              //                         .height /
+                              //                     1.3,
+                              //                 width: MediaQuery.of(context)
+                              //                         .size
+                              //                         .width -
+                              //                     80,
+                              //                 child: Center(
+                              //                   child: Column(
+                              //                     children: [
+                              //                       Text(
+                              //                         'Add New Address',
+                              //                         style:
+                              //                             kTextStyle.copyWith(
+                              //                                 color:
+                              //                                     kTitleColor,
+                              //                                 fontWeight:
+                              //                                     FontWeight
+                              //                                         .bold),
+                              //                       ),
+                              //                       Text(
+                              //                         'Please Enter Your Current Address Here',
+                              //                         style:
+                              //                             kTextStyle.copyWith(
+                              //                           color: kGreyTextColor,
+                              //                         ),
+                              //                         textAlign:
+                              //                             TextAlign.center,
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: Image.asset(
+                              //                             'images/mapsmall.png'),
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: AppTextField(
+                              //                           cursorColor:
+                              //                               KMainColorr,
+                              //                           textFieldType:
+                              //                               TextFieldType
+                              //                                   .ADDRESS,
+                              //                           decoration:
+                              //                               const InputDecoration(
+                              //                             labelText:
+                              //                                 'Street Address & City',
+                              //                             hintText:
+                              //                                 '112/3 Kolatola Ave',
+                              //                             border:
+                              //                                 OutlineInputBorder(),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: AppTextField(
+                              //                           textFieldType:
+                              //                               TextFieldType
+                              //                                   .ADDRESS,
+                              //                           decoration:
+                              //                               const InputDecoration(
+                              //                             labelText: 'Road No',
+                              //                             hintText: '112/3',
+                              //                             border:
+                              //                                 OutlineInputBorder(),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: AppTextField(
+                              //                           textFieldType:
+                              //                               TextFieldType.PHONE,
+                              //                           decoration:
+                              //                               const InputDecoration(
+                              //                             labelText:
+                              //                                 'Post Code',
+                              //                             hintText: '1205',
+                              //                             border:
+                              //                                 OutlineInputBorder(),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                       ButtonGlobal(
+                              //                           buttontext:
+                              //                               'Save Address',
+                              //                           buttonDecoration:
+                              //                               kButtonDecoration
+                              //                                   .copyWith(
+                              //                                       color:
+                              //                                           KSecondryHighContrast),
+                              //                           onPressed: () {
+                              //                             Navigator.pop(
+                              //                                 dialogContext);
+                              //                           }),
+                              //                     ],
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //           );
+                              //         }),
+                              //     child: Text(
+                              //       'Add New',
+                              //       style: kTextStyle.copyWith(
+                              //         color: kGreyTextColor,
+                              //       ),
+                              //     )),
                             ],
                           ),
                         ),
@@ -408,47 +407,47 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
-                                '34 North Sulphur Springs Dr. Alexandria, VA 22304',
+                                'Amman,7th Cicle,Abu goshah Street ,villa no.28',
                                 style:
                                     kTextStyle.copyWith(color: kGreyTextColor),
                               ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: KDarkBlue.withOpacity(0.2)),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor: KDarkBlue.withOpacity(0.2),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(
-                                    Icons.badge,
-                                    color: KDarkBlue,
-                                  ),
-                                ),
-                              ),
-                              title: Text(
-                                'Office',
-                                style: kTextStyle.copyWith(
-                                    color: kTitleColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              subtitle: Text(
-                                '34 North Sulphur Springs Dr. Alexandria, VA 22304',
-                                style:
-                                    kTextStyle.copyWith(color: kGreyTextColor),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding:
+                        //       const EdgeInsets.only(left: 20.0, right: 20.0),
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //       border:
+                        //           Border.all(color: KDarkBlue.withOpacity(0.2)),
+                        //       borderRadius: BorderRadius.circular(10.0),
+                        //     ),
+                        //     child: ListTile(
+                        //       leading: CircleAvatar(
+                        //         backgroundColor: KDarkBlue.withOpacity(0.2),
+                        //         child: const Padding(
+                        //           padding: EdgeInsets.all(8.0),
+                        //           child: Icon(
+                        //             Icons.badge,
+                        //             color: KDarkBlue,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       title: Text(
+                        //         'Office',
+                        //         style: kTextStyle.copyWith(
+                        //             color: kTitleColor,
+                        //             fontWeight: FontWeight.bold),
+                        //       ),
+                        //       subtitle: Text(
+                        //         '34 North Sulphur Springs Dr. Alexandria, VA 22304',
+                        //         style:
+                        //             kTextStyle.copyWith(color: kGreyTextColor),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(
                           height: 30.0,
                         ),

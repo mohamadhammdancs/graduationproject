@@ -16,12 +16,12 @@ class _CartItemCardState extends State<CartItemCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      // height: 200,
       width: context.width(),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
-        color: Colors.white,
+        color: kDarkWhite,
       ),
       child: Column(
         children: [
@@ -29,7 +29,7 @@ class _CartItemCardState extends State<CartItemCard> {
             height: 20.0,
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Container(
               padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
@@ -38,53 +38,60 @@ class _CartItemCardState extends State<CartItemCard> {
               ),
               child: Row(
                 children: [
+                  Image(
+                    image: NetworkImage(widget.cartItem.imagePath),
+                    height: 70.0,
+                    width: 70.0,
+                  ),
                   const SizedBox(
                     width: 10.0,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
                       Text(
                         widget.cartItem.dishName,
                         style: kTextStyle.copyWith(color: kTitleColor),
                       ),
-                      Text(
-                        widget.cartItem.price as String,
-                        style: kTextStyle.copyWith(color: Colors.black),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            quantity > 1 ? quantity -= 1 : quantity = 1;
-                          });
-                        },
-                        child: const Icon(
-                          Icons.remove,
-                          color: kTitleColor,
-                        ),
+                      SizedBox(
+                        width: 19,
                       ),
                       Text(
-                        quantity.toString(),
+                        '${widget.cartItem.price} JOD',
                         style: kTextStyle.copyWith(color: kTitleColor),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            quantity > 0 ? quantity += 1 : quantity = 1;
-                          });
-                        },
-                        child: const Icon(
-                          Icons.add,
-                          color: kTitleColor,
-                        ),
-                      ),
                     ],
                   ),
+
+                  // Column(
+                  //   children: [
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           quantity > 1 ? quantity -= 1 : quantity = 1;
+                  //         });
+                  //       },
+                  //       child: const Icon(
+                  //         Icons.remove,
+                  //         color: kTitleColor,
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       quantity.toString(),
+                  //       style: kTextStyle.copyWith(color: kTitleColor),
+                  //     ),
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           quantity > 0 ? quantity += 1 : quantity = 1;
+                  //         });
+                  //       },
+                  //       child: const Icon(
+                  //         Icons.add,
+                  //         color: kTitleColor,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

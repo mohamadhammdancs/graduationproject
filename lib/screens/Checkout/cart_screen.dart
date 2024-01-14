@@ -23,55 +23,123 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: KMainColorr,
-      body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Row(
-            children: [
-              Text(
-                'Cart',
-                style: TextStyle(fontSize: 25, color: KDarkBlue),
-              )
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Spacer(),
-        SingleChildScrollView(
-          child: Container(
-              // height: context.height(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: KMainColorr,
+        body: SizedBox(
+          height: context.height(),
+          child: Column(children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Cart',
+                    style:
+                        kTextStyle.copyWith(color: KDarkBlue, fontSize: 25.0),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
               width: context.width(),
-              decoration: BoxDecoration(
+              height: context.height(),
+              decoration: const BoxDecoration(
                   color: kDarkWhite,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      'Cart Items',
-                      style: TextStyle(color: KDarkBlue, fontSize: 20),
-                    ),
-                  )
-                ],
-              )),
-        )
-      ]),
-    ));
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: context.height(),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Row(
+                          children: [
+                            Expanded(child: Consumer<Cart>(
+                              builder: (context, cart, child) {
+                                return Text(
+                                  '${cart.totalPrice} JOD',
+                                  style: kTextStyle.copyWith(
+                                      color: kTitleColor,
+                                      fontWeight: FontWeight.bold),
+                                );
+                              },
+                            )),
+                            Expanded(
+                              child: Container(
+                                height: 55.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  color: KSecondryHighContrast,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Checkout',
+                                    style: kTextStyle.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0),
+                                  ),
+                                ),
+                              ).onTap(() {
+                                const CheckoutScreen().launch(context);
+                              }),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Consumer<Cart>(
+                        builder: (context, cart, child) {
+                          return Container(
+                            color: kDarkWhite,
+                            child: SizedBox(
+                              height: context.height(),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: cart.cartItems.length,
+                                itemBuilder: (context, index) {
+                                  return CartItemCard(
+                                      cartItem: cart.basketitem[index]);
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ]),
+        ),
+      ),
+    );
   }
 }
+
+/*
+Expanded(child: Consumer<Cart>(
+                  builder: (context, cart, child) {
+                    return Text(
+                      '${cart.totalPrice} JOD',
+                      style: kTextStyle.copyWith(
+                          color: kTitleColor, fontWeight: FontWeight.bold),
+                    );
+                  },
+                )),
+*/
+
 /*
 
-    return SafeArea(
-      child: Scaffold(
+
         bottomNavigationBar: Card(
           elevation: 0.0,
           color: const Color(0xFFF5F5F5),
@@ -145,13 +213,86 @@ class _CartScreenState extends State<CartScreen> {
                   return ListView.builder(
                       itemCount: cart.cartItems.length,
                       itemBuilder: (_, n) {
-                        return CartItemCard(cartItem: cart.cartItems[n]);
+                        return Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                    color: kGreyTextColor.withOpacity(0.1)),
+                              ),
+                              child: Row(
+                                children: [
+                                  Image(
+                                    image: NetworkImage(
+                                        cart.cartItems[n].imagePath),
+                                    height: 60.0,
+                                    width: 60.0,
+                                  ),
+                                  const SizedBox(
+                                    width: 4.0,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        cart.cartItems[n].dishName,
+                                        style: kTextStyle.copyWith(
+                                            color: KSecondryHighContrast,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        '\$${cart.cartItems[n].price}',
+                                        style: kTextStyle.copyWith(
+                                            color: KSecondryHighContrast,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        width: 4.0,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(4.0),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  KSecondryContrast.withOpacity(
+                                                      0.1),
+                                              borderRadius:
+                                                  BorderRadius.circular(1.0),
+                                            ),
+                                            child: Text(
+                                              'Confirmed',
+                                              style: kTextStyle.copyWith(
+                                                  color: KSecondryHighContrast,
+                                                  fontSize: 10.0),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 50.0,
+                                          ),
+                                          Text(
+                                            '23 Jan, 2021',
+                                            style: kTextStyle.copyWith(
+                                                color: kGreyTextColor),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ) //.onTap(() {
+                            //   const OrderDetails().launch(context);
+                            // }),
+                            );
                       });
                 })
               ],
             ),
           ],
         ),
-      ),
-    );
-  */
+
+*/

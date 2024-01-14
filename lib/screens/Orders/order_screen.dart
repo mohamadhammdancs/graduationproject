@@ -30,12 +30,7 @@ class _OrderScreenState extends State<OrderScreen> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+              decoration: const BoxDecoration(color: KMainColorr),
             ),
             RefreshIndicator(
               onRefresh: refresh,
@@ -44,20 +39,6 @@ class _OrderScreenState extends State<OrderScreen> {
                   children: [
                     Row(
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(20.0),
-                        //   child: InkWell(
-                        //     onTap: () {
-                        //       Navigator.pop(context);
-                        //     },
-                        //     child: Icon(
-                        //       Icons.arrow_back,
-                        //       color: KDarkBlue,
-                        //     ).onTap(() {
-                        //       Navigator.pop(context);
-                        //     }),
-                        //   ),
-                        // ),
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
@@ -77,35 +58,12 @@ class _OrderScreenState extends State<OrderScreen> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30.0),
                             topRight: Radius.circular(30.0)),
-                        color: Colors.white,
+                        color: kDarkWhite,
                       ),
                       child: Column(
                         children: [
                           const SizedBox(
                             height: 20.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: HorizontalList(
-                              spacing: 10,
-                              itemCount: tabTitle.length,
-                              itemBuilder: (_, i) {
-                                return Container(
-                                  padding: const EdgeInsets.all(10.0),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: kGreyTextColor),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      tabTitle[i],
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
                           ),
                           ListView.builder(
                               shrinkWrap: true,

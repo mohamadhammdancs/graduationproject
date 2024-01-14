@@ -25,7 +25,6 @@ class _HomeState extends State<Home> {
     HomeScreen(),
     OrderScreen(),
     CartScreen(),
-    //OfferScreen(),
     ProfileScreen()
   ];
   @override
@@ -56,11 +55,9 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.truckPickup), label: 'Order'),
+                icon: Icon(FontAwesomeIcons.receipt), label: 'Order'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
-            // BottomNavigationBarItem(
-            //     icon: Icon(Icons.wallet_giftcard_rounded), label: 'Offer'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline_rounded), label: 'Profile')
           ],

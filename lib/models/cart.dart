@@ -23,6 +23,9 @@ class Cart extends ChangeNotifier {
   double get totalPrice {
     return _price;
   }
-
+  
+  List<Dish> get basketitem {
+    return _items;
+  }
  
 }
