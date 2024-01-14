@@ -70,6 +70,7 @@ class _OrderReviewState extends State<OrderReview> {
                           height: 20.0,
                         ),
                         const CircleAvatar(
+                          backgroundColor: KMainColorr,
                           radius: 40.0,
                           child: Image(
                             image: AssetImage('images/logo1.png'),
@@ -99,32 +100,32 @@ class _OrderReviewState extends State<OrderReview> {
                             switch (index) {
                               case 0:
                                 return const Icon(
-                                  Icons.sentiment_very_dissatisfied,
+                                  Icons.sentiment_very_dissatisfied_rounded,
                                   color: Colors.red,
                                 );
                               case 1:
                                 return const Icon(
-                                  Icons.sentiment_dissatisfied,
-                                  color: Colors.redAccent,
+                                  Icons.sentiment_dissatisfied_rounded,
+                                  color: Color.fromARGB(255, 231, 141, 67),
                                 );
                               case 2:
                                 return const Icon(
-                                  Icons.sentiment_neutral,
+                                  Icons.sentiment_neutral_rounded,
                                   color: Colors.amber,
                                 );
                               case 3:
                                 return const Icon(
-                                  Icons.sentiment_satisfied,
+                                  Icons.sentiment_satisfied_alt_rounded,
                                   color: Colors.lightGreen,
                                 );
                               case 4:
                                 return const Icon(
-                                  Icons.sentiment_very_satisfied,
+                                  Icons.sentiment_very_satisfied_rounded,
                                   color: Colors.green,
                                 );
                               default:
                                 return const Icon(
-                                  Icons.sentiment_very_satisfied,
+                                  Icons.sentiment_very_satisfied_rounded,
                                   color: Colors.green,
                                 );
                             }

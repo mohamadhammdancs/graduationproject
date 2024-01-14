@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
@@ -40,17 +42,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     });
   }
 
-  void _onSelected(bool selected, String dataName) {
-    if (selected == true) {
-      setState(() {
-        userChecked.add(dataName);
-      });
-    } else {
-      setState(() {
-        userChecked.remove(dataName);
-      });
-    }
-  }
+  // void _onSelected(bool selected, String dataName) {
+  //   if (selected == true) {
+  //     setState(() {
+  //       userChecked.add(dataName);
+  //     });
+  //   } else {
+  //     setState(() {
+  //       userChecked.remove(dataName);
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -145,23 +147,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                 const TrackOrder()
                                                     .launch(context);
                                               }),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Icon(
-                                                Icons.arrow_back,
-                                                color: KDarkBlue,
-                                              ),
-                                              Text(
-                                                "Go Back",
-                                                style: kTextStyle.copyWith(
-                                                    color: kGreyTextColor),
-                                              ).onTap(() {
-                                                Navigator.pop(context);
-                                              }),
-                                            ],
-                                          ),
+                                          SizedBox(
+                                            width: context.width(),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                  Icons.arrow_back,
+                                                  color: KDarkBlue,
+                                                ),
+                                                Text(
+                                                  "Go Back",
+                                                  style: kTextStyle.copyWith(
+                                                      color: kGreyTextColor),
+                                                ),
+                                              ],
+                                            ),
+                                          ).onTap(() {
+                                            Navigator.pop(context);
+                                          }),
                                         ],
                                       ),
                                     ),
@@ -195,6 +200,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
             ),
             SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
               child: Column(
                 children: [
                   Row(
@@ -379,8 +385,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ],
                           ),
                         ),
+                        //address card
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -414,7 +421,435 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ),
                           ),
                         ),
-                        // Padding(
+
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Dishes In Cart:',
+                                style: kTextStyle.copyWith(
+                                    color: kTitleColor,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const Spacer(),
+                              // GestureDetector(
+                              //     onTap: () => showDialog(
+                              //         context: context,
+                              //         builder: (BuildContext context) {
+                              //           dialogContext = context;
+                              //           return SingleChildScrollView(
+                              //             child: Dialog(
+                              //               shape: RoundedRectangleBorder(
+                              //                 borderRadius:
+                              //                     BorderRadius.circular(12.0),
+                              //               ),
+                              //               // ignore: sized_box_for_whitespace
+                              //               child: Container(
+                              //                 color: KMainColorr,
+                              //                 padding:
+                              //                     const EdgeInsets.all(20.0),
+                              //                 height: MediaQuery.of(context)
+                              //                         .size
+                              //                         .height /
+                              //                     1.3,
+                              //                 width: MediaQuery.of(context)
+                              //                         .size
+                              //                         .width -
+                              //                     80,
+                              //                 child: Center(
+                              //                   child: Column(
+                              //                     children: [
+                              //                       Text(
+                              //                         'Add New Address',
+                              //                         style:
+                              //                             kTextStyle.copyWith(
+                              //                                 color:
+                              //                                     kTitleColor,
+                              //                                 fontWeight:
+                              //                                     FontWeight
+                              //                                         .bold),
+                              //                       ),
+                              //                       Text(
+                              //                         'Please Enter Your Current Address Here',
+                              //                         style:
+                              //                             kTextStyle.copyWith(
+                              //                           color: kGreyTextColor,
+                              //                         ),
+                              //                         textAlign:
+                              //                             TextAlign.center,
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: Image.asset(
+                              //                             'images/mapsmall.png'),
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: AppTextField(
+                              //                           cursorColor:
+                              //                               KMainColorr,
+                              //                           textFieldType:
+                              //                               TextFieldType
+                              //                                   .ADDRESS,
+                              //                           decoration:
+                              //                               const InputDecoration(
+                              //                             labelText:
+                              //                                 'Street Address & City',
+                              //                             hintText:
+                              //                                 '112/3 Kolatola Ave',
+                              //                             border:
+                              //                                 OutlineInputBorder(),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: AppTextField(
+                              //                           textFieldType:
+                              //                               TextFieldType
+                              //                                   .ADDRESS,
+                              //                           decoration:
+                              //                               const InputDecoration(
+                              //                             labelText: 'Road No',
+                              //                             hintText: '112/3',
+                              //                             border:
+                              //                                 OutlineInputBorder(),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                       Padding(
+                              //                         padding:
+                              //                             const EdgeInsets.only(
+                              //                                 top: 10.0,
+                              //                                 bottom: 10.0),
+                              //                         child: AppTextField(
+                              //                           textFieldType:
+                              //                               TextFieldType.PHONE,
+                              //                           decoration:
+                              //                               const InputDecoration(
+                              //                             labelText:
+                              //                                 'Post Code',
+                              //                             hintText: '1205',
+                              //                             border:
+                              //                                 OutlineInputBorder(),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                       ButtonGlobal(
+                              //                           buttontext:
+                              //                               'Save Address',
+                              //                           buttonDecoration:
+                              //                               kButtonDecoration
+                              //                                   .copyWith(
+                              //                                       color:
+                              //                                           KSecondryHighContrast),
+                              //                           onPressed: () {
+                              //                             Navigator.pop(
+                              //                                 dialogContext);
+                              //                           }),
+                              //                     ],
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //           );
+                              //         }),
+                              //     child: Text(
+                              //       'Add New',
+                              //       style: kTextStyle.copyWith(
+                              //         color: kGreyTextColor,
+                              //       ),
+                              //     )),
+                            ],
+                          ),
+                        ),
+                        SingleChildScrollView(
+                          child: SizedBox(
+                            height: 200,
+                            child: ListView.builder(
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          30, 10, 30, 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            ' ${index + 1}. Dish Name',
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400,
+                                                color: KDarkBlue),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            'x${index * Random().nextInt(10)}',
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                          const SizedBox(
+                                            width: 30,
+                                          ),
+                                          Text(
+                                            '${index * Random().nextInt(10)}\$',
+                                            style: TextStyle(fontSize: 15),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    const Divider(
+                                      endIndent: 20,
+                                      indent: 20,
+                                      color: KDarkBlue,
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: context.width(),
+                          padding: const EdgeInsets.all(20.0),
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30.0),
+                                topRight: Radius.circular(30.0)),
+                            color: Color(0xFFF5F5F5),
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Payment Method',
+                                    style: kTextStyle.copyWith(
+                                        color: kTitleColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height,
+                                child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: data.length,
+                                  itemBuilder: (context, i) {
+                                    return Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: CheckboxListTile(
+                                          activeColor: KSecondryContrast,
+                                          title: GestureDetector(
+                                            child: Text(data[i]),
+
+                                            // onTap: () => showDialog(
+                                            //     context: context,
+                                            //     builder:
+                                            //         (BuildContext context) {
+                                            //       dialogContext = context;
+                                            //       return SingleChildScrollView(
+                                            //         child: Dialog(
+                                            //           shape:
+                                            //               RoundedRectangleBorder(
+                                            //             borderRadius:
+                                            //                 BorderRadius
+                                            //                     .circular(12.0),
+                                            //           ),
+                                            //           // ignore: sized_box_for_whitespace
+                                            //           child: Container(
+                                            //             padding:
+                                            //                 const EdgeInsets
+                                            //                     .only(
+                                            //                     top: 20.0,
+                                            //                     bottom: 20.0),
+                                            //             width: MediaQuery.of(
+                                            //                     context)
+                                            //                 .size
+                                            //                 .width,
+                                            //             child: Center(
+                                            //               child: Column(
+                                            //                 children: [
+                                            //                   Text(
+                                            //                     'Add New Card',
+                                            //                     style: kTextStyle.copyWith(
+                                            //                         color:
+                                            //                             kTitleColor,
+                                            //                         fontWeight:
+                                            //                             FontWeight
+                                            //                                 .bold),
+                                            //                   ),
+                                            //                   CreditCardWidget(
+                                            //                     textStyle: kTextStyle.copyWith(
+                                            //                         fontSize:
+                                            //                             10.0,
+                                            //                         color: Colors
+                                            //                             .white),
+                                            //                     cardNumber:
+                                            //                         cardNumber,
+                                            //                     expiryDate:
+                                            //                         expiryDate,
+                                            //                     cardHolderName:
+                                            //                         cardHolderName,
+                                            //                     cvvCode:
+                                            //                         cvvCode,
+                                            //                     showBackView:
+                                            //                         isCvvFocused,
+                                            //                     obscureCardNumber:
+                                            //                         true,
+                                            //                     obscureCardCvv:
+                                            //                         true,
+                                            //                     isHolderNameVisible:
+                                            //                         true,
+                                            //                     cardBgColor:
+                                            //                         KDarkBlue,
+                                            //                     isSwipeGestureEnabled:
+                                            //                         true,
+                                            //                     onCreditCardWidgetChange:
+                                            //                         (CreditCardBrand
+                                            //                             creditCardBrand) {},
+                                            //                   ),
+                                            //                   CreditCardForm(
+                                            //                     formKey:
+                                            //                         formKey,
+                                            //                     // Required
+                                            //                     onCreditCardModelChange:
+                                            //                         onCreditCardModelChange,
+                                            //                     // Required
+                                            //                     obscureCvv:
+                                            //                         true,
+                                            //                     obscureNumber:
+                                            //                         true,
+                                            //                     cardNumber:
+                                            //                         cardNumber,
+                                            //                     cvvCode:
+                                            //                         cvvCode,
+                                            //                     isHolderNameVisible:
+                                            //                         true,
+                                            //                     isCardNumberVisible:
+                                            //                         true,
+                                            //                     isExpiryDateVisible:
+                                            //                         true,
+                                            //                     cardHolderName:
+                                            //                         cardHolderName,
+                                            //                     expiryDate:
+                                            //                         expiryDate,
+                                            //                     themeColor:
+                                            //                         Colors
+                                            //                             .black,
+                                            //                     textColor:
+                                            //                         kTitleColor,
+                                            //                     cardNumberDecoration:
+                                            //                         const InputDecoration(
+                                            //                       border:
+                                            //                           OutlineInputBorder(),
+                                            //                       labelText:
+                                            //                           'Number',
+                                            //                       hintText:
+                                            //                           'XXXX XXXX XXXX XXXX',
+                                            //                     ),
+                                            //                     expiryDateDecoration:
+                                            //                         const InputDecoration(
+                                            //                       border:
+                                            //                           OutlineInputBorder(),
+                                            //                       labelText:
+                                            //                           'Expired Date',
+                                            //                       hintText:
+                                            //                           'XX/XX',
+                                            //                     ),
+                                            //                     cvvCodeDecoration:
+                                            //                         const InputDecoration(
+                                            //                       border:
+                                            //                           OutlineInputBorder(),
+                                            //                       labelText:
+                                            //                           'CVV',
+                                            //                       hintText:
+                                            //                           'XXX',
+                                            //                     ),
+                                            //                     cardHolderDecoration:
+                                            //                         const InputDecoration(
+                                            //                       border:
+                                            //                           OutlineInputBorder(),
+                                            //                       labelText:
+                                            //                           'Card Holder',
+                                            //                     ),
+                                            //                   ),
+                                            //                   ButtonGlobal(
+                                            //                       buttontext:
+                                            //                           'Save Information',
+                                            //                       buttonDecoration:
+                                            //                           kButtonDecoration.copyWith(
+                                            //                               color:
+                                            //                                   KSecondryHighContrast),
+                                            //                       onPressed:
+                                            //                           () {
+                                            //                         Navigator.pop(
+                                            //                             dialogContext);
+                                            //                       }),
+                                            //                 ],
+                                            //               ),
+                                            //             ),
+                                            //           ),
+                                            //         ),
+                                            //       );
+                                            //     }
+                                            //     ),
+                                          ),
+                                          secondary: Image.asset(icons[i]),
+                                          value: userChecked.contains(data[i]),
+                                          onChanged: (val) {
+                                            // _onSelected(val!, data[i]);
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+ // Padding(
                         //   padding:
                         //       const EdgeInsets.only(left: 20.0, right: 20.0),
                         //   child: Container(
@@ -448,228 +883,3 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         //     ),
                         //   ),
                         // ),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        Container(
-                          width: context.width(),
-                          padding: const EdgeInsets.all(20.0),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30.0),
-                                topRight: Radius.circular(30.0)),
-                            color: Color(0xFFF5F5F5),
-                          ),
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Payment Method',
-                                    style: kTextStyle.copyWith(
-                                        color: kTitleColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height,
-                                child: ListView.builder(
-                                  itemCount: data.length,
-                                  itemBuilder: (context, i) {
-                                    return Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: CheckboxListTile(
-                                          activeColor: KSecondryContrast,
-                                          title: GestureDetector(
-                                            onTap: () => showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  dialogContext = context;
-                                                  return SingleChildScrollView(
-                                                    child: Dialog(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      // ignore: sized_box_for_whitespace
-                                                      child: Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                top: 20.0,
-                                                                bottom: 20.0),
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        child: Center(
-                                                          child: Column(
-                                                            children: [
-                                                              Text(
-                                                                'Add New Card',
-                                                                style: kTextStyle.copyWith(
-                                                                    color:
-                                                                        kTitleColor,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                              CreditCardWidget(
-                                                                textStyle: kTextStyle.copyWith(
-                                                                    fontSize:
-                                                                        10.0,
-                                                                    color: Colors
-                                                                        .white),
-                                                                cardNumber:
-                                                                    cardNumber,
-                                                                expiryDate:
-                                                                    expiryDate,
-                                                                cardHolderName:
-                                                                    cardHolderName,
-                                                                cvvCode:
-                                                                    cvvCode,
-                                                                showBackView:
-                                                                    isCvvFocused,
-                                                                obscureCardNumber:
-                                                                    true,
-                                                                obscureCardCvv:
-                                                                    true,
-                                                                isHolderNameVisible:
-                                                                    true,
-                                                                cardBgColor:
-                                                                    KDarkBlue,
-                                                                isSwipeGestureEnabled:
-                                                                    true,
-                                                                onCreditCardWidgetChange:
-                                                                    (CreditCardBrand
-                                                                        creditCardBrand) {},
-                                                              ),
-                                                              CreditCardForm(
-                                                                formKey:
-                                                                    formKey,
-                                                                // Required
-                                                                onCreditCardModelChange:
-                                                                    onCreditCardModelChange,
-                                                                // Required
-                                                                obscureCvv:
-                                                                    true,
-                                                                obscureNumber:
-                                                                    true,
-                                                                cardNumber:
-                                                                    cardNumber,
-                                                                cvvCode:
-                                                                    cvvCode,
-                                                                isHolderNameVisible:
-                                                                    true,
-                                                                isCardNumberVisible:
-                                                                    true,
-                                                                isExpiryDateVisible:
-                                                                    true,
-                                                                cardHolderName:
-                                                                    cardHolderName,
-                                                                expiryDate:
-                                                                    expiryDate,
-                                                                themeColor:
-                                                                    Colors
-                                                                        .black,
-                                                                textColor:
-                                                                    kTitleColor,
-                                                                cardNumberDecoration:
-                                                                    const InputDecoration(
-                                                                  border:
-                                                                      OutlineInputBorder(),
-                                                                  labelText:
-                                                                      'Number',
-                                                                  hintText:
-                                                                      'XXXX XXXX XXXX XXXX',
-                                                                ),
-                                                                expiryDateDecoration:
-                                                                    const InputDecoration(
-                                                                  border:
-                                                                      OutlineInputBorder(),
-                                                                  labelText:
-                                                                      'Expired Date',
-                                                                  hintText:
-                                                                      'XX/XX',
-                                                                ),
-                                                                cvvCodeDecoration:
-                                                                    const InputDecoration(
-                                                                  border:
-                                                                      OutlineInputBorder(),
-                                                                  labelText:
-                                                                      'CVV',
-                                                                  hintText:
-                                                                      'XXX',
-                                                                ),
-                                                                cardHolderDecoration:
-                                                                    const InputDecoration(
-                                                                  border:
-                                                                      OutlineInputBorder(),
-                                                                  labelText:
-                                                                      'Card Holder',
-                                                                ),
-                                                              ),
-                                                              ButtonGlobal(
-                                                                  buttontext:
-                                                                      'Save Information',
-                                                                  buttonDecoration:
-                                                                      kButtonDecoration.copyWith(
-                                                                          color:
-                                                                              KSecondryHighContrast),
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        dialogContext);
-                                                                  }),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }),
-                                            child: Text(data[i]),
-                                          ),
-                                          secondary: Image.asset(icons[i]),
-                                          value: userChecked.contains(data[i]),
-                                          onChanged: (val) {
-                                            _onSelected(val!, data[i]);
-                                          },
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

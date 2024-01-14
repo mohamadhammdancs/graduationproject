@@ -18,6 +18,7 @@ class _OrderDetailsState extends State<OrderDetails> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Container(
@@ -199,7 +200,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           lineXY: 0.3,
                           indicatorStyle: const IndicatorStyle(
                             width: 20,
-                            color: kGreyTextColor,
+                            color: KSecondryContrast,
                           ),
                           startChild: Padding(
                             padding:
@@ -226,13 +227,13 @@ class _OrderDetailsState extends State<OrderDetails> {
                                       color: kGreyTextColor),
                                 ),
                                 const SizedBox(
-                                  height: 20.0,
+                                  height: .0,
                                 ),
                               ],
                             ),
                           ),
                           beforeLineStyle: const LineStyle(
-                            color: kGreyTextColor,
+                            color: KSecondryContrast,
                           ),
                         ),
                         TimelineTile(
@@ -241,7 +242,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           isLast: true,
                           indicatorStyle: const IndicatorStyle(
                             width: 20,
-                            color: kGreyTextColor,
+                            color: KSecondryContrast,
                           ),
                           startChild: Padding(
                             padding:
@@ -274,7 +275,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ),
                           ),
                           beforeLineStyle: const LineStyle(
-                            color: kGreyTextColor,
+                            color: KSecondryContrast,
                           ),
                         ),
                         const SizedBox(
@@ -298,29 +299,24 @@ class _OrderDetailsState extends State<OrderDetails> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ButtonGlobalWithoutIcon(
-                                buttontext: 'Order Again',
-                                buttonDecoration: kButtonDecoration.copyWith(
-                                    color: KSecondryHighContrast),
-                                onPressed: null,
-                                buttonTextColor: Colors.white,
+                        Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ButtonGlobalWithoutIcon(
+                                  buttontext: 'Review',
+                                  buttonDecoration: kButtonDecoration.copyWith(
+                                      color: const Color(0xFFE8E7E5)),
+                                  onPressed: () {
+                                    const OrderReview().launch(context);
+                                  },
+                                  buttonTextColor: kGreyTextColor,
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: ButtonGlobalWithoutIcon(
-                                buttontext: 'Review',
-                                buttonDecoration: kButtonDecoration.copyWith(
-                                    color: const Color(0xFFE8E7E5)),
-                                onPressed: () {
-                                  const OrderReview().launch(context);
-                                },
-                                buttonTextColor: kGreyTextColor,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
