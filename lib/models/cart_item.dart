@@ -1,4 +1,3 @@
-
 import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 
 class CartItem {
