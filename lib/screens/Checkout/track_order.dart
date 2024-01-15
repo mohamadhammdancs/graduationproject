@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ggraduating_project/models/cart_item.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Orders/order_schat.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class TrackOrder extends StatefulWidget {
-  const TrackOrder({Key? key}) : super(key: key);
-
+  const TrackOrder(
+      {Key? key, required this.orderCartItems, this.orderkitchenName})
+      : super(key: key);
+  final List<CartItem> orderCartItems;
+  final String? orderkitchenName;
   @override
   _TrackOrderState createState() => _TrackOrderState();
 }
@@ -105,7 +109,7 @@ class _TrackOrderState extends State<TrackOrder> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Hamdan',
+                                  '${widget.orderkitchenName}',
                                   style: kTextStyle.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),

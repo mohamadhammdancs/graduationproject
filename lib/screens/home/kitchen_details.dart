@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/models/kitchen_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -51,15 +51,6 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                               }),
                             ),
                             const Spacer(),
-                            CircleAvatar(
-                              backgroundColor: Colors.red.withOpacity(0.1),
-                              radius: 16.0,
-                              child: const Icon(
-                                Icons.favorite_rounded,
-                                color: Colors.red,
-                                size: 16.0,
-                              ),
-                            ),
                             const SizedBox(
                               width: 10.0,
                             ),
@@ -105,7 +96,7 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      '${widget.kitchen.kitchenFoodType.name .toString()}',
+                                      '${widget.kitchen.kitchenFoodType.name.toString()}',
                                       style: kTextStyle.copyWith(
                                         color: KSecondryContrast,
                                         fontWeight: FontWeight.bold,
@@ -165,8 +156,10 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                       itemCount: widget.kitchen.dishes.length,
                                       itemBuilder: (_, n) {
                                         return KitchenDishesCards(
-                                            kitchenDishesData:
-                                                widget.kitchen.dishes[n]);
+                                          kitchenDishesData:
+                                              widget.kitchen.dishes[n],
+                                          kitchen: widget.kitchen.kitchenName,
+                                        );
                                       }),
                                 ),
                               )

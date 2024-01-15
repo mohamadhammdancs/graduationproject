@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
-import 'package:ggraduating_project/models/cart.dart';
+import 'package:ggraduating_project/providers/cart_provider.dart';
 import 'package:ggraduating_project/models/cart_item.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Checkout/track_order.dart';
@@ -10,9 +10,9 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({super.key, required this.CartItems});
+  const CheckoutScreen({super.key, required this.CartItems, this.kitchenName});
   final List<CartItem> CartItems;
-
+  final String? kitchenName;
   @override
   _CheckoutScreenState createState() => _CheckoutScreenState();
 }
@@ -148,8 +148,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                       color:
                                                           KSecondryHighContrast),
                                               onPressed: () {
-                                                const TrackOrder()
-                                                    .launch(context);
+                                                TrackOrder(
+                                                  orderCartItems:
+                                                      widget.CartItems,
+                                                  orderkitchenName:
+                                                      widget.kitchenName,
+                                                ).launch(context);
+                                                
                                               }),
                                           SizedBox(
                                             width: context.width(),
@@ -249,143 +254,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     fontWeight: FontWeight.bold),
                               ),
                               const Spacer(),
-                              // GestureDetector(
-                              //     onTap: () => showDialog(
-                              //         context: context,
-                              //         builder: (BuildContext context) {
-                              //           dialogContext = context;
-                              //           return SingleChildScrollView(
-                              //             child: Dialog(
-                              //               shape: RoundedRectangleBorder(
-                              //                 borderRadius:
-                              //                     BorderRadius.circular(12.0),
-                              //               ),
-                              //               // ignore: sized_box_for_whitespace
-                              //               child: Container(
-                              //                 color: KMainColorr,
-                              //                 padding:
-                              //                     const EdgeInsets.all(20.0),
-                              //                 height: MediaQuery.of(context)
-                              //                         .size
-                              //                         .height /
-                              //                     1.3,
-                              //                 width: MediaQuery.of(context)
-                              //                         .size
-                              //                         .width -
-                              //                     80,
-                              //                 child: Center(
-                              //                   child: Column(
-                              //                     children: [
-                              //                       Text(
-                              //                         'Add New Address',
-                              //                         style:
-                              //                             kTextStyle.copyWith(
-                              //                                 color:
-                              //                                     kTitleColor,
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .bold),
-                              //                       ),
-                              //                       Text(
-                              //                         'Please Enter Your Current Address Here',
-                              //                         style:
-                              //                             kTextStyle.copyWith(
-                              //                           color: kGreyTextColor,
-                              //                         ),
-                              //                         textAlign:
-                              //                             TextAlign.center,
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: Image.asset(
-                              //                             'images/mapsmall.png'),
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: AppTextField(
-                              //                           cursorColor:
-                              //                               KMainColorr,
-                              //                           textFieldType:
-                              //                               TextFieldType
-                              //                                   .ADDRESS,
-                              //                           decoration:
-                              //                               const InputDecoration(
-                              //                             labelText:
-                              //                                 'Street Address & City',
-                              //                             hintText:
-                              //                                 '112/3 Kolatola Ave',
-                              //                             border:
-                              //                                 OutlineInputBorder(),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: AppTextField(
-                              //                           textFieldType:
-                              //                               TextFieldType
-                              //                                   .ADDRESS,
-                              //                           decoration:
-                              //                               const InputDecoration(
-                              //                             labelText: 'Road No',
-                              //                             hintText: '112/3',
-                              //                             border:
-                              //                                 OutlineInputBorder(),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: AppTextField(
-                              //                           textFieldType:
-                              //                               TextFieldType.PHONE,
-                              //                           decoration:
-                              //                               const InputDecoration(
-                              //                             labelText:
-                              //                                 'Post Code',
-                              //                             hintText: '1205',
-                              //                             border:
-                              //                                 OutlineInputBorder(),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       ButtonGlobal(
-                              //                           buttontext:
-                              //                               'Save Address',
-                              //                           buttonDecoration:
-                              //                               kButtonDecoration
-                              //                                   .copyWith(
-                              //                                       color:
-                              //                                           KSecondryHighContrast),
-                              //                           onPressed: () {
-                              //                             Navigator.pop(
-                              //                                 dialogContext);
-                              //                           }),
-                              //                     ],
-                              //                   ),
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           );
-                              //         }),
-                              //     child: Text(
-                              //       'Add New',
-                              //       style: kTextStyle.copyWith(
-                              //         color: kGreyTextColor,
-                              //       ),
-                              //     )),
                             ],
                           ),
                         ),
@@ -430,6 +298,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           height: 20.0,
                         ),
                         Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Kitchen Name: ${widget.kitchenName}',
+                                style: kTextStyle.copyWith(
+                                    color: KDarkBlue,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                        ),
+                        Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                           child: Row(
                             children: [
@@ -440,143 +322,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                     fontWeight: FontWeight.bold),
                               ),
                               const Spacer(),
-                              // GestureDetector(
-                              //     onTap: () => showDialog(
-                              //         context: context,
-                              //         builder: (BuildContext context) {
-                              //           dialogContext = context;
-                              //           return SingleChildScrollView(
-                              //             child: Dialog(
-                              //               shape: RoundedRectangleBorder(
-                              //                 borderRadius:
-                              //                     BorderRadius.circular(12.0),
-                              //               ),
-                              //               // ignore: sized_box_for_whitespace
-                              //               child: Container(
-                              //                 color: KMainColorr,
-                              //                 padding:
-                              //                     const EdgeInsets.all(20.0),
-                              //                 height: MediaQuery.of(context)
-                              //                         .size
-                              //                         .height /
-                              //                     1.3,
-                              //                 width: MediaQuery.of(context)
-                              //                         .size
-                              //                         .width -
-                              //                     80,
-                              //                 child: Center(
-                              //                   child: Column(
-                              //                     children: [
-                              //                       Text(
-                              //                         'Add New Address',
-                              //                         style:
-                              //                             kTextStyle.copyWith(
-                              //                                 color:
-                              //                                     kTitleColor,
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .bold),
-                              //                       ),
-                              //                       Text(
-                              //                         'Please Enter Your Current Address Here',
-                              //                         style:
-                              //                             kTextStyle.copyWith(
-                              //                           color: kGreyTextColor,
-                              //                         ),
-                              //                         textAlign:
-                              //                             TextAlign.center,
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: Image.asset(
-                              //                             'images/mapsmall.png'),
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: AppTextField(
-                              //                           cursorColor:
-                              //                               KMainColorr,
-                              //                           textFieldType:
-                              //                               TextFieldType
-                              //                                   .ADDRESS,
-                              //                           decoration:
-                              //                               const InputDecoration(
-                              //                             labelText:
-                              //                                 'Street Address & City',
-                              //                             hintText:
-                              //                                 '112/3 Kolatola Ave',
-                              //                             border:
-                              //                                 OutlineInputBorder(),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: AppTextField(
-                              //                           textFieldType:
-                              //                               TextFieldType
-                              //                                   .ADDRESS,
-                              //                           decoration:
-                              //                               const InputDecoration(
-                              //                             labelText: 'Road No',
-                              //                             hintText: '112/3',
-                              //                             border:
-                              //                                 OutlineInputBorder(),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       Padding(
-                              //                         padding:
-                              //                             const EdgeInsets.only(
-                              //                                 top: 10.0,
-                              //                                 bottom: 10.0),
-                              //                         child: AppTextField(
-                              //                           textFieldType:
-                              //                               TextFieldType.PHONE,
-                              //                           decoration:
-                              //                               const InputDecoration(
-                              //                             labelText:
-                              //                                 'Post Code',
-                              //                             hintText: '1205',
-                              //                             border:
-                              //                                 OutlineInputBorder(),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       ButtonGlobal(
-                              //                           buttontext:
-                              //                               'Save Address',
-                              //                           buttonDecoration:
-                              //                               kButtonDecoration
-                              //                                   .copyWith(
-                              //                                       color:
-                              //                                           KSecondryHighContrast),
-                              //                           onPressed: () {
-                              //                             Navigator.pop(
-                              //                                 dialogContext);
-                              //                           }),
-                              //                     ],
-                              //                   ),
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //           );
-                              //         }),
-                              //     child: Text(
-                              //       'Add New',
-                              //       style: kTextStyle.copyWith(
-                              //         color: kGreyTextColor,
-                              //       ),
-                              //     )),
                             ],
                           ),
                         ),
@@ -667,192 +412,3 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 }
-
-// Padding(
-//   padding:
-//       const EdgeInsets.only(left: 20.0, right: 20.0),
-//   child: Container(
-//     decoration: BoxDecoration(
-//       border:
-//           Border.all(color: KDarkBlue.withOpacity(0.2)),
-//       borderRadius: BorderRadius.circular(10.0),
-//     ),
-//     child: ListTile(
-//       leading: CircleAvatar(
-//         backgroundColor: KDarkBlue.withOpacity(0.2),
-//         child: const Padding(
-//           padding: EdgeInsets.all(8.0),
-//           child: Icon(
-//             Icons.badge,
-//             color: KDarkBlue,
-//           ),
-//         ),
-//       ),
-//       title: Text(
-//         'Office',
-//         style: kTextStyle.copyWith(
-//             color: kTitleColor,
-//             fontWeight: FontWeight.bold),
-//       ),
-//       subtitle: Text(
-//         '34 North Sulphur Springs Dr. Alexandria, VA 22304',
-//         style:
-//             kTextStyle.copyWith(color: kGreyTextColor),
-//       ),
-//     ),
-//   ),
-// ),
-
-//.....
-
-// onTap: () => showDialog(
-//     context: context,
-//     builder:
-//         (BuildContext context) {
-//       dialogContext = context;
-//       return SingleChildScrollView(
-//         child: Dialog(
-//           shape:
-//               RoundedRectangleBorder(
-//             borderRadius:
-//                 BorderRadius
-//                     .circular(12.0),
-//           ),
-//           // ignore: sized_box_for_whitespace
-//           child: Container(
-//             padding:
-//                 const EdgeInsets
-//                     .only(
-//                     top: 20.0,
-//                     bottom: 20.0),
-//             width: MediaQuery.of(
-//                     context)
-//                 .size
-//                 .width,
-//             child: Center(
-//               child: Column(
-//                 children: [
-//                   Text(
-//                     'Add New Card',
-//                     style: kTextStyle.copyWith(
-//                         color:
-//                             kTitleColor,
-//                         fontWeight:
-//                             FontWeight
-//                                 .bold),
-//                   ),
-//                   CreditCardWidget(
-//                     textStyle: kTextStyle.copyWith(
-//                         fontSize:
-//                             10.0,
-//                         color: Colors
-//                             .white),
-//                     cardNumber:
-//                         cardNumber,
-//                     expiryDate:
-//                         expiryDate,
-//                     cardHolderName:
-//                         cardHolderName,
-//                     cvvCode:
-//                         cvvCode,
-//                     showBackView:
-//                         isCvvFocused,
-//                     obscureCardNumber:
-//                         true,
-//                     obscureCardCvv:
-//                         true,
-//                     isHolderNameVisible:
-//                         true,
-//                     cardBgColor:
-//                         KDarkBlue,
-//                     isSwipeGestureEnabled:
-//                         true,
-//                     onCreditCardWidgetChange:
-//                         (CreditCardBrand
-//                             creditCardBrand) {},
-//                   ),
-//                   CreditCardForm(
-//                     formKey:
-//                         formKey,
-//                     // Required
-//                     onCreditCardModelChange:
-//                         onCreditCardModelChange,
-//                     // Required
-//                     obscureCvv:
-//                         true,
-//                     obscureNumber:
-//                         true,
-//                     cardNumber:
-//                         cardNumber,
-//                     cvvCode:
-//                         cvvCode,
-//                     isHolderNameVisible:
-//                         true,
-//                     isCardNumberVisible:
-//                         true,
-//                     isExpiryDateVisible:
-//                         true,
-//                     cardHolderName:
-//                         cardHolderName,
-//                     expiryDate:
-//                         expiryDate,
-//                     themeColor:
-//                         Colors
-//                             .black,
-//                     textColor:
-//                         kTitleColor,
-//                     cardNumberDecoration:
-//                         const InputDecoration(
-//                       border:
-//                           OutlineInputBorder(),
-//                       labelText:
-//                           'Number',
-//                       hintText:
-//                           'XXXX XXXX XXXX XXXX',
-//                     ),
-//                     expiryDateDecoration:
-//                         const InputDecoration(
-//                       border:
-//                           OutlineInputBorder(),
-//                       labelText:
-//                           'Expired Date',
-//                       hintText:
-//                           'XX/XX',
-//                     ),
-//                     cvvCodeDecoration:
-//                         const InputDecoration(
-//                       border:
-//                           OutlineInputBorder(),
-//                       labelText:
-//                           'CVV',
-//                       hintText:
-//                           'XXX',
-//                     ),
-//                     cardHolderDecoration:
-//                         const InputDecoration(
-//                       border:
-//                           OutlineInputBorder(),
-//                       labelText:
-//                           'Card Holder',
-//                     ),
-//                   ),
-//                   ButtonGlobal(
-//                       buttontext:
-//                           'Save Information',
-//                       buttonDecoration:
-//                           kButtonDecoration.copyWith(
-//                               color:
-//                                   KSecondryHighContrast),
-//                       onPressed:
-//                           () {
-//                         Navigator.pop(
-//                             dialogContext);
-//                       }),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       );
-//     }
-//     ),

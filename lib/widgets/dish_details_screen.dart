@@ -1,15 +1,18 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/GlobalComponents/button_global.dart';
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/models/kitchen_data.dart';
+import 'package:ggraduating_project/screens/home/home.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ggraduating_project/models/cart.dart';
+import 'package:ggraduating_project/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
 class DishDetailsScreen extends StatefulWidget {
-  const DishDetailsScreen({Key? key, required this.dishData});
-
+  const DishDetailsScreen(
+      {Key? key, required this.dishData, required this.kitchen});
+  final String kitchen;
   final Dish dishData;
 
   @override
@@ -21,6 +24,17 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
 
   get dishData => null;
 
+  final snackBarsuccess = SnackBar(
+    clipBehavior: Clip.none,
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: const Color.fromARGB(0, 41, 34, 34),
+    content: AwesomeSnackbarContent(
+      title: 'Nice!',
+      message: 'Item Added To the cart',
+      contentType: ContentType.success,
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,58 +99,58 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                             const SizedBox(
                               height: 100.0,
                             ),
-                            Center(
-                              child: SizedBox(
-                                width: 100.0,
-                                height: 50.0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: KSecondryHighContrast,
-                                    borderRadius: BorderRadius.circular(50.0),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            quantity > 1
-                                                ? quantity -= 1
-                                                : quantity = 1;
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons.remove,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10.0, right: 10.0),
-                                        child: Text(
-                                          quantity.toString(),
-                                          style: kTextStyle.copyWith(
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            quantity > 0
-                                                ? quantity += 1
-                                                : quantity = 1;
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons.add,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Center(
+                            //   child: SizedBox(
+                            //     width: 100.0,
+                            //     height: 50.0,
+                            //     child: Container(
+                            //       decoration: BoxDecoration(
+                            //         color: KSecondryHighContrast,
+                            //         borderRadius: BorderRadius.circular(50.0),
+                            //       ),
+                            //       child: Row(
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: [
+                            //           GestureDetector(
+                            //             onTap: () {
+                            //               setState(() {
+                            //                 quantity > 1
+                            //                     ? quantity -= 1
+                            //                     : quantity = 1;
+                            //               });
+                            //             },
+                            //             child: const Icon(
+                            //               Icons.remove,
+                            //               color: Colors.white,
+                            //             ),
+                            //           ),
+                            //           Padding(
+                            //             padding: const EdgeInsets.only(
+                            //                 left: 10.0, right: 10.0),
+                            //             child: Text(
+                            //               quantity.toString(),
+                            //               style: kTextStyle.copyWith(
+                            //                   color: Colors.white),
+                            //             ),
+                            //           ),
+                            //           GestureDetector(
+                            //             onTap: () {
+                            //               setState(() {
+                            //                 quantity > 0
+                            //                     ? quantity += 1
+                            //                     : quantity = 1;
+                            //               });
+                            //             },
+                            //             child: const Icon(
+                            //               Icons.add,
+                            //               color: Colors.white,
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20.0, right: 20.0, top: 20.0),
@@ -176,7 +190,7 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                                         children: [
                                           const WidgetSpan(
                                             child: Icon(
-                                              FontAwesomeIcons.clock,
+                                              FontAwesomeIcons.hashtag,
                                               color: KDarkBlue,
                                               size: 18.0,
                                             ),
@@ -261,7 +275,16 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                                             kButtonDecoration.copyWith(
                                                 color: KSecondryHighContrast),
                                         onPressed: () {
-                                          cart.add(widget.dishData);
+                                          ScaffoldMessenger.of(context)
+                                            ..hideCurrentSnackBar()
+                                            ..showSnackBar(snackBarsuccess);
+                                          cart.add(
+                                              widget.dishData, widget.kitchen);
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Home()),
+                                          );
                                         },
                                       ),
                                     ),

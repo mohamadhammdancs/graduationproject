@@ -1,14 +1,29 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
-import 'package:ggraduating_project/models/cart.dart';
+import 'package:ggraduating_project/models/kitchen_data.dart';
+import 'package:ggraduating_project/providers/cart_provider.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/widgets/dish_details_screen.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
 class KitchenDishesCards extends StatelessWidget {
-  const KitchenDishesCards({Key? key, required this.kitchenDishesData});
+  KitchenDishesCards(
+      {Key? key, required this.kitchenDishesData, required this.kitchen});
   final Dish kitchenDishesData;
+  final String kitchen;
+
+  final snackBarsuccess = SnackBar(
+    clipBehavior: Clip.none,
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: const Color.fromARGB(0, 41, 34, 34),
+    content: AwesomeSnackbarContent(
+      title: 'Nice!',
+      message: 'Item Added To the cart',
+      contentType: ContentType.success,
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -88,7 +103,10 @@ class KitchenDishesCards extends StatelessWidget {
                         size: 16.0,
                       ),
                     ).onTap(() {
-                      cart.add(kitchenDishesData);
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBarsuccess);
+                      cart.add(kitchenDishesData, kitchen);
                     }),
                   );
                 }),
@@ -114,7 +132,8 @@ class KitchenDishesCards extends StatelessWidget {
         ),
       ),
     ).onTap(() {
-      DishDetailsScreen(dishData: kitchenDishesData).launch(context);
+      DishDetailsScreen(dishData: kitchenDishesData, kitchen: kitchen)
+          .launch(context);
     });
   }
 }

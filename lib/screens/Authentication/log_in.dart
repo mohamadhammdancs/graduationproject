@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/models/dto/loginDto.dart';
 import 'package:ggraduating_project/providers/user_provider.dart';
@@ -18,7 +19,31 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  bool? isChecked = false;
 
+  final snackBarFailure = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'On Snap!',
+      message: 'Somthing went wrong !',
+      contentType: ContentType.failure,
+    ),
+  );
+  final snackBarsuccess = SnackBar(
+    /// need to set following properties for best effect of awesome_snackbar_content
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: const Color.fromARGB(0, 41, 34, 34),
+    content: AwesomeSnackbarContent(
+      title: 'Welcome!',
+      message: 'Signed In Succeed!',
+
+      /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+      contentType: ContentType.success,
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -33,12 +58,7 @@ class _LogInState extends State<LogIn> {
             child: Stack(
               children: [
                 Container(
-                  decoration: const BoxDecoration(color: KMainColorr
-                      // image: DecorationImage(
-                      //   image: AssetImage("images/authbg.png"),
-                      //   fit: BoxFit.cover,
-                      // ),
-                      ),
+                  decoration: const BoxDecoration(color: KMainColorr),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,6 +174,25 @@ class _LogInState extends State<LogIn> {
                                 ),
                                 Padding(
                                   padding:
+                                      const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                  child: Row(
+                                    children: [
+                                      Checkbox(
+                                        value: isChecked,
+                                        activeColor: KDarkBlue,
+                                        checkColor: kDarkWhite,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            isChecked = value;
+                                          });
+                                        },
+                                      ),
+                                      Text('Remember me')
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
                                       const EdgeInsets.fromLTRB(50, 5, 40, 0),
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -171,7 +210,8 @@ class _LogInState extends State<LogIn> {
                                         LoginDto loginToDto = LoginDto(
                                             username: validator.userName,
                                             password: validator.password);
-                                        bool results = await userProvider.signInUser(loginToDto);
+                                        bool results = await userProvider
+                                            .signInUser(loginToDto);
 
                                         if (results) {
                                           Navigator.pushReplacement(
@@ -179,7 +219,13 @@ class _LogInState extends State<LogIn> {
                                             MaterialPageRoute(
                                                 builder: (context) => Home()),
                                           );
+                                          ScaffoldMessenger.of(context)
+                                            ..hideCurrentSnackBar()
+                                            ..showSnackBar(snackBarsuccess);
                                         } else {
+                                          ScaffoldMessenger.of(context)
+                                            ..hideCurrentSnackBar()
+                                            ..showSnackBar(snackBarFailure);
                                           print(
                                               'an error acured while registering user');
                                         }
@@ -187,7 +233,7 @@ class _LogInState extends State<LogIn> {
                                     },
                                     child: userProvider.isLoading
                                         ? CircularProgressIndicator()
-                                        : Text(
+                                        : const Text(
                                             'Submit',
                                             style: TextStyle(color: kDarkWhite),
                                           ),

@@ -48,6 +48,7 @@ class Dish {
   String imagePath;
   int noOfOrders;
   int dishId;
+  
 
   Dish({
     required this.dishName,
@@ -57,9 +58,10 @@ class Dish {
   }) : dishId = HashMap.fromIterable([dishName, price, imagePath, noOfOrders],
                 key: (item) => item).length +
             1;
-}
 
-List<KitchenData> kitchenList = [
+  static fromMap(dishMap) {}
+}
+  List<KitchenData> kitchenList = [
   KitchenData(
     kitchenName: 'Kholod\'s heaven',
     kitchenRating: 5,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/screens/home/filtered_cat_screen.dart';
 import 'package:ggraduating_project/widgets/cat_card.dart';
 import 'package:ggraduating_project/GlobalComponents/category_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
@@ -72,6 +73,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             catData.length,
                             (index) => CatCard(
                               catList: catData[index],
+                            ).onTap(
+                              () {
+                                filteredKitchenScreen(
+                                  filterType: catData[index].foodtype,
+                                ).launch(context);
+                              },
                             ),
                           ),
                         ),

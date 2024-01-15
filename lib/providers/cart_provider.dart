@@ -1,41 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 import 'package:ggraduating_project/models/cart_item.dart';
+import 'package:ggraduating_project/models/kitchen_data.dart';
 
 class Cart extends ChangeNotifier {
   List<CartItem> _items = [];
   double _total_price = 0.0;
+  String? selectedKitchen;
 
   List<CartItem> get cartItems => _items;
 
-  void add(Dish dish) {
+  void add(Dish dish, String kitchenName) {
     print(dish.dishName);
-
+    print(kitchenName);
     if (_items.length > 0) {
       // we have items
-      bool isFound = false;
-      for (var i in _items) {
-        if (i.dish.dishName == dish.dishName) {
-          // add more quantity to exist cart item
-          i.quantity += 1;
-          isFound = true;
-          _total_price = _total_price + dish.price;
-          break;
-        }
-      }
-      if (!isFound) {
-        CartItem cartItem = CartItem(
-            id: _items.length + 1,
-            name: dish.dishName,
-            price: dish.price,
-            quantity: 1,
-            dish: dish);
-
-        _total_price = _total_price + dish.price;
-        _items.add(cartItem);
+      if (selectedKitchen != kitchenName) {
+        _items.clear();
+        _total_price = 0;
+        addItemFirstTime(dish, kitchenName);
+      } else {
+        IncreaseCartitem(dish);
       }
     } else {
       // cart is empty add the Dish to the cart
+      addItemFirstTime(dish, kitchenName);
+    }
+
+    print(_items.length);
+    notifyListeners();
+  }
+
+  void IncreaseCartitem(Dish dish) {
+    bool isFound = false;
+    for (var i in _items) {
+      if (i.dish.dishName == dish.dishName) {
+        // add more quantity to exist cart item
+        i.quantity += 1;
+        isFound = true;
+        _total_price = _total_price + dish.price;
+        break;
+      }
+    }
+    if (!isFound) {
       CartItem cartItem = CartItem(
           id: _items.length + 1,
           name: dish.dishName,
@@ -46,9 +52,19 @@ class Cart extends ChangeNotifier {
       _total_price = _total_price + dish.price;
       _items.add(cartItem);
     }
+  }
 
-    print(_items.length);
-    notifyListeners();
+  void addItemFirstTime(Dish dish, String kitchenName) {
+    CartItem cartItem = CartItem(
+        id: _items.length + 1,
+        name: dish.dishName,
+        price: dish.price,
+        quantity: 1,
+        dish: dish);
+
+    _total_price = _total_price + dish.price;
+    _items.add(cartItem);
+    selectedKitchen = kitchenName;
   }
 
   int get count {

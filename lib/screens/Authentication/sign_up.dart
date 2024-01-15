@@ -1,8 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/extension.dart';
 import 'package:ggraduating_project/models/dto/UserRegistrationDto.dart';
 import 'package:ggraduating_project/providers/InputValidator.dart';
 import 'package:ggraduating_project/providers/user_provider.dart';
+import 'package:ggraduating_project/screens/Authentication/sign_in.dart';
 import 'package:ggraduating_project/screens/home/home.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -21,10 +23,34 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final snackBarsuccess = SnackBar(
+    /// need to set following properties for best effect of awesome_snackbar_content
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'On Snap!',
+      message: 'signing up Succeed!',
+
+      /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+      contentType: ContentType.success,
+    ),
+  );
+  final snackBarFailure = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'On Snap!',
+      message: 'Somthing went wrong !',
+      contentType: ContentType.failure,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -244,7 +270,8 @@ class _SignUpState extends State<SignUp> {
                                               phoneNumber:
                                                   validator.phoneNumber,
                                               password: validator.password);
-                                      bool results = await userProvider.registerUser(userRegistrationDto);
+                                      bool results = await userProvider
+                                          .registerUser(userRegistrationDto);
 
                                       if (results) {
                                         Navigator.pushReplacement(
@@ -252,7 +279,13 @@ class _SignUpState extends State<SignUp> {
                                           MaterialPageRoute(
                                               builder: (context) => Home()),
                                         );
+                                        ScaffoldMessenger.of(context)
+                                          ..hideCurrentSnackBar()
+                                          ..showSnackBar(snackBarsuccess);
                                       } else {
+                                        ScaffoldMessenger.of(context)
+                                          ..hideCurrentSnackBar()
+                                          ..showSnackBar(snackBarFailure);
                                         print(
                                             'an error acured while registering user');
                                       }
@@ -266,25 +299,6 @@ class _SignUpState extends State<SignUp> {
                                         ),
                                 ),
                               )
-                              // ButtonGlobal(
-                              //   buttontext: 'Continue',
-                              //   buttonDecoration: kButtonDecoration.copyWith(
-                              //       color: KSecondryHighContrast),
-                              //   onPressed: () {
-                              //     if (validator.fullNameError.isEmptyOrNull &&
-                              //         validator.userNameError.isEmptyOrNull &&
-                              //         validator.emailError.isEmptyOrNull &&
-                              //         validator.passwordError.isEmptyOrNull
-                              //         &&validator.phoneError.isNullOrEmpty) {
-                              //       // all fileds are valid my man
-
-                              //       print(
-                              //           'the valid fileds are username =  ${validator.userName} \n fullName =  ${validator.fullName} \n email =  ${validator.email} \n  password =  ${validator.password}');
-                              //     }
-
-                              //     // const PhoneVerification().launch(context);
-                              //   },
-                              // ),
                             ],
                           ),
                         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/models/cart.dart';
+import 'package:ggraduating_project/providers/cart_provider.dart';
 import 'package:ggraduating_project/models/cart_item.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -14,6 +14,7 @@ class CartItemCard extends StatefulWidget {
 }
 
 class _CartItemCardState extends State<CartItemCard> {
+  
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,4 +1,4 @@
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
+import 'package:ggraduating_project/models/kitchen_data.dart';
 
 class CategoryData {
   String catTitle, catIcon;

@@ -73,19 +73,6 @@ class _EditProfileState extends State<EditProfile> {
                                 height: 100,
                               ),
                             ),
-                            Positioned(
-                              bottom: 0.0,
-                              right: 0.0,
-                              child: CircleAvatar(
-                                backgroundColor: KSecondryContrast,
-                                radius: 15.0,
-                                child: Icon(
-                                  Icons.edit,
-                                  color: KSecondryHighContrast,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         SizedBox(

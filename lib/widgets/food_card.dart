@@ -14,6 +14,7 @@ class FoodCard extends StatelessWidget {
       children: [
         SizedBox(
           width: 160.0,
+          height: 200,
           child: Card(
             color: kDarkWhite,
             shape: RoundedRectangleBorder(

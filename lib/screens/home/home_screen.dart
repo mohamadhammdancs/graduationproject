@@ -1,11 +1,12 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/models/kitchen_data.dart';
 import 'package:ggraduating_project/screens/home/filtered_cat_screen.dart';
 import 'package:ggraduating_project/screens/home/product_detalis.dart';
 import 'package:ggraduating_project/screens/home/product_screen.dart';
 import 'package:ggraduating_project/widgets/cat_card.dart';
 import 'package:ggraduating_project/widgets/kitchen_card.dart';
 import 'package:ggraduating_project/GlobalComponents/category_data.dart';
-import 'package:ggraduating_project/GlobalComponents/kitchen_data.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -26,6 +27,16 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
+  final somingSoon = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'On Snap!',
+      message: 'Coming Soon ;)',
+      contentType: ContentType.comingSoon,
+    ),
+  );
   void reternCat() {}
   @override
   Widget build(BuildContext context) {
@@ -220,7 +231,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           image: AssetImage(banner[i]),
                         ).onTap(
                           () {
-                            // const CourseDetails().launch(context);
+                            ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(somingSoon);
                           },
                           highlightColor: context.cardColor,
                         );

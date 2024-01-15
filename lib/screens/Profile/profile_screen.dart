@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/screens/Authentication/sign_in.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Profile/edit_profile.dart';
 import 'package:ggraduating_project/screens/Profile/notification_screen.dart';
@@ -26,14 +28,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
     String userInfo = prefs.getString(constants.USER_INFO)!;
 
-    print('profile Screen '+userInfo);
-
+    print('profile Screen ' + userInfo);
 
     Map<String, dynamic> jsonMap = json.decode(userInfo);
 
-     _user = User.fromJson(jsonMap);
+    _user = User.fromJson(jsonMap);
 
-      print(_user.fullName);
+    print(_user.fullName);
   }
 
   @override
@@ -43,6 +44,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _getUserInfo();
   }
 
+  final somingSoon = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'Coming Soon ;)',
+      message: 'Sorry this Function is not implemented',
+      contentType: ContentType.comingSoon,
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -108,15 +119,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: 10.0,
                         ),
-                        Text(
-                          '0',
-                          style: kTextStyle.copyWith(
-                              color: kTitleColor, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '0',
-                          style: kTextStyle.copyWith(color: kGreyTextColor),
-                        ),
+                        // Text(
+                        //   '${_user.fullName}',
+                        //   style: kTextStyle.copyWith(
+                        //       color: kTitleColor, fontWeight: FontWeight.bold),
+                        // ),
+                        // Text(
+                        //   '${_user.phoneNumber}',
+                        //   style: kTextStyle.copyWith(color: kGreyTextColor),
+                        // ),
                         const SizedBox(
                           height: 40.0,
                         ),
@@ -195,7 +206,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    ).onTap(() {
+                                      ScaffoldMessenger.of(context)
+                                        ..hideCurrentSnackBar()
+                                        ..showSnackBar(somingSoon);
+                                    }),
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
@@ -314,7 +329,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    ).onTap(() async {
+                                      SharedPreferencesUtil prefs =
+                                          await SharedPreferencesUtil
+                                              .getInstance();
+                                      prefs.clear(constants.IS_LOGGED_IN);
+                                      prefs.clear(constants.USER_INFO);
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => SignIn()),
+                                      );
+                                    }),
                                   ],
                                 ),
                               ),
