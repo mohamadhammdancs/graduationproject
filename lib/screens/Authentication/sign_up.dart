@@ -28,7 +28,7 @@ class _SignUpState extends State<SignUp> {
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
-      title: 'On Snap!',
+      title: 'Welcome!',
       message: 'signing up Succeed!',
 
       /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
