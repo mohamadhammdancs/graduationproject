@@ -1,3 +1,7 @@
+// ignore_for_file: avoid_print
+
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:ggraduating_project/models/dto/UpdateUserDto.dart';
 import 'package:ggraduating_project/models/dto/UserRegistrationDto.dart';
@@ -24,9 +28,8 @@ class UserProvider extends ChangeNotifier {
 
       if (_user != null) {
         SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
-        print('Registration Save '+_user!.toJson().toString());
 
-        prefs.saveString(constants.USER_INFO, _user!.toJson().toString());
+        prefs.saveString(constants.USER_INFO, jsonEncode(_user));
         prefs.saveBool(constants.IS_LOGGED_IN, true);
 
         notifyListeners();
@@ -56,7 +59,7 @@ class UserProvider extends ChangeNotifier {
       if (_user != null) {
         // Save user IInformation in Shared Preferences
         SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
-        prefs.saveString(constants.USER_INFO, _user!.toJson().toString());
+        prefs.saveString(constants.USER_INFO, jsonEncode(_user));
         prefs.saveBool(constants.IS_LOGGED_IN, true);
 
         notifyListeners();
@@ -82,6 +85,11 @@ class UserProvider extends ChangeNotifier {
       _setLoading(true); // set loading true before laoading the api call
       _user = await apiService.updateUserInfo(user);
       if (_user != null) {
+        // Save user IInformation in Shared Preferences
+        SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+        prefs.saveString(constants.USER_INFO, jsonEncode(_user));
+        prefs.saveBool(constants.IS_LOGGED_IN, true);
+
         notifyListeners();
 
         _setLoading(false);

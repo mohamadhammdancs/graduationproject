@@ -48,7 +48,6 @@ class Dish {
   String imagePath;
   int noOfOrders;
   int dishId;
-  
 
   Dish({
     required this.dishName,
@@ -61,7 +60,8 @@ class Dish {
 
   static fromMap(dishMap) {}
 }
-  List<KitchenData> kitchenList = [
+
+List<KitchenData> kitchenList = [
   KitchenData(
     kitchenName: 'Kholod\'s heaven',
     kitchenRating: 5,

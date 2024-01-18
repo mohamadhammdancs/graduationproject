@@ -25,23 +25,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late User _user;
 
   Future<void> _getUserInfo() async {
-    SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
-    String userInfo = prefs.getString(constants.USER_INFO)!;
+    try {
+      SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+      String userInfo = prefs.getString(constants.USER_INFO)!;
 
-    print('profile Screen ' + userInfo);
+      print('profile Screen ' + userInfo);
 
-    Map<String, dynamic> jsonMap = json.decode(userInfo);
+      // Map<String, dynamic> jsonMap = json.decode(userInfo);
+      // print('error in saving info in _use');
 
-    _user = User.fromJson(jsonMap);
+      _user = User.fromJson(jsonDecode(userInfo));
 
-    print(_user.fullName);
+      print(_user.fullName);
+    } catch (e) {
+      print('somthing went wrong');
+    }
   }
 
   @override
   void initState() {
     super.initState();
-
-    _getUserInfo();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getUserInfo();
+    });
   }
 
   final somingSoon = SnackBar(
@@ -108,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        ClipOval(
+                        const ClipOval(
                           child: Image(
                             width: 100,
                             height: 100,
@@ -119,15 +125,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: 10.0,
                         ),
-                        // Text(
-                        //   '${_user.fullName}',
-                        //   style: kTextStyle.copyWith(
-                        //       color: kTitleColor, fontWeight: FontWeight.bold),
-                        // ),
-                        // Text(
-                        //   '${_user.phoneNumber}',
-                        //   style: kTextStyle.copyWith(color: kGreyTextColor),
-                        // ),
+                        Text(
+                          '${_user.fullName}',
+                          style: kTextStyle.copyWith(
+                              color: kTitleColor, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${_user.phoneNumber}',
+                          style: kTextStyle.copyWith(color: kGreyTextColor),
+                        ),
                         const SizedBox(
                           height: 40.0,
                         ),

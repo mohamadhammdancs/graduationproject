@@ -22,5 +22,8 @@ class LoginDto {
   //   data['password'] = password;
   //   return data;
   // }
-  Map toJson() => {'username': this.username, 'password': this.password};
+  Map toJson() => {
+        'username': this.username,
+        'password': this.password,
+      };
 }

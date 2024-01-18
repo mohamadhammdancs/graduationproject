@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class User {
   String? fullName;
   String? username;
@@ -9,39 +11,27 @@ class User {
       {required this.fullName,
       required this.username,
       required this.email,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.address});
 
-  // User.fromJson(Map<String, dynamic> json) {
-  //   fullName = json['fullName'];
-  //   username = json['userName'];
-  //   email = json['email'];
-  //   phoneNumber = json['phoneNumber'];
-  //   address = json['address'];
-  // }
-
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      fullName: json['fullName'],
-      username: json['userName'],
-      email: json['email'],
-      phoneNumber: json['phoneNumber'],
-    );
+  // Convert the User object to a map
+  Map<String, dynamic> toJson() {
+    return {
+      'fullName': fullName,
+      'username': username,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'address': address,
+    };
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = Map<String, dynamic>();
-  //   data['fullName'] = fullName;
-  //   data['username'] = username;
-  //   data['email'] = email;
-  //   data['phoneNumber'] = phoneNumber;
-  //   return data;
-  // }
-
-  Map toJson() => {
-        'fullName': fullName,
-        'userName': username,
-        'email': email,
-        'phoneNumber': phoneNumber,
-        'address': address
-      };
+  // Factory constructor to create a User object from a JSON-like map
+  factory User.fromJson(Map<String, dynamic> jsonMap) {
+    return User(
+        fullName: jsonMap['fullName'],
+        username: jsonMap['username'],
+        email: jsonMap['email'],
+        phoneNumber: jsonMap['phoneNumber'],
+        address: jsonMap['address']);
+  }
 }
