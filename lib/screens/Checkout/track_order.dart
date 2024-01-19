@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ggraduating_project/GlobalComponents/button_global.dart';
 import 'package:ggraduating_project/models/cart_item.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Orders/order_schat.dart';
@@ -16,6 +17,8 @@ class TrackOrder extends StatefulWidget {
 }
 
 class _TrackOrderState extends State<TrackOrder> {
+  var dialogContext;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,10 +28,7 @@ class _TrackOrderState extends State<TrackOrder> {
           children: [
             Container(
               decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
+                  
                   ),
             ),
             Row(
@@ -133,7 +133,9 @@ class _TrackOrderState extends State<TrackOrder> {
                         const Spacer(),
                         GestureDetector(
                           onTap: () {
-                            const ChatScreen().launch(context);
+                            ChatScreen(
+                              kitchenName: widget.orderkitchenName.toString(),
+                            ).launch(context);
                           },
                           child: const CircleAvatar(
                             radius: 20.0,
@@ -144,14 +146,105 @@ class _TrackOrderState extends State<TrackOrder> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: CircleAvatar(
-                            radius: 20.0,
-                            backgroundColor: KSecondryContrast,
-                            child: Icon(
-                              Icons.call,
-                              color: Colors.white,
+                        GestureDetector(
+                          onTap: () => showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                dialogContext = context;
+                                return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  // ignore: sized_box_for_whitespace
+                                  child: Container(
+                                    padding: const EdgeInsets.all(20.0),
+                                    height:
+                                        MediaQuery.of(context).size.height / 4,
+                                    width:
+                                        MediaQuery.of(context).size.width - 80,
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          const CircleAvatar(
+                                            radius: 20,
+                                            backgroundColor:
+                                                KSecondryHighContrast,
+                                            child: CircleAvatar(
+                                              radius: 18,
+                                              backgroundColor: Colors.white,
+                                              child: Icon(
+                                                Icons.phone_android_rounded,
+                                                size: 15.0,
+                                                color: KSecondryHighContrast,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 30.0),
+                                          Text(
+                                            '${widget.orderkitchenName} Phone Number',
+                                            style: kTextStyle.copyWith(
+                                                color: kTitleColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          const SizedBox(height: 10.0),
+                                          SelectionArea(
+                                            child: Text(
+                                              '0789234456',
+                                              style: kTextStyle.copyWith(
+                                                  color: kGreyTextColor),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10.0),
+                                          // ButtonGlobal(
+                                          //     buttontext: 'Track Your Order',
+                                          //     buttonDecoration:
+                                          //         kButtonDecoration.copyWith(
+                                          //             color:
+                                          //                 KSecondryHighContrast),
+                                          //     onPressed: () {
+                                          //       TrackOrder(
+                                          //         orderCartItems:
+                                          //             widget.CartItems,
+                                          //         orderkitchenName:
+                                          //             widget.kitchenName,
+                                          //       ).launch(context);
+                                          //     }),
+                                          SizedBox(
+                                            width: context.width(),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                  Icons.arrow_back,
+                                                  color: KDarkBlue,
+                                                ),
+                                                Text(
+                                                  "Go Back",
+                                                  style: kTextStyle.copyWith(
+                                                      color: kGreyTextColor),
+                                                ),
+                                              ],
+                                            ),
+                                          ).onTap(() {
+                                            Navigator.pop(context);
+                                          }),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                          child: Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: CircleAvatar(
+                              radius: 20.0,
+                              backgroundColor: KSecondryContrast,
+                              child: Icon(
+                                Icons.call,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

@@ -41,7 +41,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       }),
                     ),
                     Text(
-                      'Categories',
+                      'Cuisines',
                       style:
                           kTextStyle.copyWith(color: KDarkBlue, fontSize: 18.0),
                     ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
-import 'package:ggraduating_project/screens/home/product_detalis.dart';
+import 'package:ggraduating_project/screens/home/daily_dish_details.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../../widgets/food_card.dart';
+import '../../widgets/daily_dish_card.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -72,10 +72,10 @@ class _ProductScreenState extends State<ProductScreen> {
                           children: List.generate(
                             productList.length,
                             (index) => Center(
-                              child: FoodCard(
+                              child: DailyDishCard(
                                 productData: productList[index],
                               ).onTap(() {
-                                ProductDetails(product: productList[index])
+                                DailyDishDetails(product: productList[index])
                                     .launch(context);
                               }),
                             ),

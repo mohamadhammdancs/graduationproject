@@ -3,8 +3,8 @@ import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-import '../../widgets/food_card.dart';
-import '../home/product_detalis.dart';
+import '../../widgets/daily_dish_card.dart';
+import '../home/daily_dish_details.dart';
 
 class WishList extends StatefulWidget {
   const WishList({Key? key}) : super(key: key);
@@ -73,10 +73,10 @@ class _WishListState extends State<WishList> {
                           children: List.generate(
                             productList.length,
                             (index) => Center(
-                              child: FoodCard(
+                              child: DailyDishCard(
                                 productData: productList[index],
                               ).onTap(() {
-                                ProductDetails(product: productList[index])
+                                DailyDishDetails(product: productList[index])
                                     .launch(context);
                               }),
                             ),

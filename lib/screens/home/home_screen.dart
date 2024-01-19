@@ -2,7 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/models/kitchen_data.dart';
 import 'package:ggraduating_project/screens/home/filtered_cat_screen.dart';
-import 'package:ggraduating_project/screens/home/product_detalis.dart';
+import 'package:ggraduating_project/screens/home/daily_dish_details.dart';
 import 'package:ggraduating_project/screens/home/product_screen.dart';
 import 'package:ggraduating_project/widgets/cat_card.dart';
 import 'package:ggraduating_project/widgets/kitchen_card.dart';
@@ -10,7 +10,7 @@ import 'package:ggraduating_project/GlobalComponents/category_data.dart';
 import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../../widgets/food_card.dart';
+import '../../widgets/daily_dish_card.dart';
 import 'category_screen.dart';
 import 'kitchen_details.dart';
 
@@ -32,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
-      title: 'On Snap!',
-      message: 'Coming Soon ;)',
+      title: 'Coming Soon ;)',
+      message: 'In the making',
       contentType: ContentType.comingSoon,
     ),
   );
@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: [
                         Text(
-                          'Categories',
+                          'Cuisines',
                           style: kTextStyle.copyWith(
                               color: kTitleColor, fontSize: 18.0),
                         ),
@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           'See all',
                           style: kTextStyle.copyWith(color: kGreyTextColor),
                         ).onTap(() {
-                          const CategoryScreen().launch(context);
+                          CategoryScreen().launch(context);
                         }),
                       ],
                     ),
@@ -265,9 +265,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       spacing: 10,
                       itemCount: productList.length,
                       itemBuilder: (_, i) {
-                        return FoodCard(productData: productList[i]).onTap(
+                        return DailyDishCard(productData: productList[i]).onTap(
                           () {
-                            ProductDetails(product: productList[i])
+                            DailyDishDetails(product: productList[i])
                                 .launch(context);
                           },
                           highlightColor: context.cardColor,

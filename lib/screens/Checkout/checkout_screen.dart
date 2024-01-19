@@ -154,7 +154,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                   orderkitchenName:
                                                       widget.kitchenName,
                                                 ).launch(context);
-                                                
                                               }),
                                           SizedBox(
                                             width: context.width(),

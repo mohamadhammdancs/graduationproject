@@ -7,16 +7,16 @@ import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
-class ProductDetails extends StatefulWidget {
-  const ProductDetails({required this.product});
+class DailyDishDetails extends StatefulWidget {
+  const DailyDishDetails({required this.product});
 
   final ProductData product;
 
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _DailyDishDetailsState createState() => _DailyDishDetailsState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _DailyDishDetailsState extends State<DailyDishDetails> {
   int quantity = 1;
 
   @override
@@ -26,12 +26,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+              decoration: const BoxDecoration(color: KMainColorr),
             ),
             SingleChildScrollView(
               child: Stack(
@@ -50,7 +45,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                               Navigator.pop(context);
                             }),
                           ),
-                          const Spacer(),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Daily Dish',
+                            style: kTextStyle.copyWith(
+                                color: KDarkBlue, fontSize: 18.0),
+                          ),
                         ],
                       ),
                       const SizedBox(
@@ -71,58 +73,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             const SizedBox(
                               height: 100.0,
                             ),
-                            // Center(
-                            //   child: SizedBox(
-                            //     width: 100.0,
-                            //     height: 50.0,
-                            //     child: Container(
-                            //       decoration: BoxDecoration(
-                            //         color: KSecondryHighContrast,
-                            //         borderRadius: BorderRadius.circular(50.0),
-                            //       ),
-                            //       child: Row(
-                            //         mainAxisAlignment: MainAxisAlignment.center,
-                            //         children: [
-                            //           GestureDetector(
-                            //             onTap: () {
-                            //               setState(() {
-                            //                 quantity > 1
-                            //                     ? quantity -= 1
-                            //                     : quantity = 1;
-                            //               });
-                            //             },
-                            //             child: const Icon(
-                            //               Icons.remove,
-                            //               color: Colors.white,
-                            //             ),
-                            //           ),
-                            //           Padding(
-                            //             padding: const EdgeInsets.only(
-                            //                 left: 10.0, right: 10.0),
-                            //             child: Text(
-                            //               quantity.toString(),
-                            //               style: kTextStyle.copyWith(
-                            //                   color: Colors.white),
-                            //             ),
-                            //           ),
-                            //           GestureDetector(
-                            //             onTap: () {
-                            //               setState(() {
-                            //                 quantity > 0
-                            //                     ? quantity += 1
-                            //                     : quantity = 1;
-                            //               });
-                            //             },
-                            //             child: const Icon(
-                            //               Icons.add,
-                            //               color: Colors.white,
-                            //             ),
-                            //           ),
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
+
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20.0, right: 20.0, top: 20.0),
@@ -148,7 +99,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      '\$${widget.product.productPrice}',
+                                      '${widget.product.productPrice} JOD',
                                       style: kTextStyle.copyWith(
                                         color: KSecondryContrast,
                                         fontWeight: FontWeight.bold,
@@ -289,3 +240,56 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 }
+
+ // Center(
+                            //   child: SizedBox(
+                            //     width: 100.0,
+                            //     height: 50.0,
+                            //     child: Container(
+                            //       decoration: BoxDecoration(
+                            //         color: KSecondryHighContrast,
+                            //         borderRadius: BorderRadius.circular(50.0),
+                            //       ),
+                            //       child: Row(
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: [
+                            //           GestureDetector(
+                            //             onTap: () {
+                            //               setState(() {
+                            //                 quantity > 1
+                            //                     ? quantity -= 1
+                            //                     : quantity = 1;
+                            //               });
+                            //             },
+                            //             child: const Icon(
+                            //               Icons.remove,
+                            //               color: Colors.white,
+                            //             ),
+                            //           ),
+                            //           Padding(
+                            //             padding: const EdgeInsets.only(
+                            //                 left: 10.0, right: 10.0),
+                            //             child: Text(
+                            //               quantity.toString(),
+                            //               style: kTextStyle.copyWith(
+                            //                   color: Colors.white),
+                            //             ),
+                            //           ),
+                            //           GestureDetector(
+                            //             onTap: () {
+                            //               setState(() {
+                            //                 quantity > 0
+                            //                     ? quantity += 1
+                            //                     : quantity = 1;
+                            //               });
+                            //             },
+                            //             child: const Icon(
+                            //               Icons.add,
+                            //               color: Colors.white,
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),

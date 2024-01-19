@@ -5,8 +5,8 @@ import 'package:nb_utils/nb_utils.dart';
 import 'Util/data_provider.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
-
+  const ChatScreen({Key? key, required this.kitchenName}) : super(key: key);
+  final String kitchenName;
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -106,32 +106,25 @@ class _ChatScreenState extends State<ChatScreen> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+              decoration: const BoxDecoration(color: KMainColorr),
             ),
             SingleChildScrollView(
               child: Column(
                 children: [
                   ListTile(
-                      leading: const CircleAvatar(
-                        backgroundColor: KSecondryHighContrast,
-                        child: Image(
-                          image: AssetImage('images/logo1.png'),
-                          fit: BoxFit.cover,
-                        ),
+                      leading: Padding(
+                        padding: EdgeInsets.fromLTRB(10, 10, 5, 10),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: KDarkBlue,
+                        ).onTap(() {
+                          Navigator.pop(context);
+                        }),
                       ),
                       title: Text(
-                        'Neighbour\'s Kitchen',
+                        widget.kitchenName,
                         style: kTextStyle.copyWith(
                             color: kTitleColor, fontSize: 18.0),
-                      ),
-                      subtitle: Text(
-                        'Food Courier',
-                        style: kTextStyle.copyWith(color: kGreyTextColor),
                       ),
                       trailing: Icon(
                         Icons.phone_rounded,

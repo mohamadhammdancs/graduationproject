@@ -22,11 +22,6 @@ List<CategoryData> catData = [
     foodtype: FoodType.Italian,
   ),
   CategoryData(
-    catTitle: 'Jordinian',
-    catIcon: 'images/jordan.png',
-    foodtype: FoodType.Jordinian,
-  ),
-  CategoryData(
     catTitle: 'Chineze',
     catIcon: 'images/noodles.png',
     foodtype: FoodType.Chineze,
@@ -40,6 +35,11 @@ List<CategoryData> catData = [
     catTitle: 'Yamani',
     catIcon: 'images/yemen.png',
     foodtype: FoodType.Yamani,
+  ),
+  CategoryData(
+    catTitle: 'Jordinian',
+    catIcon: 'images/jordan.png',
+    foodtype: FoodType.Jordinian,
   ),
   CategoryData(
     catTitle: 'African',
