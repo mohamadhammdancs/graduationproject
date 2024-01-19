@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ggraduating_project/models/kitchen_data.dart';
+import 'package:ggraduating_project/providers/favourite_kitchen_provider.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/kitchen_dishes_card.dart';
 
@@ -25,12 +28,7 @@ class _KitchenDetailsState extends State<KitchenDetails> {
         body: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ),
+              decoration: const BoxDecoration(color: KMainColorr),
             ),
             SingleChildScrollView(
               child: Container(
@@ -51,9 +49,33 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                               }),
                             ),
                             const Spacer(),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
+                            Consumer<FavouriteKitchensProvider>(
+                                builder: (context, favourite, child) {
+                              return Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: CircleAvatar(
+                                backgroundColor: Colors.red[200],
+                                child: FaIcon(
+                                  FontAwesomeIcons.heart,
+                                  color: Colors.red,
+                                  size: 19,
+                                ),
+                              ).onTap(() {
+                                
+                              }),
+                            ); 
+                            }),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: CircleAvatar(
+                                backgroundColor: Colors.red[200],
+                                child: FaIcon(
+                                  FontAwesomeIcons.heart,
+                                  color: Colors.red,
+                                  size: 19,
+                                ),
+                              ).onTap(() {}),
+                            )
                           ],
                         ),
                         const SizedBox(
@@ -185,11 +207,6 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                           ),
                         ),
                       ),
-                      // child: CircleAvatar(
-                      //   backgroundColor: KSecondryContrast,
-                      //   radius: MediaQuery.of(context).size.width / 4,
-                      //   child: Image.network(widget.kitchen.kitchenImagePath),
-                      // ),
                     ),
                   ],
                 ),

@@ -43,7 +43,7 @@ class _WishListState extends State<WishList> {
                         }),
                       ),
                       Text(
-                        'WishList',
+                        'Favourite',
                         style: kTextStyle.copyWith(
                             color: KDarkBlue, fontSize: 18.0),
                       ),

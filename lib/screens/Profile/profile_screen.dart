@@ -22,7 +22,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late User _user;
+  User? _user;
 
   Future<void> _getUserInfo() async {
     try {
@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       _user = User.fromJson(jsonDecode(userInfo));
 
-      print(_user.fullName);
+      // print(_user.fullName);
     } catch (e) {
       print('somthing went wrong');
     }
@@ -126,12 +126,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 10.0,
                         ),
                         Text(
-                          '${_user.fullName}',
+                          '${_user?.fullName}',
                           style: kTextStyle.copyWith(
                               color: kTitleColor, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          '${_user.phoneNumber}',
+                          '${_user?.phoneNumber}',
                           style: kTextStyle.copyWith(color: kGreyTextColor),
                         ),
                         const SizedBox(
@@ -269,7 +269,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ),
                                           ),
                                           title: Text(
-                                            'Wishlist',
+                                            'Favourite',
                                             style: kTextStyle.copyWith(
                                                 color: kGreyTextColor),
                                           ),
