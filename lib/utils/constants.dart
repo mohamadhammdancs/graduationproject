@@ -64,3 +64,4 @@ List<String> tableList = [
 // shared prefrances KEys
 const String USER_INFO = "USER_INFORMATION";
 const String IS_LOGGED_IN = "IS_USER_LOGGED_IN";
+const String REMMEMBER_ME = "REMMEMBER_ME";

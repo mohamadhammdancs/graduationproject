@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/providers/user_provider.dart';
 import 'package:ggraduating_project/screens/Authentication/sign_in.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:ggraduating_project/screens/Profile/edit_profile.dart';
 import 'package:ggraduating_project/screens/Profile/notification_screen.dart';
 import 'package:ggraduating_project/screens/Profile/wish_list.dart';
+import 'package:provider/provider.dart';
 import '../../utils/constants.dart' as constants;
 
 import 'package:nb_utils/nb_utils.dart';
@@ -22,34 +24,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  User? _user;
-
-  Future<void> _getUserInfo() async {
-    try {
-      SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
-      String userInfo = prefs.getString(constants.USER_INFO)!;
-
-      print('profile Screen ' + userInfo);
-
-      // Map<String, dynamic> jsonMap = json.decode(userInfo);
-      // print('error in saving info in _use');
-
-      _user = User.fromJson(jsonDecode(userInfo));
-
-      // print(_user.fullName);
-    } catch (e) {
-      print('somthing went wrong');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _getUserInfo();
-    });
-  }
-
   final somingSoon = SnackBar(
     elevation: 0,
     behavior: SnackBarBehavior.floating,
@@ -101,261 +75,273 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 40.0,
                   ),
-                  Container(
-                    width: context.width(),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30.0),
-                          topRight: Radius.circular(30.0)),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        const ClipOval(
-                          child: Image(
-                            width: 100,
-                            height: 100,
-                            image: AssetImage('images/kitchen1-01.png'),
-                            fit: BoxFit.cover,
+                  Consumer<UserProvider>(
+                      builder: (context, userProvider, child) {
+                    User user = userProvider.user!;
+                    return Container(
+                      width: context.width(),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0)),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20.0,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          '${_user?.fullName}',
-                          style: kTextStyle.copyWith(
-                              color: kTitleColor, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '${_user?.phoneNumber}',
-                          style: kTextStyle.copyWith(color: kGreyTextColor),
-                        ),
-                        const SizedBox(
-                          height: 40.0,
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFF5F5F5),
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(30.0),
-                                      topRight: Radius.circular(30.0)),
-                                ),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: ListTile(
-                                          onTap: () {
-                                            const EditProfile().launch(context);
-                                          },
-                                          leading: const CircleAvatar(
-                                            backgroundColor: Color(0xFFF5F5F5),
-                                            child: Icon(
-                                              Icons.person_outline_rounded,
-                                              color: KSecondryContrast,
-                                            ),
-                                          ),
-                                          title: Text(
-                                            'My Profile',
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                          trailing: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: kGreyTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: ListTile(
-                                          leading: const CircleAvatar(
-                                            backgroundColor: Color(0xFFF5F5F5),
-                                            child: Icon(
-                                              Icons.payment_rounded,
-                                              color: KSecondryContrast,
-                                            ),
-                                          ),
-                                          title: Text(
-                                            'Payment Settings',
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                          trailing: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: kGreyTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ).onTap(() {
-                                      ScaffoldMessenger.of(context)
-                                        ..hideCurrentSnackBar()
-                                        ..showSnackBar(somingSoon);
-                                    }),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: ListTile(
-                                          onTap: () {
-                                            const NotificationScreen()
-                                                .launch(context);
-                                          },
-                                          leading: const CircleAvatar(
-                                            backgroundColor: Color(0xFFF5F5F5),
-                                            child: Icon(
-                                              Icons.notifications_none,
-                                              color: KSecondryContrast,
-                                            ),
-                                          ),
-                                          title: Text(
-                                            'Notification',
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                          trailing: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: kGreyTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: ListTile(
-                                          onTap: () {
-                                            const WishList().launch(context);
-                                          },
-                                          leading: const CircleAvatar(
-                                            backgroundColor: Color(0xFFF5F5F5),
-                                            child: Icon(
-                                              Icons.favorite_border_outlined,
-                                              color: KSecondryContrast,
-                                            ),
-                                          ),
-                                          title: Text(
-                                            'Favourite',
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                          trailing: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: kGreyTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    // Padding(
-                                    //   padding: const EdgeInsets.all(10.0),
-                                    //   child: Container(
-                                    //     decoration: BoxDecoration(
-                                    //       borderRadius:
-                                    //           BorderRadius.circular(10.0),
-                                    //       color: Colors.white,
-                                    //     ),
-                                    //     child: ListTile(
-                                    //       leading: const CircleAvatar(
-                                    //         backgroundColor: Color(0xFFF5F5F5),
-                                    //         child: Icon(
-                                    //           Icons.shopping_cart_outlined,
-                                    //           color: KSecondryContrast,
-                                    //         ),
-                                    //       ),
-                                    //       title: Text(
-                                    //         'Order Tracking',
-                                    //         style: kTextStyle.copyWith(
-                                    //             color: kGreyTextColor),
-                                    //       ),
-                                    //       trailing: const Icon(
-                                    //         Icons.arrow_forward_ios,
-                                    //         color: kGreyTextColor,
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.white,
-                                        ),
-                                        child: ListTile(
-                                          leading: const CircleAvatar(
-                                            backgroundColor: Color(0xFFF5F5F5),
-                                            child: Icon(
-                                              Icons.logout,
-                                              color: KSecondryContrast,
-                                            ),
-                                          ),
-                                          title: Text(
-                                            'Logout',
-                                            style: kTextStyle.copyWith(
-                                                color: kGreyTextColor),
-                                          ),
-                                          trailing: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: kGreyTextColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ).onTap(() async {
-                                      SharedPreferencesUtil prefs =
-                                          await SharedPreferencesUtil
-                                              .getInstance();
-                                      prefs.clear(constants.IS_LOGGED_IN);
-                                      prefs.clear(constants.USER_INFO);
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => SignIn()),
-                                      );
-                                    }),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          const ClipOval(
+                            child: Image(
+                              width: 100,
+                              height: 100,
+                              image: AssetImage('images/kitchen1-01.png'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            '${user.fullName}',
+                            style: kTextStyle.copyWith(
+                                color: kTitleColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '${user.phoneNumber}',
+                            style: kTextStyle.copyWith(color: kGreyTextColor),
+                          ),
+                          const SizedBox(
+                            height: 40.0,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFFF5F5F5),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(30.0),
+                                        topRight: Radius.circular(30.0)),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 20.0,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white,
+                                          ),
+                                          child: ListTile(
+                                            onTap: () {
+                                              const EditProfile()
+                                                  .launch(context);
+                                            },
+                                            leading: const CircleAvatar(
+                                              backgroundColor:
+                                                  Color(0xFFF5F5F5),
+                                              child: Icon(
+                                                Icons.person_outline_rounded,
+                                                color: KSecondryContrast,
+                                              ),
+                                            ),
+                                            title: Text(
+                                              'My Profile',
+                                              style: kTextStyle.copyWith(
+                                                  color: kGreyTextColor),
+                                            ),
+                                            trailing: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: kGreyTextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white,
+                                          ),
+                                          child: ListTile(
+                                            leading: const CircleAvatar(
+                                              backgroundColor:
+                                                  Color(0xFFF5F5F5),
+                                              child: Icon(
+                                                Icons.payment_rounded,
+                                                color: KSecondryContrast,
+                                              ),
+                                            ),
+                                            title: Text(
+                                              'Payment Settings',
+                                              style: kTextStyle.copyWith(
+                                                  color: kGreyTextColor),
+                                            ),
+                                            trailing: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: kGreyTextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ).onTap(() {
+                                        ScaffoldMessenger.of(context)
+                                          ..hideCurrentSnackBar()
+                                          ..showSnackBar(somingSoon);
+                                      }),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white,
+                                          ),
+                                          child: ListTile(
+                                            onTap: () {
+                                              const NotificationScreen()
+                                                  .launch(context);
+                                            },
+                                            leading: const CircleAvatar(
+                                              backgroundColor:
+                                                  Color(0xFFF5F5F5),
+                                              child: Icon(
+                                                Icons.notifications_none,
+                                                color: KSecondryContrast,
+                                              ),
+                                            ),
+                                            title: Text(
+                                              'Notification',
+                                              style: kTextStyle.copyWith(
+                                                  color: kGreyTextColor),
+                                            ),
+                                            trailing: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: kGreyTextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white,
+                                          ),
+                                          child: ListTile(
+                                            onTap: () {
+                                              const WishList().launch(context);
+                                            },
+                                            leading: const CircleAvatar(
+                                              backgroundColor:
+                                                  Color(0xFFF5F5F5),
+                                              child: Icon(
+                                                Icons.favorite_border_outlined,
+                                                color: KSecondryContrast,
+                                              ),
+                                            ),
+                                            title: Text(
+                                              'Favourite',
+                                              style: kTextStyle.copyWith(
+                                                  color: kGreyTextColor),
+                                            ),
+                                            trailing: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: kGreyTextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.all(10.0),
+                                      //   child: Container(
+                                      //     decoration: BoxDecoration(
+                                      //       borderRadius:
+                                      //           BorderRadius.circular(10.0),
+                                      //       color: Colors.white,
+                                      //     ),
+                                      //     child: ListTile(
+                                      //       leading: const CircleAvatar(
+                                      //         backgroundColor: Color(0xFFF5F5F5),
+                                      //         child: Icon(
+                                      //           Icons.shopping_cart_outlined,
+                                      //           color: KSecondryContrast,
+                                      //         ),
+                                      //       ),
+                                      //       title: Text(
+                                      //         'Order Tracking',
+                                      //         style: kTextStyle.copyWith(
+                                      //             color: kGreyTextColor),
+                                      //       ),
+                                      //       trailing: const Icon(
+                                      //         Icons.arrow_forward_ios,
+                                      //         color: kGreyTextColor,
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white,
+                                          ),
+                                          child: ListTile(
+                                            leading: const CircleAvatar(
+                                              backgroundColor:
+                                                  Color(0xFFF5F5F5),
+                                              child: Icon(
+                                                Icons.logout,
+                                                color: KSecondryContrast,
+                                              ),
+                                            ),
+                                            title: Text(
+                                              'Logout',
+                                              style: kTextStyle.copyWith(
+                                                  color: kGreyTextColor),
+                                            ),
+                                            trailing: const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: kGreyTextColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ).onTap(() async {
+                                        SharedPreferencesUtil prefs =
+                                            await SharedPreferencesUtil
+                                                .getInstance();
+                                        prefs.clear(constants.IS_LOGGED_IN);
+                                        prefs.clear(constants.USER_INFO);
+                                        prefs.clear(constants.REMMEMBER_ME);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => SignIn()),
+                                        );
+                                      }),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  })
                 ],
               ),
             ),

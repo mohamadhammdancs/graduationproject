@@ -1,13 +1,13 @@
 class UserRegistrationDto {
   String? fullName;
-  String? username;
+  String? userName;
   String? email;
   String? password;
   String? phoneNumber;
 
   UserRegistrationDto({
     required this.fullName,
-    required this.username,
+    required this.userName,
     required this.email,
     required this.phoneNumber,
     required this.password,
@@ -15,7 +15,7 @@ class UserRegistrationDto {
 
   Map toJson() => {
         'fullName': fullName,
-        'username': username,
+        'userName': userName,
         'email': email,
         'phoneNumber': phoneNumber,
         'password': password

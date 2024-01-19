@@ -22,7 +22,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> banner = ['images/banner1.png', 'images/banner2.png'];
+  List<String> banner = [
+    'images/banner-comingsoon-1.png',
+    'images/banner-comingsoon-2.png'
+  ];
   Future refresh() async {
     setState(() {});
   }
@@ -227,15 +230,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       spacing: 10,
                       itemCount: banner.length,
                       itemBuilder: (_, i) {
-                        return Image(
-                          image: AssetImage(banner[i]),
-                        ).onTap(
-                          () {
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(somingSoon);
-                          },
-                          highlightColor: context.cardColor,
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 130,
+                            width: 320,
+                            child: Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage(banner[i]),
+                            ).onTap(
+                              () {
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(somingSoon);
+                              },
+                              highlightColor: context.cardColor,
+                            ),
+                          ),
                         );
                       },
                     ),

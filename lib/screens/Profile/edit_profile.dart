@@ -17,13 +17,39 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  bool isFirstTime = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
+    userProvider.getUserInfo();
 
     TextEditingController _fullNameController = TextEditingController();
     TextEditingController _phoneController = TextEditingController();
     TextEditingController _addressController = TextEditingController();
+
+    void _setINitialValues() {
+      try {
+        if (isFirstTime) {
+          print('object');
+          if (userProvider.user != null) {
+            _fullNameController.text = userProvider.user!.fullName.toString();
+            _phoneController.text = userProvider.user!.phoneNumber.toString();
+            _addressController.text = userProvider.user!.address.toString();
+          }
+          isFirstTime = false;
+        }
+      } catch (ex) {
+        print(ex);
+      }
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -31,6 +57,7 @@ class _EditProfileState extends State<EditProfile> {
           resizeToAvoidBottomInset: false,
           body: Consumer<InputValidator>(
             builder: (context, validator, child) {
+              _setINitialValues();
               return Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -82,7 +109,6 @@ class _EditProfileState extends State<EditProfile> {
                           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: AppTextField(
                             enabled: true,
-                            initialValue: userProvider.user?.fullName,
                             textFieldType: TextFieldType.NAME,
                             controller: _fullNameController,
                             decoration: InputDecoration(
@@ -92,19 +118,19 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                             onChanged: (value) {
                               validator.updateFullName(value);
+                              _fullNameController.text = value;
                             },
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: AppTextField(
-                            // initialValue:
-                            //     userProvider.user?.phoneNumber,
                             textFieldType: TextFieldType.PHONE,
                             controller: _phoneController,
                             enabled: true,
                             onChanged: (value) {
                               validator.updatePhoneNumber(value);
+                              _phoneController.text = value;
                             },
                             decoration: InputDecoration(
                               errorText: validator.phoneError,
@@ -118,7 +144,6 @@ class _EditProfileState extends State<EditProfile> {
                           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: AppTextField(
                             enabled: true,
-                            // initialValue: userProvider.user?.phoneNumber,
                             textFieldType: TextFieldType.ADDRESS,
                             controller: _addressController,
                             decoration: InputDecoration(
@@ -129,6 +154,7 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                             onChanged: (value) {
                               validator.updateAddress(value);
+                              _addressController.text = value;
                             },
                           ),
                         ),
@@ -145,15 +171,18 @@ class _EditProfileState extends State<EditProfile> {
                               backgroundColor: KSecondryHighContrast,
                             ),
                             onPressed: () async {
-                              if (validator.fullName.isEmptyOrNull &&
-                                  validator.phoneNumber.isEmptyOrNull &&
-                                  validator.address.isEmptyOrNull) {
+                              if (!validator.fullName.isEmptyOrNull &&
+                                  !validator.phoneNumber.isEmptyOrNull &&
+                                  !validator.address.isEmptyOrNull) {
                                 // all fileds are valid my man
+                                print('valid data ');
+                                userProvider.getUserInfo();
                                 UpdateUserDto updateUserDto = UpdateUserDto(
-                                    userName: userProvider.user?.username,
+                                    userName: userProvider.user?.userName,
                                     address: validator.address,
                                     fullName: validator.fullName,
                                     phoneNumber: validator.phoneNumber);
+
                                 bool results = await userProvider
                                     .updateUser(updateUserDto);
 
@@ -167,6 +196,8 @@ class _EditProfileState extends State<EditProfile> {
                                   print(
                                       'an error acured while registering user');
                                 }
+                              } else {
+                                print('not valid ');
                               }
                             },
                             child: userProvider.isLoading

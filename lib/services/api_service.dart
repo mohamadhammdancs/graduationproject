@@ -85,8 +85,9 @@ class ApiService {
 
   Future<User?> updateUserInfo(UpdateUserDto updateUserDto) async {
     try {
+      print('before api CALLED ................');
       var url = Uri.parse('http://10.0.2.2:8080/api/updateUser');
-      print(url);
+      print('.............................$url');
       var jsonBody = jsonEncode(updateUserDto);
       print(jsonBody);
       var response = await client.post(url, body: jsonBody, headers: headers);

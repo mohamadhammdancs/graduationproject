@@ -59,6 +59,7 @@ class UserProvider extends ChangeNotifier {
       if (_user != null) {
         // Save user IInformation in Shared Preferences
         SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+
         prefs.saveString(constants.USER_INFO, jsonEncode(_user));
         prefs.saveBool(constants.IS_LOGGED_IN, true);
 
@@ -79,11 +80,12 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> updateUser(UpdateUserDto user) async {
+  Future<bool> updateUser(UpdateUserDto userDto) async {
     try {
-      print('Login user provider before setloading');
+      print('updateUser  provider before setloading');
       _setLoading(true); // set loading true before laoading the api call
-      _user = await apiService.updateUserInfo(user);
+
+      _user = await apiService.updateUserInfo(userDto);
       if (_user != null) {
         // Save user IInformation in Shared Preferences
         SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
@@ -110,5 +112,23 @@ class UserProvider extends ChangeNotifier {
   void _setLoading(bool value) {
     _isLoading = value;
     notifyListeners();
+  }
+
+  Future<void> getUserInfo() async {
+    try {
+      SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+      String userInfo = prefs.getString(constants.USER_INFO)!;
+
+      print('profile Screen ' + userInfo);
+
+      // Map<String, dynamic> jsonMap = json.decode(userInfo);
+      // print('error in saving info in _use');
+
+      _user = User.fromJson(jsonDecode(userInfo));
+
+      // print(_user.fullName);
+    } catch (e) {
+      print('somthing went wrong');
+    }
   }
 }

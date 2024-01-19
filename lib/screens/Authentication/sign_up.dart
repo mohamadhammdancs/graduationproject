@@ -265,7 +265,7 @@ class _SignUpState extends State<SignUp> {
                                           UserRegistrationDto(
                                               fullName: validator.fullName,
                                               email: validator.email,
-                                              username: validator.userName,
+                                              userName: validator.userName,
                                               phoneNumber:
                                                   validator.phoneNumber,
                                               password: validator.password);

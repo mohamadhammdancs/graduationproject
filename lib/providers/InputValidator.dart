@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:ggraduating_project/utils/shared_preferences.dart';
+import '../utils/constants.dart' as constants;
 
 class InputValidator extends ChangeNotifier {
   String _email = '';
@@ -13,7 +15,9 @@ class InputValidator extends ChangeNotifier {
   String? _fullNameError;
   String? _phoneNumberError;
   String? _addressError;
+  bool _isRememberMe = false;
 
+  bool get isRememberMe => _isRememberMe;
   String get email => _email;
 
   String? get emailError => _emailError;
@@ -37,7 +41,6 @@ class InputValidator extends ChangeNotifier {
   String? get address => _address;
 
   String? get addressError => _addressError;
-
   void updateEmail(String newEmail) {
     _email = newEmail;
     _validateEmail();
@@ -110,6 +113,7 @@ class InputValidator extends ChangeNotifier {
   }
 
   void _validatePhoneNumber() {
+
     RegExp regExp = RegExp(
       r'^\d{10}$', // Example: Allows exactly 10 digits
     );
@@ -131,6 +135,22 @@ class InputValidator extends ChangeNotifier {
     } else {
       _addressError = null;
     }
+    notifyListeners();
+  }
+
+  void setRemmemberme(bool value) async {
+    print('set remmember me $value');
+    SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+    prefs.saveBool(constants.REMMEMBER_ME, value);
+
+    notifyListeners();
+  }
+
+  Future<void> toggleRememberMe(bool value) async {
+    print('toggle value = $value');
+    SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
+    _isRememberMe = value;
+    await prefs.saveBool(constants.REMMEMBER_ME, value);
     notifyListeners();
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ggraduating_project/providers/user_provider.dart';
 import 'package:ggraduating_project/screens/OnBoarding/on_board_screen.dart';
 import 'package:ggraduating_project/screens/home/home.dart';
 import 'package:ggraduating_project/utils/constants.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 import '../../utils/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,10 +32,14 @@ class _SplashScreenState extends State<SplashScreen> {
     // get If User Already Logged In Or Not
     SharedPreferencesUtil prefs = await SharedPreferencesUtil.getInstance();
     bool? isUserLoggedIn = prefs.getBool(IS_LOGGED_IN);
+    bool? isREmmemberMe = prefs.getBool(REMMEMBER_ME);
 
     try {
-      if (isUserLoggedIn!) {
+      print(
+          'is remmember me = $isREmmemberMe is userlogged in = $isUserLoggedIn');
+      if (isUserLoggedIn! && isREmmemberMe!) {
         // user logged In
+
         const Home().launch(context);
       } else {
         const OnBoard().launch(context, isNewTask: true);
@@ -50,6 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Access the UserProvider
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
+    userProvider.getUserInfo();
+
     return Scaffold(
         body: Stack(
       children: <Widget>[

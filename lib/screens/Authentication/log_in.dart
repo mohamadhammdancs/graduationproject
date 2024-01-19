@@ -187,6 +187,8 @@ class _LogInState extends State<LogIn> {
                                           setState(() {
                                             isChecked = value;
                                           });
+                                      validator.toggleRememberMe(value!);
+
                                         },
                                       ),
                                       Text('Remember me')

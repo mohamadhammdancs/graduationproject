@@ -51,31 +51,30 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                             const Spacer(),
                             Consumer<FavouriteKitchensProvider>(
                                 builder: (context, favourite, child) {
+                              bool isFavourite =
+                                  favourite.isKitchenFavourite(widget.kitchen);
+                              print('is Favaruiot my mann ' +
+                                  isFavourite.toString());
                               return Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.red[200],
-                                child: FaIcon(
-                                  FontAwesomeIcons.heart,
-                                  color: Colors.red,
-                                  size: 19,
-                                ),
-                              ).onTap(() {
-                                
-                              }),
-                            ); 
+                                padding: const EdgeInsets.all(20.0),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.grey[100],
+                                  child: Icon(
+                                    FontAwesomeIcons.heart,
+                                    color:
+                                        isFavourite ? Colors.red : Colors.grey,
+                                    size: 19,
+                                  ),
+                                ).onTap(() {
+                                  if (isFavourite) {
+                                    favourite
+                                        .removeFromFavourites(widget.kitchen);
+                                  } else {
+                                    favourite.addToFavourites(widget.kitchen);
+                                  }
+                                }),
+                              );
                             }),
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.red[200],
-                                child: FaIcon(
-                                  FontAwesomeIcons.heart,
-                                  color: Colors.red,
-                                  size: 19,
-                                ),
-                              ).onTap(() {}),
-                            )
                           ],
                         ),
                         const SizedBox(
