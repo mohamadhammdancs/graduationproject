@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ggraduating_project/GlobalComponents/product_data.dart';
 import 'package:ggraduating_project/models/kitchen_data.dart';
 import 'package:ggraduating_project/providers/favourite_kitchen_provider.dart';
 import 'package:ggraduating_project/screens/home/kitchen_details.dart';
@@ -8,8 +7,6 @@ import 'package:ggraduating_project/widgets/kitchen_card.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/daily_dish_card.dart';
-import '../home/daily_dish_details.dart';
 
 class WishList extends StatefulWidget {
   const WishList({Key? key}) : super(key: key);

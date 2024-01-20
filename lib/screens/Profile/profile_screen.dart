@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:ggraduating_project/providers/user_provider.dart';
@@ -10,9 +8,7 @@ import 'package:ggraduating_project/screens/Profile/notification_screen.dart';
 import 'package:ggraduating_project/screens/Profile/wish_list.dart';
 import 'package:provider/provider.dart';
 import '../../utils/constants.dart' as constants;
-
 import 'package:nb_utils/nb_utils.dart';
-
 import '../../models/User.dart';
 import '../../utils/shared_preferences.dart';
 

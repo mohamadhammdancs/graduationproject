@@ -22,10 +22,7 @@ class _SignInState extends State<SignIn> {
             Container(
               decoration: const BoxDecoration(
                 color: KMainColorr,
-                // image: DecorationImage(
-                //   image: AssetImage("images/authbg.png"),
-                //   fit: BoxFit.cover,
-                // ),
+              
               ),
             ),
             Column(

@@ -84,7 +84,6 @@ class _LogInState extends State<LogIn> {
                           color: KSecondryHighContrast,
                           size: 35,
                         )
-                        //Image.asset('images/messageicon.png'),
                         ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -210,7 +209,7 @@ class _LogInState extends State<LogIn> {
                                               .userNameError.isEmptyOrNull &&
                                           validator
                                               .passwordError.isEmptyOrNull) {
-                                        // all fileds are valid my man
+                                        // all fileds are valid
                                         LoginDto loginToDto = LoginDto(
                                             username: validator.userName,
                                             password: validator.password);

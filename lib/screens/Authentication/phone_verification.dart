@@ -22,10 +22,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
             Container(
               decoration: const BoxDecoration(
                 color: KMainColorr,
-                // image: DecorationImage(
-                //   image: AssetImage("images/authbg.png"),
-                //   fit: BoxFit.cover,
-                // ),
+              
               ),
             ),
             Column(
@@ -50,7 +47,6 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                       color: KSecondryHighContrast,
                       size: 35,
                     )
-                    //Image.asset('images/messageicon.png'),
                     ),
                 Padding(
                   padding:

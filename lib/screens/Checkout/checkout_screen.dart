@@ -201,10 +201,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           children: [
             Container(
               decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
+                  
                   ),
             ),
             SingleChildScrollView(

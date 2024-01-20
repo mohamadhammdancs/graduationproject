@@ -93,87 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
-                              // Row(
-                              //   children: [
-                              //     Padding(
-                              //       padding: const EdgeInsets.all(10.0),
-                              //       child: Column(
-                              //         children: [
-                              //           // Text(
-                              //           //   'Negibour\'s Kitchen',
-                              //           //   style: kTextStyle.copyWith(
-                              //           //       color: KDarkBlue,
-                              //           //       fontSize: 18.0,
-                              //           //       fontWeight: FontWeight.bold),
-                              //           // ),
-                              //           RichText(
-                              //             text: TextSpan(
-                              //               children: [
-                              //                 const WidgetSpan(
-                              //                   child: Icon(
-                              //                     Icons.location_on_outlined,
-                              //                     color: KSecondryContrast,
-                              //                   ),
-                              //                 ),
-                              //                 TextSpan(
-                              //                   text: "Amman, Jordan",
-                              //                   style: kTextStyle.copyWith(
-                              //                       color: kGreyTextColor),
-                              //                 ),
-                              //               ],
-                              //             ),
-                              //           ),
-                              //         ],
-                              //       ),
-                              //     ),
-                              //     const Spacer(),
-                              //     const CircleAvatar(
-                              //       backgroundColor: KSecondryContrast,
-                              //       radius: 20.0,
-                              //       child: Icon(
-                              //         Icons.notifications_none_outlined,
-                              //         color: KSecondryHighContrast,
-                              //       ),
-                              //     ),
-                              //     const SizedBox(
-                              //       width: 20.0,
-                              //     ),
-                              //   ],
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.fromLTRB(10, 30, 20, 0),
-                              //   child: Row(
-                              //     children: [
-                              //       Expanded(
-                              //         flex: 4,
-                              //         child: Container(
-                              //           decoration: BoxDecoration(
-                              //               color: const Color(0xFFF7F5F2),
-                              //               borderRadius:
-                              //                   BorderRadius.circular(12)),
-                              //           child: AppTextField(
-                              //             textFieldType: TextFieldType.NAME,
-                              //             decoration: const InputDecoration(
-                              //               prefixIcon: Icon(
-                              //                 Icons.search,
-                              //                 color: kTitleColor,
-                              //               ),
-                              //               border: InputBorder.none,
-                              //               fillColor: Color(0xFFF7F5F2),
-                              //               contentPadding: EdgeInsets.all(10.0),
-                              //               hintText: 'Search',
-                              //             ),
-                              //           ),
-                              //         ),
-                              //       ),
-                              //       const Expanded(
-                              //           flex: 1,
-                              //           child: Image(
-                              //               image:
-                              //                   AssetImage('images/filter.png'))),
-                              //     ],
-                              //   ),
-                              // ),
                             ],
                           ),
                         ),
@@ -233,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            height: 130,
+                            height: 120,
                             width: 320,
                             child: Image(
                               fit: BoxFit.cover,
@@ -319,23 +238,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-// Padding(
-              //   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-              //   child: Text(
-              //     'Book Your Restaurant',
-              //     style:
-              //         kTextStyle.copyWith(color: kTitleColor, fontSize: 18.0),
-              //   ),
-              // ),
-              // HorizontalList(
-              //   spacing: 10,
-              //   itemCount: restaurantList.length,
-              //   itemBuilder: (_, i) {
-              //     return BookTableCard(restaurantData: restaurantList[i]).onTap(
-              //       () {
-              //         // const CourseDetails().launch(context);
-              //       },
-              //       highlightColor: context.cardColor,
-              //     );
-              //   },
-              // ),

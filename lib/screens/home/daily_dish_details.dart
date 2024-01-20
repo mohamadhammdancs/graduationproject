@@ -170,19 +170,7 @@ class _DailyDishDetailsState extends State<DailyDishDetails> {
                                 maxLines: 7, // This will allow infinite lines
                               ),
                             ), // Padding(
-                            //   padding: const EdgeInsets.all(20.0),
-                            //   child: ReadMoreText(
-                            //     widget.product.productDescription,
-                            //     trimLines: 10,
-                            //     colorClickableText: kMainColor,
-                            //     trimMode: TrimMode.Line,
-                            //     style: kTextStyle.copyWith(color: kTitleColor),
-                            //     trimCollapsedText: 'Show more',
-                            //     trimExpandedText: 'Show less',
-                            //     moreStyle:
-                            //         kTextStyle.copyWith(color: kMainColor),
-                            //   ),
-                            // ),
+                           
                             const SizedBox(
                               height: 20.0,
                             ),

@@ -62,10 +62,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Container(
                   decoration: const BoxDecoration(color: KMainColorr
-                      // image: DecorationImage(
-                      //   image: AssetImage("images/authbg.png"),
-                      //   fit: BoxFit.cover,
-                      // ),
+                    
                       ),
                 ),
                 Column(
@@ -90,7 +87,6 @@ class _SignUpState extends State<SignUp> {
                           color: KSecondryHighContrast,
                           size: 35,
                         )
-                        //Image.asset('images/messageicon.png'),
                         ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -260,7 +256,7 @@ class _SignUpState extends State<SignUp> {
                                         validator.emailError.isEmptyOrNull &&
                                         validator.passwordError.isEmptyOrNull &&
                                         validator.phoneError.isNullOrEmpty) {
-                                      // all fileds are valid my man
+                                      // all fileds are valid
                                       UserRegistrationDto userRegistrationDto =
                                           UserRegistrationDto(
                                               fullName: validator.fullName,

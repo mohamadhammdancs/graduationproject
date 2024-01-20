@@ -25,10 +25,7 @@ class filteredKitchenScreen extends StatelessWidget {
             children: [
               Container(
                 decoration: const BoxDecoration(color: KMainColorr
-                    // image: DecorationImage(
-                    //   image: AssetImage("images/authbg.png"),
-                    //   fit: BoxFit.cover,
-                    // ),
+                   
                     ),
               ),
               Column(
@@ -90,18 +87,7 @@ class filteredKitchenScreen extends StatelessWidget {
                                     }),
                               ),
                             )
-                            // GridView.count(
-                            //   physics: const NeverScrollableScrollPhysics(),
-                            //   shrinkWrap: true,
-                            //   childAspectRatio: 1,
-                            //   crossAxisCount: 4,
-                            //   children: List.generate(
-                            //     catData.length,
-                            //     (index) => CatCard(
-                            //       catList: catData[index],
-                            //     ),
-                            //   ),
-                            // ),
+                          
                           ],
                         ),
                       ),

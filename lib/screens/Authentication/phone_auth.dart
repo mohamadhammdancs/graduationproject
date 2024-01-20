@@ -21,10 +21,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
           children: [
             Container(
               decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
+                  
                   ),
             ),
             Column(
@@ -49,7 +46,6 @@ class _PhoneAuthState extends State<PhoneAuth> {
                     color: KSecondryHighContrast,
                     size: 35,
                   ),
-                  //Image.asset('images/phoneicon.png'),
                 ),
                 Padding(
                   padding:

@@ -21,10 +21,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           children: [
             Container(
               decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
+              
                   ),
             ),
             Column(

@@ -174,7 +174,7 @@ class _EditProfileState extends State<EditProfile> {
                               if (!validator.fullName.isEmptyOrNull &&
                                   !validator.phoneNumber.isEmptyOrNull &&
                                   !validator.address.isEmptyOrNull) {
-                                // all fileds are valid my man
+                                // all fileds are valid
                                 print('valid data ');
                                 userProvider.getUserInfo();
                                 UpdateUserDto updateUserDto = UpdateUserDto(

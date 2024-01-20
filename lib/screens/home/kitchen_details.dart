@@ -53,7 +53,7 @@ class _KitchenDetailsState extends State<KitchenDetails> {
                                 builder: (context, favourite, child) {
                               bool isFavourite =
                                   favourite.isKitchenFavourite(widget.kitchen);
-                              print('is Favaruiot my mann ' +
+                              print('is Favaruiot  ' +
                                   isFavourite.toString());
                               return Padding(
                                 padding: const EdgeInsets.all(20.0),

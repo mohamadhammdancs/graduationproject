@@ -66,10 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
       children: <Widget>[
         Container(
           decoration: const BoxDecoration(color: KMainColorr
-              // image: DecorationImage(
-              //   image: AssetImage("images/splashbg.png"),
-              //   fit: BoxFit.cover,
-              // ),
+           
               ),
         ),
         const Center(

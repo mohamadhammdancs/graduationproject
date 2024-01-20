@@ -23,10 +23,7 @@ class _LocationAccessState extends State<LocationAccess> {
           children: [
             Container(
               decoration: const BoxDecoration(color: KMainColorr
-                  // image: DecorationImage(
-                  //   image: AssetImage("images/authbg.png"),
-                  //   fit: BoxFit.cover,
-                  // ),
+                  
                   ),
             ),
             Row(
